@@ -40,11 +40,21 @@ jobs:
         env:
           PRIVATE_SECRETS: ${{ secrets.PRIVATE_SECRETS }}
         run: |
-          if [ -n "$PRIVATE_SECRETS" ]; then
-            echo "OK: PRIVATE_SECRETS 已配置（长度 ${#PRIVATE_SECRETS}）"
-          else
+          if [ -z "$PRIVATE_SECRETS" ]; then
             echo "::warning::PRIVATE_SECRETS 未配置或为空，私密文章将无法解锁。请确认已在 Settings → Secrets and variables → Actions 的 Repository secrets 下新建名为 PRIVATE_SECRETS 的 secret。"
+            exit 0
           fi
+          echo "OK: PRIVATE_SECRETS 已配置（长度 ${#PRIVATE_SECRETS}）"
+          node -e '
+            const raw = process.env.PRIVATE_SECRETS;
+            try {
+              const j = JSON.parse(raw);
+              if (!j.masterCode) { console.log("::error::PRIVATE_SECRETS 缺少 masterCode 字段，请重新粘贴 private-secrets.json 的完整内容。"); process.exit(0); }
+              console.log("OK: JSON 合法，masterCode 存在，codes 条目数 " + Object.keys(j.codes || {}).length);
+            } catch (e) {
+              console.log("::error::PRIVATE_SECRETS 不是合法 JSON（" + e.message + "）。请重新复制 private-secrets.json 的完整内容，注意引号必须是英文直引号。");
+            }
+          '
       - name: Build with VitePress
         run: npm run build
         env:
