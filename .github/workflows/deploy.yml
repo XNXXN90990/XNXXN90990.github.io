@@ -36,6 +36,15 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: npm ci
+      - name: Check private secrets
+        env:
+          PRIVATE_SECRETS: ${{ secrets.PRIVATE_SECRETS }}
+        run: |
+          if [ -n "$PRIVATE_SECRETS" ]; then
+            echo "OK: PRIVATE_SECRETS 已配置（长度 ${#PRIVATE_SECRETS}）"
+          else
+            echo "::warning::PRIVATE_SECRETS 未配置或为空，私密文章将无法解锁。请确认已在 Settings → Secrets and variables → Actions 的 Repository secrets 下新建名为 PRIVATE_SECRETS 的 secret。"
+          fi
       - name: Build with VitePress
         run: npm run build
         env:
