@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杂谈说说</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app" style="max-width: 900px; margin: 0 auto;">
+    <div class="page-title">杂谈说说</div>
+    <div class="page-sub">寜的朋友圈 · 图文 / 视频 / 文件</div>
+    <div id="talkList"><div class="loading">加载中…</div></div>
+    <div class="pager" id="pager"></div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('talks');
+    let page = 1;
+    const SIZE = 10;
+
+    function mediaHtml(media) {
+      const imgs = [], vids = [], files = [];
+      (media || []).forEach(m => {
+        if ((m.mime || '').startsWith('image/')) imgs.push(m);
+        else if ((m.mime || '').startsWith('video/')) vids.push(m);
+        else if ((m.mime || '').startsWith('audio/')) vids.push(m);
+        else files.push(m);
+      });
+      let h = '';
+      if (imgs.length) h += imgs.map(m => `<img src="${m.url}" alt="${escapeHtml(m.name || '')}" loading="lazy">`).join('');
+      if (vids.length) h += vids.map(m =>
+        m.mime.startsWith('audio/')
+          ? `<audio controls style="width:100%" src="${m.url}"></audio>`
+          : `<video controls preload="metadata" src="${m.url}"></video>`).join('');
+      if (files.length) h += files.map(m =>
+        `<a class="file-pill" href="${m.url}" download="${escapeHtml(m.name || '')}" target="_blank">📎 ${escapeHtml(m.name || '文件')} <span class="muted">${fmtSize(m.size)}</span></a>`).join('');
+      return h ? `<div class="t-media">${h}</div>` : '';
+    }
+
+    async function load() {
+      $('#talkList').innerHTML = '<div class="loading">加载中…</div>';
+      try {
+        const [items, total] = await Promise.all([
+          Supa.select('talks', { select: 'id,content,media,created_at', order: 'created_at.desc', limit: SIZE, offset: (page - 1) * SIZE }),
+          Supa.countRows('talks', []),
+        ]);
+        $('#talkList').innerHTML = items.length ? items.map(t => `
+          <div class="talk">
+            <div class="t-head">
+              <div class="t-avatar">寜</div>
+              <div><div class="t-name">寜</div><div class="t-time">${fmtDateTime(t.created_at)}</div></div>
+            </div>
+            <div class="t-content">${escapeHtml(t.content)}</div>
+            ${mediaHtml(t.media)}
+          </div>`).join('') : '<div class="empty"><div class="e-icon">💬</div>还没有杂谈，等寜来说点什么</div>';
+
+        const totalPage = Math.max(1, Math.ceil(total / SIZE));
+        $('#pager').innerHTML = totalPage > 1
+          ? `<button ${page <= 1 ? 'disabled' : ''} data-p="${page - 1}">‹ 上一页</button><span class="pinfo">${page} / ${totalPage}</span><button ${page >= totalPage ? 'disabled' : ''} data-p="${page + 1}">下一页 ›</button>`
+          : '';
+        $$('#pager button').forEach(b => b.addEventListener('click', () => { page = +b.dataset.p; load(); scrollTo(0, 0); }));
+      } catch (e) {
+        $('#talkList').innerHTML = `<div class="empty">加载失败：${escapeHtml(e.message)}</div>`;
+      }
+    }
+    load();
+  })();
+  </script>
+</body>
+</html>

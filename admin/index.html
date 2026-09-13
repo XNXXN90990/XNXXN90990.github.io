@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>寜的小站 · 管理端</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+  <script src="/vendor/marked.min.js"></script>
+</head>
+<body>
+  <div id="loginView" style="display:none;">
+    <div class="login-wrap">
+      <div class="login-box">
+        <svg viewBox="0 0 44 44"><rect width="44" height="44" rx="11" fill="var(--accent)"/><text x="22" y="30" font-size="22" fill="#fff" text-anchor="middle" font-weight="700">寜</text></svg>
+        <h1>寜的小站 · 管理端</h1>
+        <p>Ning's Blog Admin</p>
+        <div class="form-row"><input type="email" id="emailInput" placeholder="管理员邮箱" autocomplete="username"></div>
+        <div class="form-row"><input type="password" id="pwdInput" placeholder="密码" autocomplete="current-password"></div>
+        <button class="btn" id="loginBtn" style="width: 100%;">登 录</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminView" style="display:none;">
+    <div class="adm-body">
+      <aside class="adm-side">
+        <div class="brand">
+          <svg viewBox="0 0 44 44"><rect width="44" height="44" rx="11" fill="var(--accent)"/><text x="22" y="30" font-size="22" fill="#fff" text-anchor="middle" font-weight="700">寜</text></svg>
+          管理端
+        </div>
+        <nav id="admNav">
+          <a href="#dashboard" data-v="dashboard">📊 数据看板</a>
+          <a href="#posts" data-v="posts">📝 文章管理</a>
+          <a href="#talks" data-v="talks">💬 杂谈说说</a>
+          <a href="#cats" data-v="cats">📂 目录结构</a>
+          <a href="#links" data-v="links">🔗 友链管理</a>
+          <a href="#files" data-v="files">📦 文件管理</a>
+          <a href="#settings" data-v="settings">⚙️ 站点设置</a>
+        </nav>
+        <div class="spacer"></div>
+        <nav>
+          <a href="/" target="_blank">🏠 查看站点</a>
+          <a href="javascript:void(0)" class="logout" id="logoutBtn">⏏ 退出登录</a>
+        </nav>
+      </aside>
+      <main class="adm-main" id="admMain"></main>
+    </div>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

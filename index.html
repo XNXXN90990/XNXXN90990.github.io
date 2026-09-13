@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>寜的小站 · Ning's Blog</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+  <script src="/vendor/marked.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app">
+    <section class="hero">
+      <div class="avatar">寜</div>
+      <div class="grow">
+        <div class="hello">Hi，我是寜 ✨</div>
+        <div class="tagline" id="heroTagline">欢迎来到寜的小站 · Ning's Blog</div>
+        <div class="hero-stats">
+          <div class="hstat"><b id="hsPosts">-</b><span>文章</span></div>
+          <div class="hstat"><b id="hsTalks">-</b><span>杂谈</span></div>
+          <div class="hstat"><b id="hsPv">-</b><span>访问量</span></div>
+          <div class="hstat"><b id="hsUv">-</b><span>访客</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-head"><h2>置顶文章</h2><a class="more" href="/category.html">全部文章 →</a></div>
+    <div class="grid" id="pinnedGrid"><div class="loading">加载中…</div></div>
+
+    <div class="section-head"><h2>最新发布</h2><a class="more" href="/category.html">全部文章 →</a></div>
+    <div class="grid" id="latestGrid"><div class="loading">加载中…</div></div>
+
+    <div class="section-head"><h2>最近杂谈</h2><a class="more" href="/talks.html">全部杂谈 →</a></div>
+    <div id="recentTalks"><div class="loading">加载中…</div></div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('home');
+    try {
+      const pubFilters = ['status=eq.published', 'private=eq.false'];
+      const [pinned, latest, talks, postCount, talkCount] = await Promise.all([
+        Supa.select('posts', { select: 'id,title,description,cover,category_id,pinned,views,created_at', filters: pubFilters.concat(['pinned=eq.true']), order: 'created_at.desc', limit: 3 }),
+        Supa.select('posts', { select: 'id,title,description,cover,category_id,pinned,views,created_at', filters: pubFilters, order: 'pinned.desc,created_at.desc', limit: 9 }),
+        Supa.select('talks', { select: 'id,content,created_at', order: 'created_at.desc', limit: 2 }),
+        Supa.countRows('posts', pubFilters),
+        Supa.countRows('talks', []),
+      ]);
+
+      const catMap = {};
+      (SITE && SITE.nav || []).forEach(c => { catMap[c.id] = c; (c.children || []).forEach(s => catMap[s.id] = s); });
+
+      function postCard(p) {
+        const cat = catMap[p.category_id];
+        return `<a class="card" href="/post.html?id=${p.id}">
+          ${p.cover ? `<img class="cover" src="${escapeHtml(p.cover)}" alt="" loading="lazy">`
+                    : `<div class="cover-ph">寜</div>`}
+          <div class="body">
+            <div class="title">${p.pinned ? '<span class="pin">置顶</span>' : ''}${p.private ? '<span class="lock-badge">私密</span>' : ''}${escapeHtml(p.title)}</div>
+            <div class="desc">${escapeHtml(p.description || '暂无简介')}</div>
+            <div class="meta">
+              <span>${cat ? cat.name : '未分类'}</span>
+              <span>${fmtDate(p.created_at)}</span>
+              <span>${p.views || 0} 次阅读</span>
+            </div>
+          </div>
+        </a>`;
+      }
+      const pinEl = $('#pinnedGrid'), latEl = $('#latestGrid');
+      pinEl.innerHTML = pinned.length ? pinned.map(postCard).join('')
+        : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">📌</div>还没有置顶文章</div>';
+      latEl.innerHTML = latest.length ? latest.map(postCard).join('')
+        : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">📝</div>还没有文章，去后台发布第一篇吧</div>';
+
+      const tk = $('#recentTalks');
+      tk.innerHTML = talks.length ? talks.map(t => `
+        <div class="talk">
+          <div class="t-head">
+            <div class="t-avatar">寜</div>
+            <div><div class="t-name">寜</div><div class="t-time">${fmtDateTime(t.created_at)}</div></div>
+          </div>
+          <div class="t-content">${escapeHtml(t.content).slice(0, 300)}${(t.content || '').length > 300 ? '…' : ''}</div>
+        </div>`).join('')
+        : '<div class="empty"><div class="e-icon">💬</div>还没有杂谈</div>';
+
+      $('#hsPosts').textContent = String(postCount || 0);
+      $('#hsTalks').textContent = String(talkCount || 0);
+      $('#hsPv').textContent = String(SITE.stats.pv || 0);
+      $('#hsUv').textContent = String(SITE.stats.uv || 0);
+      $('#heroTagline').textContent = (SITE.settings && SITE.settings.site_tagline) || '';
+    } catch (e) {
+      $('#pinnedGrid').innerHTML = $('#latestGrid').innerHTML = '';
+      toast('加载失败：' + e.message, true);
+    }
+  })();
+  </script>
+</body>
+</html>

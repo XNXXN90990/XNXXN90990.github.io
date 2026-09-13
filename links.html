@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>友链</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app">
+    <div class="page-title">友链 🔗</div>
+    <div class="page-sub">海内存知己，天涯若比邻</div>
+    <div class="link-grid" id="linkGrid"><div class="loading">加载中…</div></div>
+
+    <div class="section-head"><h2>申请友链</h2></div>
+    <div class="article" style="padding: 24px 28px;">
+      <p>欢迎交换友链！请将本站信息添加到你的站点后，通过任意方式联系我：</p>
+      <blockquote>
+        <p><b>名称：</b>寜的小站<br><b>链接：</b>本站地址<br><b>描述：</b>寜的个人博客 · 记录学习、生活与思考</p>
+      </blockquote>
+    </div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('links');
+    try {
+      const items = await Supa.select('links', { select: 'id,name,url,avatar,description', order: 'sort.asc,id.asc', limit: 200 });
+      $('#linkGrid').innerHTML = items.length ? items.map(l => `
+        <a class="link-card" href="${escapeHtml(l.url)}" target="_blank" rel="noopener">
+          ${l.avatar ? `<img src="${escapeHtml(l.avatar)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;lc-ph&quot;>${escapeHtml((l.name || '友')[0])}</div>'">`
+                     : `<div class="lc-ph">${escapeHtml((l.name || '友')[0])}</div>`}
+          <div>
+            <div class="lc-name">${escapeHtml(l.name)}</div>
+            <div class="lc-desc">${escapeHtml(l.description || '')}</div>
+          </div>
+        </a>`).join('') : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">🔗</div>还没有友链</div>';
+    } catch (e) {
+      $('#linkGrid').innerHTML = `<div class="empty" style="grid-column:1/-1">加载失败：${escapeHtml(e.message)}</div>`;
+    }
+  })();
+  </script>
+</body>
+</html>

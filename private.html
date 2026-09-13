@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私人空间</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+  <script src="/vendor/marked.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app">
+    <div id="content"></div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('private');
+    const content = $('#content');
+
+    // 未解锁：显示锁面板
+    function showLock(msg) {
+      content.innerHTML = `
+        <div class="lock-panel">
+          <div class="lock-icon">🔒</div>
+          <h2>私人空间</h2>
+          <p>${msg || '这里只属于寜自己。<br>输入访问码，仅在本设备保存。'}</p>
+          <input type="password" id="codeInput" placeholder="请输入访问码" autocomplete="off">
+          <div style="margin-top: 16px;"><button class="btn" id="unlockBtn" style="width: 100%;">解锁</button></div>
+        </div>`;
+      $('#unlockBtn').addEventListener('click', unlock);
+      $('#codeInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') unlock(); });
+      $('#codeInput').focus();
+    }
+
+    async function unlock() {
+      const code = $('#codeInput').value.trim();
+      if (!code) return;
+      const btn = $('#unlockBtn');
+      btn.disabled = true; btn.textContent = '验证中…';
+      try {
+        // 服务端（security definer RPC）校验访问码
+        const ok = await Supa.rpc('verify_private_code', { p_code: code });
+        if (ok === true || ok === 'true' || ok === 1 || ok === '1' || (ok && ok.ok)) {
+          localStorage.setItem('private_code', code);
+          toast('解锁成功，欢迎回来 👋');
+          loadPrivate(code);
+        } else {
+          throw new Error('wrong');
+        }
+      } catch (e) {
+        btn.disabled = false; btn.textContent = '解锁';
+        toast('访问码错误', true);
+      }
+    }
+
+    // 已解锁：列出私密文章（RPC 直接返回私密文章）
+    async function loadPrivate(code) {
+      try {
+        const rows = await Supa.rpc('get_private_posts', { p_code: code });
+        const privates = Array.isArray(rows) ? rows : [];
+        content.innerHTML = `
+          <div class="flex" style="margin-bottom: 18px;">
+            <div class="grow"><div class="page-title" style="margin-bottom: 0;">私人空间 🔐</div></div>
+            <button class="btn ghost sm" id="relockBtn">锁定本设备</button>
+          </div>
+          <div class="page-sub">共 ${privates.length} 篇私密文章 · 仅本设备可见</div>
+          ${privates.length ? `<div class="grid">${privates.map(p => {
+            return `<a class="card" href="/post.html?id=${p.id}">
+              ${p.cover ? `<img class="cover" src="${escapeHtml(p.cover)}" alt="" loading="lazy">` : `<div class="cover-ph">寜</div>`}
+              <div class="body">
+                <div class="title"><span class="lock-badge">私密</span>${escapeHtml(p.title)}</div>
+                <div class="desc">${escapeHtml(p.description || '暂无简介')}</div>
+                <div class="meta"><span>${catName(p.category_id)}</span><span>${fmtDate(p.created_at)}</span></div>
+              </div></a>`;
+          }).join('')}</div>` : '<div class="empty"><div class="e-icon">🗝</div>还没有私密文章，可在后台发布时勾选「私密」</div>'}`;
+        $('#relockBtn').addEventListener('click', () => {
+          localStorage.removeItem('private_code');
+          toast('已锁定');
+          showLock('已在本设备锁定。重新输入访问码即可解锁。');
+        });
+      } catch (e) {
+        toast('加载失败：' + e.message, true);
+      }
+    }
+
+    // 启动：本机存有访问码则直接进入
+    const code = getPrivateCode();
+    if (code) loadPrivate(code);
+    else showLock();
+  })();
+  </script>
+</body>
+</html>

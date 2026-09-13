@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+  <script src="/vendor/marked.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app">
+    <div class="page-title">关于我 👋</div>
+    <div class="page-sub">很高兴在这里遇见你</div>
+    <article class="article" style="max-width: 1080px;">
+      <div class="md" id="aboutBody"><div class="loading">加载中…</div></div>
+    </article>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('about');
+    try {
+      const md = (SITE.settings && SITE.settings.about_content)
+        || '> 这里的内容还没有填写，站长正在偷懒中……\n\n> 请登录管理端 → 站点设置 → 关于我来编辑这段介绍。';
+      $('#aboutBody').innerHTML = renderMd(md);
+    } catch (e) {
+      $('#aboutBody').innerHTML = `<div class="empty">加载失败：${escapeHtml(e.message)}</div>`;
+    }
+  })();
+  </script>
+</body>
+</html>

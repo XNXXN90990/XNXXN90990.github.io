@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章列表</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/vendor/disable-devtool.min.js"></script>
+</head>
+<body>
+  <main class="container" id="app">
+    <div class="with-side">
+      <aside class="side-card">
+        <h3>📂 目录</h3>
+        <div class="cat-tree" id="catTree"><div class="loading">加载中…</div></div>
+      </aside>
+      <div>
+        <div class="page-title" id="pageTitle">全部文章</div>
+        <div class="page-sub" id="pageSub"></div>
+        <div class="grid" id="postGrid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));"><div class="loading">加载中…</div></div>
+        <div class="pager" id="pager"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/config.js"></script>
+  <script src="/js/supa.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+  (async function () {
+    if (!checkConfig()) return;
+    await initShell('cat');
+    const params = new URLSearchParams(location.search);
+    let cat = params.get('cat') || '';
+    let page = 1;
+    const SIZE = 12;
+
+    function renderTree(nodes, curSlug) {
+      return (nodes || []).map(c => `
+        <div>
+          <a href="/category.html?cat=${c.slug}" class="${c.slug === curSlug ? 'active' : ''}">
+            <span>${escapeHtml(c.name)}</span>
+          </a>
+          ${c.children && c.children.length ? `<div class="sub">${renderTree(c.children, curSlug)}</div>` : ''}
+        </div>`).join('');
+    }
+
+    // 计算分类及其子孙 id
+    function catIds(slug) {
+      let target = null;
+      for (const c of Object.values(CAT_MAP || {})) if (c.slug === slug) target = c;
+      if (!target) return [];
+      const ids = [target.id];
+      (function walk(c) { (c.children || []).forEach(s => { ids.push(s.id); walk(s); }); })(target);
+      return ids;
+    }
+
+    async function load() {
+      $('#postGrid').innerHTML = '<div class="loading">加载中…</div>';
+      const filters = ['status=eq.published', 'private=eq.false'];
+      let title = '全部文章';
+      if (cat) {
+        const ids = catIds(cat);
+        if (ids.length) {
+          filters.push(`category_id=in.(${ids.join(',')})`);
+          title = CAT_MAP[ids[0]].name;
+        }
+      }
+      try {
+        const [items, total] = await Promise.all([
+          Supa.select('posts', {
+            select: 'id,title,description,cover,category_id,pinned,views,created_at',
+            filters, order: 'pinned.desc,created_at.desc', limit: SIZE, offset: (page - 1) * SIZE,
+          }),
+          Supa.countRows('posts', filters),
+        ]);
+        $('#pageTitle').textContent = title;
+        $('#pageSub').textContent = `共 ${total} 篇`;
+        $('#postGrid').innerHTML = items.length ? items.map(p => {
+          return `<a class="card" href="/post.html?id=${p.id}">
+            ${p.cover ? `<img class="cover" src="${escapeHtml(p.cover)}" alt="" loading="lazy">` : `<div class="cover-ph">寜</div>`}
+            <div class="body">
+              <div class="title">${p.pinned ? '<span class="pin">置顶</span>' : ''}${escapeHtml(p.title)}</div>
+              <div class="desc">${escapeHtml(p.description || '暂无简介')}</div>
+              <div class="meta"><span>${catName(p.category_id)}</span><span>${fmtDate(p.created_at)}</span><span>${p.views || 0} 次阅读</span></div>
+            </div></a>`;
+        }).join('') : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">📭</div>这个分类下还没有文章</div>';
+
+        const totalPage = Math.max(1, Math.ceil(total / SIZE));
+        let html = `<button ${page <= 1 ? 'disabled' : ''} data-p="${page - 1}">‹</button>`;
+        for (let i = 1; i <= totalPage && i <= 9; i++) html += `<button class="${i === page ? 'cur' : ''}" data-p="${i}">${i}</button>`;
+        if (totalPage > 9) html += `<span class="pinfo">… ${totalPage} 页</span>`;
+        html += `<button ${page >= totalPage ? 'disabled' : ''} data-p="${page + 1}">›</button>`;
+        $('#pager').innerHTML = totalPage > 1 ? html : '';
+        $$('#pager button').forEach(b => b.addEventListener('click', () => { page = +b.dataset.p; load(); scrollTo(0, 0); }));
+      } catch (e) {
+        $('#postGrid').innerHTML = `<div class="empty" style="grid-column:1/-1">加载失败：${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    // 目录树
+    const allHtml = `<div><a href="/category.html" class="${!cat ? 'active' : ''}"><span>全部文章</span></a></div>` + renderTree(SITE.nav || [], cat);
+    $('#catTree').innerHTML = allHtml;
+    load();
+  })();
+  </script>
+</body>
+</html>
