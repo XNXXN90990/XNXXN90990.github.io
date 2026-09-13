@@ -3,36 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于我</title>
+  <title>关于我 · 寜的小站</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/material/main.min.css">
+  <link rel="stylesheet" href="/css/material/palette.min.css">
+  <link rel="stylesheet" href="/css/wcowin/extra.css">
+  <link rel="stylesheet" href="/css/wcowin/extra2.css">
+  <link rel="stylesheet" href="/css/wcowin/customize.css">
+  <link rel="stylesheet" href="/css/wcowin/link.css">
+  <link rel="stylesheet" href="/css/wcowin/ziti.css">
+  <link rel="stylesheet" href="/css/ning.css">
   <script src="/vendor/disable-devtool.min.js"></script>
   <script src="/vendor/marked.min.js"></script>
 </head>
-<body>
-  <main class="container" id="app">
-    <div class="page-title">关于我 👋</div>
-    <div class="page-sub">很高兴在这里遇见你</div>
-    <article class="article" style="max-width: 1080px;">
-      <div class="md" id="aboutBody"><div class="loading">加载中…</div></div>
-    </article>
-  </main>
+<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+  <label class="md-overlay" for="__drawer" aria-label="导航栏"></label>
+
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header__inner md-grid" aria-label="页眉">
+      <a href="/" title="寜的小站" class="md-header__button md-logo" aria-label="寜的小站" data-md-component="logo">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E" alt="寜的小站">
+      </a>
+      <label class="md-header__button md-icon" for="__drawer" aria-label="导航栏">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      </label>
+      <div class="md-header__title" data-md-component="header-title">
+        <div class="md-header__ellipsis">
+          <div class="md-header__topic"><span class="md-ellipsis">寜的小站</span></div>
+          <div class="md-header__topic" data-md-component="header-topic"><span class="md-ellipsis">关于我</span></div>
+        </div>
+      </div>
+      <form class="md-header__option" data-md-component="palette">
+        <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_0">
+        <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_1" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"/></svg>
+        </label>
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="blue" aria-label="切换到夜间模式" type="radio" name="__palette" id="__palette_1">
+        <label class="md-header__button md-icon" title="切换到夜间模式" for="__palette_2" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </label>
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="blue" aria-label="切换到系统偏好设置" type="radio" name="__palette" id="__palette_2">
+        <label class="md-header__button md-icon" title="切换到系统偏好设置" for="__palette_0" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        </label>
+      </form>
+      <div class="md-header__source">
+        <a href="https://github.com/XNXXN90990/XNXXN90990.github.io" title="前往仓库" class="md-source" data-md-component="source">
+          <div class="md-source__icon md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.2 1.3 6.5 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.2-1.3-6.5-2.3-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+          </div>
+          <div class="md-source__repository">XNXXN90990/XNXXN90990.github.io</div>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="md-container" data-md-component="container">
+    <nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+      <div class="md-grid">
+        <ul class="md-tabs__list" id="ningTabs"></ul>
+      </div>
+    </nav>
+
+    <main class="md-main" data-md-component="main">
+      <div class="md-main__inner md-grid">
+        <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+          <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+              <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+                <label class="md-nav__title" for="__drawer">
+                  <span class="md-nav__icon md-icon"></span>
+                  寜的小站
+                </label>
+                <ul class="md-nav__list" id="ningDrawerNav"></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="md-content" data-md-component="content">
+          <article class="md-content__inner md-typeset">
+            <h1>关于我 👋</h1>
+            <p class="ning-page-sub">很高兴在这里遇见你</p>
+            <div id="aboutBody" class="md-typeset"><div class="ning-loading">加载中…</div></div>
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-copyright">
+          <div class="md-copyright__highlight">Copyright &copy; 2026 寜 · DBD</div>
+          风格致敬 <a href="https://wcowin.work/" target="_blank" rel="noopener">Wcowin's Blog</a> · 由 <a href="/admin/" target="_blank">寜</a> 用心经营
+        </div>
+        <div class="ning-footer-stats">
+          <span>本站已运行 <b id="ningDays">-</b> 天 <span id="ningTime">-</span></span>
+          <span>访问量 <b id="ningPv">-</b> 次</span>
+          <span>访客数 <b id="ningUv">-</b> 人</span>
+          <span>作者 <b>DBD</b></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox"><img alt=""></div>
 
   <script src="/config.js"></script>
   <script src="/js/supa.js"></script>
   <script src="/js/common.js"></script>
+  
   <script>
   (async function () {
     if (!checkConfig()) return;
-    await initShell('about');
+    await initPage('about');
     try {
-      const md = (SITE.settings && SITE.settings.about_content)
-        || '> 这里的内容还没有填写，站长正在偷懒中……\n\n> 请登录管理端 → 站点设置 → 关于我来编辑这段介绍。';
-      $('#aboutBody').innerHTML = renderMd(md);
+      var fallback = '> 这里的内容还没有填写，站长正在偷懒中……\n\n> 请登录管理端 → 站点设置 → 关于我来编辑这段介绍。';
+      var md = (SITE.settings && SITE.settings.about_content) || fallback;
+      document.getElementById('aboutBody').innerHTML = renderMd(md);
     } catch (e) {
-      $('#aboutBody').innerHTML = `<div class="empty">加载失败：${escapeHtml(e.message)}</div>`;
+      document.getElementById('aboutBody').innerHTML = '<div class="ning-empty">加载失败：' + escapeHtml(e.message) + '</div>';
     }
   })();
   </script>
+  <script src="/js/material-bundle.min.js"></script>
 </body>
 </html>

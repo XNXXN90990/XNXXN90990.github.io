@@ -13,8 +13,15 @@
 - 🔐 私人空间：私密文章需要访问码，只在你的设备解锁后可见
 - 📊 页脚统计：运行时长 / 访问量 / 访客数
 - 🛡️ 反调试：F12、控制台等操作会被打断
+- 🎨 前端整体采用 [Wcowin 博客](https://wcowin.work/) 同款 Zensical 主题（LXGW WenKai 字体、昼夜切换、抽屉导航、打字机首页），并按需求改为**全宽自适应**
 - 🌙 深色模式、移动端适配
 
+## 密码忘了怎么办？
+
+管理端登录账号即 Supabase Auth 账号，两种恢复方式：
+
+1. **邮件重置**：Supabase 控制台 → Authentication → Users → 点账号旁的 ⋮ → Send password recovery，邮箱会收到重置链接（免费版每小时限 2 封）。
+2. **删号重建（最简单）**：控制台 → Users → 删除旧账号 → Add user 新建一个。**所有数据（文章/说说/友链）都不绑定账号，不会丢失。**
 ## 首次部署（三步）
 
 ### 第 1 步：初始化 Supabase（约 5 分钟）
@@ -80,6 +87,17 @@ npx serve .
 
 注意：`crypto.subtle`（管理端改密码/访问码用）需要 `http://localhost` 或 HTTPS 环境。
 
+## 日常使用速查
+
+| 想做的事 | 怎么做 |
+|---|---|
+| 写文章 | 管理端 → 文章管理 → 发布新文章（选分类、可置顶/私密/存草稿） |
+| 发说说 | 管理端 → 杂谈说说 → 输入内容、传图片视频 → 发布 |
+| 存草稿 | 编辑器「存为草稿」按钮；写作过程每 3 秒自动保存到本地，意外关闭可恢复 |
+| 改目录/加分类 | 管理端 → 目录结构（前台导航自动更新） |
+| 改私人访问码 | 管理端 → 站点设置（默认 DBDprivate，请尽快修改） |
+| 忘记登录密码 | 见上方「密码忘了怎么办」 |
+| 改外观 | css/ning.css（全宽、卡片、页脚）；css/wcowin/（Wcowin 原版样式） |
 ## 目录结构
 
 ```
@@ -93,8 +111,13 @@ npx serve .
 ├── admin/                # 管理端
 ├── config.js             # ★ Supabase 配置（部署前必填）
 ├── sql/setup.sql         # ★ Supabase 初始化脚本
-├── css/main.css          # 全部样式（含暗色模式）
+├── css/material/         # Zensical 主题 CSS（Wcowin 同款）
+├── css/wcowin/           # Wcowin 自定义样式（extra/customize/ziti/link 等）
+├── css/wcowin-home.css   # Wcowin 首页 hero（打字机/头像光辉）
+├── css/ning.css          # 本站覆盖：全宽自适应、卡片、页脚统计
+├── css/main.css          # 管理端样式
 ├── js/common.js          # 前台公共逻辑（导航/页脚/统计/反调试）
+├── js/material-bundle.min.js # 主题交互（抽屉导航/昼夜切换）
 ├── js/supa.js            # Supabase REST/Auth/Storage 封装
 └── vendor/               # marked.min.js、disable-devtool.min.js
 ```

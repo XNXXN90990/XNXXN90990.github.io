@@ -5,99 +5,219 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>寜的小站 · Ning's Blog</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/material/main.min.css">
+  <link rel="stylesheet" href="/css/material/palette.min.css">
+  <link rel="stylesheet" href="/css/wcowin/extra.css">
+  <link rel="stylesheet" href="/css/wcowin/extra2.css">
+  <link rel="stylesheet" href="/css/wcowin/customize.css">
+  <link rel="stylesheet" href="/css/wcowin/link.css">
+  <link rel="stylesheet" href="/css/wcowin/ziti.css">
+  <link rel="stylesheet" href="/css/wcowin-home.css">
+  <link rel="stylesheet" href="/css/ning.css">
   <script src="/vendor/disable-devtool.min.js"></script>
   <script src="/vendor/marked.min.js"></script>
 </head>
-<body>
-  <main class="container" id="app">
-    <section class="hero">
-      <div class="avatar">寜</div>
-      <div class="grow">
-        <div class="hello">Hi，我是寜 ✨</div>
-        <div class="tagline" id="heroTagline">欢迎来到寜的小站 · Ning's Blog</div>
-        <div class="hero-stats">
-          <div class="hstat"><b id="hsPosts">-</b><span>文章</span></div>
-          <div class="hstat"><b id="hsTalks">-</b><span>杂谈</span></div>
-          <div class="hstat"><b id="hsPv">-</b><span>访问量</span></div>
-          <div class="hstat"><b id="hsUv">-</b><span>访客</span></div>
+<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+  <label class="md-overlay" for="__drawer" aria-label="导航栏"></label>
+
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header__inner md-grid" aria-label="页眉">
+      <a href="/" title="寜的小站" class="md-header__button md-logo" aria-label="寜的小站" data-md-component="logo">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E" alt="寜的小站">
+      </a>
+      <label class="md-header__button md-icon" for="__drawer" aria-label="导航栏">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      </label>
+      <div class="md-header__title" data-md-component="header-title">
+        <div class="md-header__ellipsis">
+          <div class="md-header__topic"><span class="md-ellipsis">寜的小站</span></div>
+          <div class="md-header__topic" data-md-component="header-topic"><span class="md-ellipsis">首页</span></div>
         </div>
       </div>
-    </section>
+      <form class="md-header__option" data-md-component="palette">
+        <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_0">
+        <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_1" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"/></svg>
+        </label>
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="blue" aria-label="切换到夜间模式" type="radio" name="__palette" id="__palette_1">
+        <label class="md-header__button md-icon" title="切换到夜间模式" for="__palette_2" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </label>
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="blue" aria-label="切换到系统偏好设置" type="radio" name="__palette" id="__palette_2">
+        <label class="md-header__button md-icon" title="切换到系统偏好设置" for="__palette_0" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        </label>
+      </form>
+      <div class="md-header__source">
+        <a href="https://github.com/XNXXN90990/XNXXN90990.github.io" title="前往仓库" class="md-source" data-md-component="source">
+          <div class="md-source__icon md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.2 1.3 6.5 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.2-1.3-6.5-2.3-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+          </div>
+          <div class="md-source__repository">XNXXN90990/XNXXN90990.github.io</div>
+        </a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="section-head"><h2>置顶文章</h2><a class="more" href="/category.html">全部文章 →</a></div>
-    <div class="grid" id="pinnedGrid"><div class="loading">加载中…</div></div>
+  <div class="md-container" data-md-component="container">
+    <nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+      <div class="md-grid">
+        <ul class="md-tabs__list" id="ningTabs"></ul>
+      </div>
+    </nav>
 
-    <div class="section-head"><h2>最新发布</h2><a class="more" href="/category.html">全部文章 →</a></div>
-    <div class="grid" id="latestGrid"><div class="loading">加载中…</div></div>
+    <main class="md-main" data-md-component="main">
+      <div class="md-main__inner md-grid">
+        <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+          <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+              <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+                <label class="md-nav__title" for="__drawer">
+                  <span class="md-nav__icon md-icon"></span>
+                  寜的小站
+                </label>
+                <ul class="md-nav__list" id="ningDrawerNav"></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
 
-    <div class="section-head"><h2>最近杂谈</h2><a class="more" href="/talks.html">全部杂谈 →</a></div>
-    <div id="recentTalks"><div class="loading">加载中…</div></div>
-  </main>
+        <div class="md-content" data-md-component="content">
+          <article class="md-content__inner md-typeset">
+
+            <!-- ===== Hero（Wcowin 风格） ===== -->
+            <div class="mobile-motto"><h1>寜的小站</h1></div>
+            <div class="wcowin-header-row">
+              <div class="wcowin-header-text">
+                <div class="wcowin-header-title">Hi, I'm <span class="wcowin-name-box"><span class="name-text">寜</span></span></div>
+                <div class="wcowin-header-subtitle">
+                  <span class="wcowin-header-subtitle-inner" aria-hidden="true">
+                    <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                  </span>
+                  <span class="sr-only">寜的小站 · Ning's Blog</span>
+                </div>
+                <div class="wcowin-header-btns">
+                  <a href="https://github.com/XNXXN90990" target="_blank" rel="noopener noreferrer" class="md-button md-button--primary">
+                    <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></span>
+                    Github
+                  </a>
+                  <a href="/admin/" class="md-button">
+                    <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+                    管理端
+                  </a>
+                </div>
+              </div>
+              <div class="wcowin-header-avatar">
+                <div class="flip-glow-ultimate">
+                  <div class="flip-glow-ultimate-glow"></div>
+                  <div class="flip-glow-ultimate-imgs">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='11' fill='%234051b5'/%3E%3Ctext x='22' y='30' font-size='22' fill='white' text-anchor='middle' font-weight='700'%3E寜%3C/text%3E%3C/svg%3E" alt="寜" class="flip-glow-ultimate-front" loading="eager" width="260" height="260">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='22' fill='%23304081'/%3E%3Ctext x='22' y='31' font-size='24' fill='white' text-anchor='middle' font-weight='700'%3EN%3C/text%3E%3C/svg%3E" alt="Ning's Blog" class="flip-glow-ultimate-back" loading="lazy" width="260" height="260">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== 置顶文章 ===== -->
+            <h2 id="ning-pinned">📌 置顶文章<a class="headerlink" href="#ning-pinned" title="Permanent link">&para;</a></h2>
+            <div class="ning-cards" id="pinnedGrid"><div class="ning-loading">加载中…</div></div>
+
+            <!-- ===== 最新发布 ===== -->
+            <h2 id="ning-latest">📝 最新发布<a class="headerlink" href="#ning-latest" title="Permanent link">&para;</a></h2>
+            <div class="ning-cards" id="latestGrid"><div class="ning-loading">加载中…</div></div>
+
+            <!-- ===== 最近杂谈 ===== -->
+            <h2 id="ning-talks">💬 最近杂谈<a class="headerlink" href="#ning-talks" title="Permanent link">&para;</a></h2>
+            <div id="recentTalks"><div class="ning-loading">加载中…</div></div>
+            <p style="text-align:center;"><a href="/talks.html" class="md-button md-button--primary">全部杂谈 →</a></p>
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-copyright">
+          <div class="md-copyright__highlight">Copyright &copy; 2026 寜 · DBD</div>
+          风格致敬 <a href="https://wcowin.work/" target="_blank" rel="noopener">Wcowin's Blog</a> · 由 <a href="/admin/" target="_blank">寜</a> 用心经营
+        </div>
+        <div class="ning-footer-stats">
+          <span>本站已运行 <b id="ningDays">-</b> 天 <span id="ningTime">-</span></span>
+          <span>访问量 <b id="ningPv">-</b> 次</span>
+          <span>访客数 <b id="ningUv">-</b> 人</span>
+          <span>作者 <b>DBD</b></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox"><img alt=""></div>
 
   <script src="/config.js"></script>
   <script src="/js/supa.js"></script>
   <script src="/js/common.js"></script>
   <script>
+  (function typewriter() {
+    const phrases = ['宁静致远 · 记录学习、生活与思考', '教程 / 学习路线 / 随笔 / 杂谈说说', "寜的小站 · Ning's Blog"];
+    const el = document.getElementById('typewriter-text');
+    if (!el) return;
+    let pi = 0, ci = 0, deleting = false;
+    function tick() {
+      const p = phrases[pi];
+      el.textContent = p.slice(0, ci);
+      if (!deleting) {
+        if (ci < p.length) { ci++; setTimeout(tick, 110); }
+        else { deleting = true; setTimeout(tick, 1800); }
+      } else {
+        if (ci > 0) { ci--; setTimeout(tick, 45); }
+        else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 300); }
+      }
+    }
+    tick();
+  })();
+
   (async function () {
     if (!checkConfig()) return;
-    await initShell('home');
+    await initPage('home');
     try {
       const pubFilters = ['status=eq.published', 'private=eq.false'];
-      const [pinned, latest, talks, postCount, talkCount] = await Promise.all([
+      const [pinned, latest, talks] = await Promise.all([
         Supa.select('posts', { select: 'id,title,description,cover,category_id,pinned,views,created_at', filters: pubFilters.concat(['pinned=eq.true']), order: 'created_at.desc', limit: 3 }),
-        Supa.select('posts', { select: 'id,title,description,cover,category_id,pinned,views,created_at', filters: pubFilters, order: 'pinned.desc,created_at.desc', limit: 9 }),
+        Supa.select('posts', { select: 'id,title,description,cover,category_id,pinned,views,created_at', filters: pubFilters, order: 'pinned.desc,created_at.desc', limit: 6 }),
         Supa.select('talks', { select: 'id,content,created_at', order: 'created_at.desc', limit: 2 }),
-        Supa.countRows('posts', pubFilters),
-        Supa.countRows('talks', []),
       ]);
-
-      const catMap = {};
-      (SITE && SITE.nav || []).forEach(c => { catMap[c.id] = c; (c.children || []).forEach(s => catMap[s.id] = s); });
-
       function postCard(p) {
-        const cat = catMap[p.category_id];
-        return `<a class="card" href="/post.html?id=${p.id}">
-          ${p.cover ? `<img class="cover" src="${escapeHtml(p.cover)}" alt="" loading="lazy">`
-                    : `<div class="cover-ph">寜</div>`}
-          <div class="body">
-            <div class="title">${p.pinned ? '<span class="pin">置顶</span>' : ''}${p.private ? '<span class="lock-badge">私密</span>' : ''}${escapeHtml(p.title)}</div>
-            <div class="desc">${escapeHtml(p.description || '暂无简介')}</div>
-            <div class="meta">
-              <span>${cat ? cat.name : '未分类'}</span>
-              <span>${fmtDate(p.created_at)}</span>
-              <span>${p.views || 0} 次阅读</span>
-            </div>
+        return `<a class="ning-card" href="/post.html?id=${p.id}">
+          ${p.cover ? `<img class="nc-cover" src="${escapeHtml(p.cover)}" alt="" loading="lazy">` : `<div class="nc-cover-ph">寜</div>`}
+          <div class="nc-body">
+            <div class="nc-title">${p.pinned ? '<span class="ning-badge ning-badge--pin">置顶</span>' : ''}${escapeHtml(p.title)}</div>
+            <div class="nc-desc">${escapeHtml(p.description || '暂无简介')}</div>
+            <div class="nc-meta"><span>${catName(p.category_id)}</span><span>${fmtDate(p.created_at)}</span><span>${p.views || 0} 次阅读</span></div>
           </div>
         </a>`;
       }
-      const pinEl = $('#pinnedGrid'), latEl = $('#latestGrid');
-      pinEl.innerHTML = pinned.length ? pinned.map(postCard).join('')
-        : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">📌</div>还没有置顶文章</div>';
-      latEl.innerHTML = latest.length ? latest.map(postCard).join('')
-        : '<div class="empty" style="grid-column:1/-1"><div class="e-icon">📝</div>还没有文章，去后台发布第一篇吧</div>';
-
-      const tk = $('#recentTalks');
-      tk.innerHTML = talks.length ? talks.map(t => `
-        <div class="talk">
-          <div class="t-head">
-            <div class="t-avatar">寜</div>
-            <div><div class="t-name">寜</div><div class="t-time">${fmtDateTime(t.created_at)}</div></div>
+      $('#pinnedGrid').innerHTML = pinned.length ? pinned.map(postCard).join('')
+        : '<div class="ning-empty" style="grid-column:1/-1"><div class="e-icon">📌</div>还没有置顶文章</div>';
+      $('#latestGrid').innerHTML = latest.length ? latest.map(postCard).join('')
+        : '<div class="ning-empty" style="grid-column:1/-1"><div class="e-icon">📝</div>还没有文章，去管理端发布第一篇吧</div>';
+      $('#recentTalks').innerHTML = talks.length ? talks.map(t => `
+        <div class="ning-talk">
+          <div class="nt-head">
+            <div class="nt-avatar">寜</div>
+            <div><div class="nt-name">寜</div><div class="nt-time">${fmtDateTime(t.created_at)}</div></div>
           </div>
-          <div class="t-content">${escapeHtml(t.content).slice(0, 300)}${(t.content || '').length > 300 ? '…' : ''}</div>
+          <div class="nt-content">${escapeHtml(t.content).slice(0, 300)}${(t.content || '').length > 300 ? '…' : ''}</div>
         </div>`).join('')
-        : '<div class="empty"><div class="e-icon">💬</div>还没有杂谈</div>';
-
-      $('#hsPosts').textContent = String(postCount || 0);
-      $('#hsTalks').textContent = String(talkCount || 0);
-      $('#hsPv').textContent = String(SITE.stats.pv || 0);
-      $('#hsUv').textContent = String(SITE.stats.uv || 0);
-      $('#heroTagline').textContent = (SITE.settings && SITE.settings.site_tagline) || '';
+        : '<div class="ning-empty"><div class="e-icon">💬</div>还没有杂谈</div>';
     } catch (e) {
-      $('#pinnedGrid').innerHTML = $('#latestGrid').innerHTML = '';
       toast('加载失败：' + e.message, true);
     }
   })();
   </script>
+  <script src="/js/material-bundle.min.js"></script>
 </body>
 </html>

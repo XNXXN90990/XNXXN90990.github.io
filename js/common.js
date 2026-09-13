@@ -1,13 +1,9 @@
-/* 公共层：配置检查 / 导航 / 页脚统计 / 主题切换 / 访问统计 / 反调试 */
+/* 公共层（Material/Wcowin 外观版）：配置检查 / 导航填充 / 页脚统计 / 访问统计 / 反调试 */
 'use strict';
 
-// ---------- 反调试：F12 / 控制台 / debugger 等操作会被打断 ----------
+// ---------- 反调试 ----------
 if (window.DisableDevtool) {
-  new DisableDevtool({
-    disableMenu: true,      // 禁用右键菜单
-    clearLog: true,         // 清空控制台
-    stopIntervalTime: 1800, // 检测间隔
-  });
+  new DisableDevtool({ disableMenu: true, clearLog: true, stopIntervalTime: 1800 });
 }
 
 // ---------- 工具 ----------
@@ -15,14 +11,13 @@ const $ = (s, el) => (el || document).querySelector(s);
 const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
 
 function toast(msg, isErr) {
-  let t = $('#toast');
-  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  let t = $('#ningToast');
+  if (!t) { t = document.createElement('div'); t.id = 'ningToast'; t.className = 'ning-toast'; document.body.appendChild(t); }
   t.textContent = msg;
-  t.className = 'toast show' + (isErr ? ' err' : '');
+  t.className = 'ning-toast show' + (isErr ? ' err' : '');
   clearTimeout(t._tm);
-  t._tm = setTimeout(() => { t.className = 'toast'; }, 2200);
+  t._tm = setTimeout(() => { t.className = 'ning-toast'; }, 2200);
 }
-
 function fmtDate(s) {
   if (!s) return '';
   const d = new Date(s);
@@ -63,9 +58,10 @@ function renderMd(md) {
 // ---------- 配置检查 ----------
 function checkConfig() {
   if (!Supa.init() || !Supa.configured) {
-    document.body.innerHTML = `
-      <div class="lock-panel">
-        <div class="lock-icon">🛠️</div>
+    const inner = document.querySelector('.md-content__inner');
+    if (inner) inner.innerHTML = `
+      <div class="ning-lock-panel">
+        <div class="lp-icon">🛠️</div>
         <h2>站点尚未配置</h2>
         <p>请先完成 Supabase 初始化：<br>1. 注册 <a href="https://supabase.com" target="_blank">supabase.com</a>（免费）<br>2. 新建项目 → SQL Editor 运行 <code>sql/setup.sql</code><br>3. Authentication → Users 创建管理员邮箱密码<br>4. 把项目 URL 和 anon key 填入 <code>config.js</code><br><br>详细步骤见仓库 README.md</p>
       </div>`;
@@ -74,7 +70,7 @@ function checkConfig() {
   return true;
 }
 
-// ---------- 访问统计上报（匿名插入 visits 表，RLS 允许） ----------
+// ---------- 访问统计上报 ----------
 (function trackVisit() {
   if (!Supa.init()) return;
   let vid = localStorage.getItem('vid');
@@ -85,21 +81,9 @@ function checkConfig() {
   Supa.insert('visits', { visitor_id: vid }, false).catch(() => {});
 })();
 
-// ---------- 主题 ----------
-(function initTheme() {
-  const saved = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', saved);
-})();
-function toggleTheme() {
-  const cur = document.documentElement.getAttribute('data-theme') || 'light';
-  const next = cur === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-}
-
-// ---------- 导航与页脚 ----------
-let SITE = null;      // { nav, settings, stats }
-let CAT_MAP = null;   // id -> category
+// ---------- 站点数据 ----------
+let SITE = null;
+let CAT_MAP = null;
 
 async function loadSiteData() {
   const [cats, settings, stats] = await Promise.all([
@@ -120,86 +104,60 @@ async function loadSiteData() {
   return SITE;
 }
 function catName(id) { const c = CAT_MAP && CAT_MAP[id]; return c ? c.name : ''; }
-
-async function initShell(activeKey) {
-  const header = document.createElement('header');
-  header.className = 'site-header';
-  header.innerHTML = `
-    <div class="header-inner">
-      <a class="site-title" href="/">
-        <svg class="logo" viewBox="0 0 44 44"><rect width="44" height="44" rx="11" fill="var(--accent)"/><text x="22" y="30" font-size="22" fill="#fff" text-anchor="middle" font-weight="700">寜</text></svg>
-        <span>寜的小站<span class="en">Ning's Blog</span></span>
-      </a>
-      <nav class="main-nav" id="mainNav"></nav>
-      <div class="header-actions">
-        <button class="icon-btn" id="themeBtn" title="切换主题">🌙</button>
-        <button class="icon-btn" id="menuToggle" title="菜单">☰</button>
-      </div>
-    </div>`;
-  document.body.prepend(header);
-
-  const footer = document.createElement('footer');
-  footer.className = 'site-footer';
-  footer.innerHTML = `
-    <div class="footer-inner">
-      <div class="footer-stats">
-        <span>本站已运行 <b id="ftDays">-</b> 天 <i id="ftTime">-</i></span>
-        <span>访问量 <b id="ftPv">-</b> 次</span>
-        <span>访客数 <b id="ftUv">-</b> 人</span>
-        <span>作者 <b>DBD</b></span>
-      </div>
-      <div class="footer-copy">© <span id="ftYear"></span> 寜的小站 Ning's Blog · 由 <a href="/admin/" target="_blank">寜</a> 用心经营</div>
-    </div>`;
-  document.body.appendChild(footer);
-
-  const lb = document.createElement('div');
-  lb.id = 'lightbox';
-  lb.innerHTML = '<img alt="">';
-  document.body.appendChild(lb);
-  lb.addEventListener('click', () => { lb.style.display = 'none'; });
-  document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'IMG' && e.target.closest('.t-media')) {
-      $('#lightbox img').src = e.target.src;
-      $('#lightbox').style.display = 'flex';
-    }
-  });
-
-  $('#themeBtn').addEventListener('click', function () {
-    toggleTheme();
-    this.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
-  });
-  $('#menuToggle').addEventListener('click', () => $('#mainNav').classList.toggle('open'));
-  $('#themeBtn').textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
-
-  await loadSiteData();
-
-  // 导航
-  const nav = $('#mainNav');
+function navItems() {
   const items = [{ key: 'home', name: '首页', href: '/' }];
-  for (const c of SITE.nav) items.push({ key: 'cat:' + c.slug, name: c.name, href: '/category.html?cat=' + c.slug });
+  for (const c of (SITE ? SITE.nav : [])) items.push({ key: 'cat:' + c.slug, name: c.name, href: '/category.html?cat=' + c.slug });
   items.push({ key: 'talks', name: '杂谈说说', href: '/talks.html' });
   items.push({ key: 'links', name: '友链', href: '/links.html' });
   items.push({ key: 'about', name: '关于我', href: '/about.html' });
   items.push({ key: 'private', name: '私人空间', href: '/private.html' });
-  nav.innerHTML = items.map(i =>
-    `<a href="${i.href}" class="${i.key === activeKey ? 'active' : ''}">${i.name}</a>`).join('');
+  return items;
+}
+
+// ---------- 页面初始化：填导航 + 页脚统计 ----------
+async function initPage(activeKey) {
+  try { await loadSiteData(); } catch (e) { console.error(e); }
+
+  // 顶部 tabs
+  const tabs = $('#ningTabs');
+  if (tabs) {
+    tabs.innerHTML = navItems().map(i =>
+      `<li class="md-tabs__item${i.key === activeKey ? ' md-tabs__item--active' : ''}">
+        <a href="${i.href}" class="md-tabs__link${i.key === activeKey ? ' md-tabs__link--active' : ''}">${escapeHtml(i.name)}</a>
+      </li>`).join('');
+  }
+
+  // 侧栏抽屉导航
+  const drawer = $('#ningDrawerNav');
+  if (drawer) {
+    let html = navItems().map(i =>
+      `<li class="md-nav__item${i.key === activeKey ? ' md-nav__item--active' : ''}">
+        <a href="${i.href}" class="md-nav__link">${escapeHtml(i.name)}</a>
+      </li>`).join('');
+    for (const c of (SITE ? SITE.nav : [])) {
+      if (c.children && c.children.length) {
+        html += c.children.map(s =>
+          `<li class="md-nav__item">
+            <a href="/category.html?cat=${s.slug}" class="md-nav__link" style="padding-left:1.6rem;font-size:.78rem;">└ ${escapeHtml(s.name)}</a>
+          </li>`).join('');
+      }
+    }
+    drawer.innerHTML = html;
+  }
 
   // 页脚统计
-  $('#ftPv').textContent = String(SITE.stats.pv || 0);
-  $('#ftUv').textContent = String(SITE.stats.uv || 0);
-  const start = new Date((SITE.settings.site_start || '2026-09-13') + 'T00:00:00+08:00');
+  const pv = $('#ningPv'), uv = $('#ningUv');
+  if (pv) pv.textContent = String(SITE ? SITE.stats.pv : 0);
+  if (uv) uv.textContent = String(SITE ? SITE.stats.uv : 0);
+  const start = new Date(((SITE && SITE.settings.site_start) || '2026-09-13') + 'T00:00:00+08:00');
   function tick() {
+    const d = $('#ningDays'); if (!d) return;
     const ms = Date.now() - start.getTime();
-    const days = Math.floor(ms / 86400000);
-    const h = Math.floor(ms / 3600000) % 24;
-    const mi = Math.floor(ms / 60000) % 60;
-    const s = Math.floor(ms / 1000) % 60;
-    const el = $('#ftDays'); if (!el) return;
-    el.textContent = String(days);
-    $('#ftTime').textContent = `${h} 时 ${mi} 分 ${s} 秒`;
+    d.textContent = String(Math.floor(ms / 86400000));
+    const h = Math.floor(ms / 3600000) % 24, mi = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60;
+    $('#ningTime').textContent = `${h} 时 ${mi} 分 ${s} 秒`;
   }
   tick(); setInterval(tick, 1000);
-  $('#ftYear').textContent = String(new Date().getFullYear());
 }
 
 // 私人空间访问码（本机保存）
