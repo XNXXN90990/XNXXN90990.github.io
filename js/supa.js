@@ -7,7 +7,10 @@ const Supa = {
 
   init() {
     const cfg = window.NING_CONFIG || {};
-    this.url = String(cfg.SUPABASE_URL || '').replace(/\/+$/, '');
+    // 容错：去掉末尾斜杠及误加的 /rest/v1、/auth/v1、/storage/v1 后缀
+    this.url = String(cfg.SUPABASE_URL || '')
+      .replace(/\/+$/, '')
+      .replace(/\/(rest|auth|storage)\/v\d+$/i, '');
     this.key = String(cfg.SUPABASE_ANON_KEY || '');
     return !!(this.url && this.key);
   },
