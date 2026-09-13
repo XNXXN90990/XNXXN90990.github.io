@@ -2,5 +2,9 @@ node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
 docs/.vitepress/private-secrets.json
+docs/.vitepress/config.mts.timestamp-*.mjs
+admin/node_modules/
+admin/dist/
+.workbuddy/
 *.local
 .DS_Store

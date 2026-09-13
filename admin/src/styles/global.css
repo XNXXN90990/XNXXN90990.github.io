@@ -1,0 +1,21 @@
+/* 管理端极简风格，与主站共用一套 CSS 变量 */
+:root {
+  --ning-brand-1: #5b8f6b;
+  --ning-brand-2: #4a7860;
+  --ning-bg-soft: #f7f9f7;
+  --ning-text-1: #1f2937;
+  --ning-text-2: #6b7280;
+  --ning-divider: #e5e7eb;
+  --ning-radius: 10px;
+}
+
+.dark {
+  --ning-bg-soft: #1f2937;
+  --ning-text-1: #f3f4f6;
+  --ning-text-2: #9ca3af;
+  --ning-divider: #374151;
+}
+
+* { box-sizing: border-box; }
+html, body, #app { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+a { color: inherit; }

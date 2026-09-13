@@ -1,6 +1,6 @@
 {
-  "name": "my-personal-site",
-  "version": "0.2.0",
+  "name": "ning-blog",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,10 @@
     "preview": "vitepress preview docs",
     "src:new": "node scripts/new-private.mjs",
     "src:lock": "node scripts/src-lock.mjs",
-    "src:unlock": "node scripts/src-unlock.mjs"
+    "src:unlock": "node scripts/src-unlock.mjs",
+    "new": "node scripts/new-content.mjs",
+    "admin:dev": "cd admin && npm install && npm run dev",
+    "admin:build": "cd admin && npm install && npm run build"
   },
   "devDependencies": {
     "vitepress": "^1.6.3"

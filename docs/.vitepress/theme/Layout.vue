@@ -1,35 +1,30 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { useData } from 'vitepress'
-import PostMeta from './PostMeta.vue'
-import SiteFooter from './SiteFooter.vue'
-import BackToTop from './BackToTop.vue'
-import LikeButton from './LikeButton.vue'
-import Giscus from './Giscus.vue'
+import SiteFooter from './components/SiteFooter.vue'
+import DisableDevtool from './components/DisableDevtool.vue'
 
 const { Layout } = DefaultTheme
-const { page, frontmatter } = useData()
+const route = useRoute()
+
+// 在挂载前根据路径判断是不是私人文章页，是的话在 body 加一个标记
+onMounted(() => {
+  const path = route.path
+  if (path.startsWith('/me/posts/')) {
+    document.body.classList.add('is-private-page')
+  }
+})
 </script>
 
 <template>
+  <!-- 防 devtools 拦截器（非阻塞脚本、加白名单） -->
+  <DisableDevtool />
+
   <Layout>
-    <!-- 文章正文上方：发布时间 + 本文阅读量 -->
-    <template #doc-before>
-      <PostMeta />
-    </template>
-
-    <!-- 文章正文下方：点赞 + 评论区（私密文章由 PrivateLock 解锁后自行渲染，避免重复） -->
-    <template #doc-after>
-      <template v-if="!frontmatter.private">
-        <LikeButton :key="'like-' + page.relativePath" />
-        <Giscus :key="'giscus-' + page.relativePath" />
-      </template>
-    </template>
-
-    <!-- 所有页面底部：版权信息 + 本站访问量 / 访客数 -->
-    <template #layout-bottom>
+    <template #doc-footer-before>
+      <!-- 站点底部：所有页面共用 -->
       <SiteFooter />
-      <BackToTop />
     </template>
   </Layout>
 </template>

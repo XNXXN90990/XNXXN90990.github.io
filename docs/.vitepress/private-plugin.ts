@@ -1,7 +1,7 @@
-// VitePress 私密文章插件
+// VitePress 私密文章插件（适配 /me/ 路径）
 // ------------------------------------------------------------------
 // 规则：
-// - docs/private/posts/*.md 为私密文章。
+// - docs/me/posts/*.md 为私密文章。
 // - 本地预览（npm run dev）：自动解密，站长可正常查看与写作。
 // - 构建（npm run build）：正文用「文章访问码」与「主访问码」双重 AES-GCM
 //   加密后替换为 <PrivateLock /> 锁屏占位，明文不会进入网页与 JS 产物。
@@ -19,20 +19,20 @@ const RESOLVED_VIRTUAL_ID = '\0' + VIRTUAL_ID
 
 export function privatePagesPlugin(options: { root: string; dev: boolean }) {
   const { root, dev } = options
-  const postsDir = path.join(root, 'docs', 'private', 'posts')
+  const postsDir = path.join(root, 'docs', 'me', 'posts')
   const secrets = loadSecrets(root)
 
   if (!secrets || !secrets.masterCode) {
     console.warn(
       '[private] 未找到私密配置（private-secrets.json 或环境变量 PRIVATE_SECRETS）。' +
-        '私密文章将以“无法解锁”的状态构建。'
+        '私密文章将以"无法解锁"的状态构建。'
     )
   }
 
   const normalize = (id: string) => id.split('?')[0].replace(/\\/g, '/')
   const isPrivatePost = (id: string) => {
     const p = normalize(id)
-    return p.endsWith('.md') && p.includes('/private/posts/')
+    return p.endsWith('.md') && p.includes('/me/posts/')
   }
 
   /** 读取某私密文章的明文正文（必要时用主访问码解密 enc 字段） */
@@ -61,7 +61,7 @@ export function privatePagesPlugin(options: { root: string; dev: boolean }) {
         const rel = `posts/${f}`
         items.push({
           title: data.title || f,
-          path: '/private/posts/' + f.replace(/\.md$/, ''),
+          path: '/me/posts/' + f.replace(/\.md$/, ''),
           date: data.date || '',
           code: secrets?.codes?.[rel] || ''
         })

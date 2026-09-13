@@ -1,0 +1,247 @@
+/* =====================================================================
+ * 寜的小站 · 全局样式
+ * 目标：极简、全宽自适应、克制
+ * ===================================================================== */
+
+:root {
+  --vp-c-brand-1: #5b8f6b;
+  --vp-c-brand-2: #4a7860;
+  --vp-c-brand-3: #2f5b46;
+  --vp-c-brand-soft: rgba(91, 143, 107, 0.12);
+
+  --ning-radius: 12px;
+  --ning-text-max: 100%; /* 关键：放开主区域宽度 */
+}
+
+html {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ============ 1. 全宽布局：去掉默认的 ~1440px 容器上限 ============ */
+.VPDoc,
+.VPHero {
+  max-width: none !important;
+}
+
+/* 默认首页 Hero 区跟着宽屏走 */
+.VPHero .container,
+.VPHomeContainer {
+  max-width: 1280px !important;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* 正文内容：仍然有一条舒服的最大宽度，但允许大屏撑更多 */
+.VPDoc .container,
+.VPDoc .content-container {
+  max-width: 1280px !important;
+}
+
+.VPDoc .content-container .content {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+}
+
+/* 侧边栏 + 内容：避免太挤 */
+@media (min-width: 1440px) {
+  .VPDoc:not(.has-sidebar) .container {
+    max-width: 1280px !important;
+  }
+  .VPDoc.has-sidebar .container {
+    max-width: 1440px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .VPHero .container,
+  .VPHomeContainer,
+  .VPDoc .container,
+  .VPDoc .content-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ============ 2. 极简风格：把蓝紫默认品牌色改掉，软化为墨绿 ============ */
+:root {
+  --vp-c-brand-1: #5b8f6b;
+  --vp-c-brand-2: #4a7860;
+  --vp-c-brand-3: #2f5b46;
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 字体更轻一点 */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* 卡片轻微悬浮 */
+.VPFeature {
+  border-radius: var(--ning-radius) !important;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.VPFeature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+/* 暗色模式友好 */
+.dark {
+  --vp-c-brand-1: #6ea57e;
+  --vp-c-brand-2: #84b893;
+  --vp-c-brand-3: #b3d4be;
+  --vp-c-brand-soft: rgba(110, 165, 126, 0.18);
+}
+
+/* 内容里的二级标题加一点间距 */
+.vp-doc h2 {
+  margin-top: 40px;
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 24px;
+}
+.vp-doc h2:first-child { border-top: none; padding-top: 0; }
+
+/* 默认首页 Hero 文案 */
+.VPHero .name,
+.VPHero .text {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 30%, var(--vp-c-brand-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============ 3. footer 样式 ============ */
+.ning-footer {
+  border-top: 1px solid var(--vp-c-divider);
+  margin-top: 80px;
+  padding: 32px 24px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.ning-footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+.ning-footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  align-items: center;
+}
+.ning-footer__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ning-footer__sep {
+  color: var(--vp-c-text-3);
+}
+.ning-footer__brand {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+@media (max-width: 600px) {
+  .ning-footer { padding: 20px 16px; font-size: 13px; }
+}
+
+/* ============ 4. RuntimeClock 实时跳动 ============ */
+.runtime-clock {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+.runtime-clock__num {
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+}
+
+/* ============ 5. Private 私钥解锁区 ============ */
+.private-shell {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--ning-radius);
+  background: var(--vp-c-bg-soft);
+  padding: 18px 20px;
+  margin: 8px 0;
+}
+.private-shell__title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.private-shell__hint {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+.private-shell input {
+  width: 100%;
+  max-width: 360px;
+  padding: 9px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 14px;
+  outline: none;
+}
+.private-shell input:focus { border-color: var(--vp-c-brand-1); }
+.private-shell button {
+  margin-left: 8px;
+  padding: 9px 18px;
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.private-shell button:disabled { opacity: 0.6; cursor: not-allowed; }
+.private-list {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.private-list a {
+  display: block;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: inherit;
+}
+.private-list a:hover { border-color: var(--vp-c-brand-1); text-decoration: none; }
+.private-list .title { font-weight: 600; }
+.private-list .meta { font-size: 12px; color: var(--vp-c-text-3); margin-top: 2px; }
+.private-err { color: #d24545; font-size: 13px; margin-top: 6px; }
+
+/* ============ 6. Home 网格 ============ */
+.home-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.home-grid .item {
+  display: block;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 18px 20px;
+  color: inherit;
+  background: var(--vp-c-bg-soft);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.home-grid .item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  border-color: var(--vp-c-brand-1);
+}
+.home-grid h3 { margin: 4px 0 6px; font-size: 1rem; }
+.home-grid p { margin: 0; color: var(--vp-c-text-2); font-size: .9rem; line-height: 1.7; }
+.home-grid .label { font-size: .75rem; letter-spacing: 1px; color: var(--vp-c-brand-1); }
