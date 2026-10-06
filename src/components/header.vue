@@ -57,42 +57,46 @@
             </button>
         </div>
 
-        <!-- 侧边抽屉导航 -->
-        <transition name="side-drawer">
-            <aside
-                v-if="isMenuOpen"
-                class="side-drawer"
-                @click.self="closeMenu"
-            >
-                <div class="side-drawer-panel">
-                    <div class="side-drawer-header">
-                        <div class="glow-line small"></div>
-                        <span class="side-drawer-title">导航菜单</span>
+        <!-- 侧边抽屉导航（Teleport 到 body：
+             header 的 backdrop-filter 会让 fixed 子元素相对 header 定位，
+             传送出去才能正常铺满视口） -->
+        <Teleport to="body">
+            <transition name="side-drawer">
+                <aside
+                    v-if="isMenuOpen"
+                    class="side-drawer"
+                    @click.self="closeMenu"
+                >
+                    <div class="side-drawer-panel">
+                        <div class="side-drawer-header">
+                            <div class="glow-line small"></div>
+                            <span class="side-drawer-title">导航菜单</span>
+                        </div>
+                        <ul class="side-drawer-list">
+                            <li
+                                v-for="(item, index) in navEntries"
+                                :key="'side-' + index"
+                                class="side-drawer-item"
+                                @click="handleDrawerItem(item)"
+                            >
+                                <span>
+                                    <i v-if="item.icon" :class="item.icon" class="side-drawer-icon"></i>
+                                    {{ item.name }}
+                                </span>
+                                <div class="side-drawer-bar"></div>
+                            </li>
+                            <li class="side-drawer-item" @click="onToggleTheme">
+                                <span>
+                                    <i :class="isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun'" class="side-drawer-icon"></i>
+                                    {{ isDark ? '深色模式' : '浅色模式' }}
+                                </span>
+                                <div class="side-drawer-bar"></div>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="side-drawer-list">
-                        <li
-                            v-for="(item, index) in navEntries"
-                            :key="'side-' + index"
-                            class="side-drawer-item"
-                            @click="handleDrawerItem(item)"
-                        >
-                            <span>
-                                <i v-if="item.icon" :class="item.icon" class="side-drawer-icon"></i>
-                                {{ item.name }}
-                            </span>
-                            <div class="side-drawer-bar"></div>
-                        </li>
-                        <li class="side-drawer-item" @click="onToggleTheme">
-                            <span>
-                                <i :class="isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun'" class="side-drawer-icon"></i>
-                                {{ isDark ? '深色模式' : '浅色模式' }}
-                            </span>
-                            <div class="side-drawer-bar"></div>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-        </transition>
+                </aside>
+            </transition>
+        </Teleport>
 
         <!-- 页头下面的分割细线 -->
         <div class="header-divider"></div>

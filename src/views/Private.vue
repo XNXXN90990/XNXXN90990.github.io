@@ -68,10 +68,10 @@
           <i class="fa-solid fa-angle-left"></i> 返回列表
         </button>
 
-        <template v-if="articleError">
+        <template v-if="articleNeedsCode">
           <div class="gate-card">
             <div class="gate-icon"><i class="fa-solid fa-key"></i></div>
-            <p class="gate-title">「{{ openArticle.title }}」已加密</p>
+            <p class="gate-title">「{{ openEntryTitle }}」已加密</p>
             <p class="gate-subtitle">这篇文章有独立的访问码，输入后才能阅读。</p>
             <form class="gate-form" @submit.prevent="decryptArticle">
               <input
@@ -91,7 +91,7 @@
           <h1 class="private-article-title">{{ articleMeta.title }}</h1>
           <div class="private-article-meta">
             <span v-if="articleMeta.date">发布于 {{ formatDate(articleMeta.date) }}</span>
-            <span v-if="articleMeta.tags && articleMeta.tags.length">标签：{{ articleMeta.tags.join('、') }}</span>
+            <span v-if="articleTags.length">标签：{{ articleTags.join('、') }}</span>
           </div>
           <div class="private-article-content" v-html="renderedMarkdown"></div>
         </article>
@@ -132,9 +132,11 @@ export default {
       spaceCodeInput: '',
       gateError: '',
 
-      openArticle: null, // { id, title, blob }
+      openArticle: null, // { id, blob }
+      openEntryTitle: '', // 列表里的文章标题（用于门禁卡片展示）
+      articleNeedsCode: false, // 是否显示文章访问码输入框
       articleCodeInput: '',
-      articleError: '', // 非空时显示文章访问码输入框
+      articleError: '', // 解密失败的提示文案
       articleMeta: {},
       articleContent: '',
 
@@ -142,6 +144,13 @@ export default {
     };
   },
   computed: {
+    /** 标签恒为数组，避免 front-matter 写法差异导致渲染报错 */
+    articleTags() {
+      const t = this.articleMeta && this.articleMeta.tags;
+      if (Array.isArray(t)) return t;
+      if (typeof t === 'string' && t.trim()) return t.split(',').map((s) => s.trim()).filter(Boolean);
+      return [];
+    },
     renderedMarkdown() {
       if (!this.articleContent) return '';
       return DOMPurify.sanitize(md.render(this.articleContent));
@@ -211,17 +220,22 @@ export default {
         return;
       }
       this.openArticle = article;
+      this.openEntryTitle = entry.title || '';
       this.articleMeta = { title: entry.title, date: entry.date, tags: entry.tags };
       this.articleCodeInput = '';
+      // 切换视图后回到页面顶部，避免标题被固定头部遮挡
+      window.scrollTo({ top: 0, behavior: 'auto' });
       // 已解锁过的文章在同一会话内不再重复要码
       const cached = this.getArticleCache(entry.id);
       if (cached) {
         this.articleContent = cached.content;
         this.articleMeta = cached.meta;
         this.articleError = '';
+        this.articleNeedsCode = false;
       } else {
         this.articleContent = '';
-        this.articleError = 'NEED_CODE';
+        this.articleError = '';
+        this.articleNeedsCode = true;
       }
     },
 
@@ -252,6 +266,7 @@ export default {
         };
         this.articleContent = body;
         this.articleError = '';
+        this.articleNeedsCode = false;
         try {
           sessionStorage.setItem(
             'ning-private-article-' + this.openArticle.id,
@@ -269,13 +284,16 @@ export default {
 
     closeArticle() {
       this.openArticle = null;
+      this.openEntryTitle = '';
+      this.articleNeedsCode = false;
       this.articleContent = '';
       this.articleMeta = {};
       this.articleCodeInput = '';
       this.articleError = '';
+      window.scrollTo({ top: 0, behavior: 'auto' });
     },
 
-    // 极简 front-matter 解析（私人文章正文自带）
+    // 极简 front-matter 解析（私人文章正文自带；与构建脚本 gen-content.mjs 同规则）
     parseFrontMatter(raw) {
       if (!raw.startsWith('---')) return { attributes: {}, body: raw };
       const end = raw.indexOf('\n---', 3);
@@ -286,7 +304,13 @@ export default {
       for (const line of head.split('\n')) {
         const m = line.match(/^([A-Za-z_\u4e00-\u9fa5][^:]*):\s*(.*)$/);
         if (!m) continue;
-        attributes[m[1].trim()] = m[2].trim().replace(/^["']|["']$/g, '');
+        let value = m[2].trim();
+        if (value.startsWith('[') && value.endsWith(']')) {
+          value = value.slice(1, -1).split(',').map((s) => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+        } else {
+          value = value.replace(/^["']|["']$/g, '');
+        }
+        attributes[m[1].trim()] = value;
       }
       return { attributes, body };
     }

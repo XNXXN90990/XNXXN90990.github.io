@@ -66,7 +66,7 @@
               <div class="reader-meta">
                 <p v-if="frontMatter.tags">标签：{{ frontMatter.tags.join(', ') }}</p>
                 <p v-if="frontMatter.category">分类：{{ frontMatter.category.join(', ') }}</p>
-                <p>更新于 {{ formatDate(frontMatter.updated || post.updateTime || '') }}</p>
+                <p>发布于 {{ formatDate(frontMatter.updated || frontMatter.date || post.updateTime || '') }}</p>
               </div>
 
               <div v-if="frontMatter.description" class="reader-description">
@@ -92,7 +92,7 @@
         <div class="post-meta">
           <p v-if="frontMatter.tags">标签：{{ frontMatter.tags.join(', ') }}</p>
           <p v-if="frontMatter.category">分类：{{ frontMatter.category.join(', ') }}</p>
-          <p>更新于 {{ formatDate(frontMatter.updated || post.updateTime || '') }}</p>
+          <p>发布于 {{ formatDate(frontMatter.updated || frontMatter.date || post.updateTime || '') }}</p>
         </div>
 
         <!-- 描述 -->
@@ -283,7 +283,23 @@ export default {
 
       // 解析 Front-matter 并分离正文
       const { body, attributes } = fm(this.post.content || '');
-      this.frontMatter = attributes || {};
+      // 归一化：tags / category 兼容字符串与数组两种 front-matter 写法，避免模板 .join 报错
+      const fmToList = (v) => {
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.trim()) {
+          const t = v.trim();
+          if (t.startsWith('[') && t.endsWith(']')) {
+            return t.slice(1, -1).split(',').map((s) => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+          }
+          return t.split(/[,，、]/).map((s) => s.trim()).filter(Boolean);
+        }
+        return [];
+      };
+      this.frontMatter = {
+        ...(attributes || {}),
+        tags: fmToList(attributes && attributes.tags),
+        category: fmToList(attributes && attributes.category)
+      };
 
       const fmt = String(
         attributes?.format ?? attributes?.contentFormat ?? ''
