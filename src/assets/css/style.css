@@ -1,0 +1,76 @@
+/**
+ * style.css —— 全局样式
+ *
+ * 主题变量集中在 ./theme-vars.css（深色默认 + 浅色覆盖）。
+ * 切换逻辑见 src/utils/theme.js（header 上的日/月按钮触发）。
+ */
+@import './theme-vars.css';
+
+html,
+body {
+  width: 100%;
+  overflow-x: clip; /* 裁剪横向溢出且不破坏 sticky */
+  overscroll-behavior-x: none;
+  /* 强制统一各浏览器（尤其 Chrome）的英文字体为 Segoe UI 等系统 UI 字体 */
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+}
+
+#app {
+  width: 100%;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: scroll; /* 强制显示垂直滚动条 */
+  color: var(--text-primary);
+  touch-action: pan-y;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+a,
+a:visited {
+  color: var(--blog-link-color);
+  text-decoration-color: currentColor;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--blog-link-hover-color);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* 自定义滚动条样式（随主题） */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

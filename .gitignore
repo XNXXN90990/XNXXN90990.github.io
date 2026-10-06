@@ -1,0 +1,13 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# 私人空间明文源文件（含访问码，绝不能提交！）
+# 构建时会加密成 src/content/private-encrypted.json（密文，可以提交）
+content/private/
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+*.log
+.DS_Store

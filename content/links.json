@@ -1,0 +1,32 @@
+[
+  {
+    "class_name": "常驻串门",
+    "class_desc": "平时经常逛的博客与小站，欢迎交换友链。",
+    "link_list": [
+      {
+        "name": "示例博客（替换或删除我）",
+        "avatar": "https://github.com/github.png",
+        "link": "https://example.com",
+        "descr": "编辑 content/links.json 就能增删友链，格式照抄这一条。"
+      }
+    ]
+  },
+  {
+    "class_name": "技术站点",
+    "class_desc": " Documentation 与工具站收藏。",
+    "link_list": [
+      {
+        "name": "Vue.js 官方文档",
+        "avatar": "https://vuejs.org/logo.svg",
+        "link": "https://cn.vuejs.org",
+        "descr": "本站使用的框架，文档写得极好。"
+      },
+      {
+        "name": "Vite",
+        "avatar": "https://vitejs.dev/logo.svg",
+        "link": "https://cn.vitejs.dev",
+        "descr": "下一代前端构建工具，秒级热更新。"
+      }
+    ]
+  }
+]

@@ -1,0 +1,146 @@
+/**
+ * theme-vars.css —— 主题变量
+ *
+ * 深色（默认）：保留原站霓虹绿赛博氛围
+ * 浅色：清爽白绿，绿色加深保证对比度
+ *
+ * 换背景图见 style.css 顶部说明。
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------- 背景 ---------- */
+  --bg-base: #030603;
+  --bg-image:
+    radial-gradient(1100px 700px at 85% -10%, rgba(28, 150, 60, 0.22), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(18, 105, 45, 0.18), transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(10, 70, 30, 0.2), transparent 60%),
+    linear-gradient(180deg, #050a06 0%, #030503 100%);
+
+  /* ---------- 文字 ---------- */
+  --text-primary: #f2f7f2;
+  --text-secondary: #b9c4ba;
+  --text-muted: #8b988d;
+  --blog-link-color: #8dff98;
+  --blog-link-hover-color: #c8ffb8;
+
+  /* ---------- 强调色（荧光绿） ---------- */
+  --accent: #00b828;
+  --accent-bright: #6bff7a;
+  --accent-strong: #39ff7e;
+  --accent-soft: rgba(0, 184, 40, 0.22);
+  --accent-border: rgba(0, 184, 40, 0.9);
+  --glow-shadow: 0 0 12px rgba(6, 204, 26, 0.55), 0 0 28px rgba(37, 252, 145, 0.35);
+  --title-gradient: linear-gradient(to right, #abe6a8, #00b828);
+
+  /* ---------- 头部 ---------- */
+  --header-bg: rgba(2, 6, 3, 0.8);
+  --header-text: rgba(235, 235, 235, 0.9);
+  --header-link: #d6dcd6;
+  --header-border: linear-gradient(90deg, #04650db8, #25fc90a2, #024509a6);
+  --drawer-bg: radial-gradient(circle at top left, rgba(11, 184, 47, 0.25), rgba(0, 0, 0, 0.94));
+
+  /* ---------- 卡片 / 面板 ---------- */
+  --card-gradient: linear-gradient(135deg, rgba(108, 171, 106, 0.3), rgba(42, 184, 73, 0.55));
+  --card-border: rgba(255, 255, 255, 0.32);
+  --card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.18);
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  --card-hover-shadow: 0 6px 15px rgba(0, 184, 40, 0.4);
+  --surface: rgba(3, 8, 4, 0.82);
+  --surface-border: rgba(255, 255, 255, 0.3);
+
+  /* ---------- 控件 ---------- */
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --input-border: rgba(255, 255, 255, 0.28);
+  --input-text: #f2f7f2;
+  --btn-bg: rgba(255, 255, 255, 0.2);
+  --btn-hover-bg: rgba(255, 255, 255, 0.4);
+  --btn-text: #ffffff;
+  --pill-bg: rgba(0, 184, 40, 0.16);
+  --pill-border: rgba(0, 184, 40, 0.45);
+  --pill-text: #dfffe5;
+
+  /* ---------- 页脚 ---------- */
+  --footer-bg: rgba(2, 5, 3, 0.85);
+  --footer-text: #dfe7df;
+  --footer-border: rgba(111, 155, 119, 0.4);
+
+  /* ---------- 滚动条 ---------- */
+  --scrollbar-track: #050705;
+  --scrollbar-thumb: #1e211e;
+  --scrollbar-thumb-hover: #5c665c;
+
+  /* ---------- 其他 ---------- */
+  --overlay-mask: rgba(0, 0, 0, 0.6);
+  --error-text: #ffb4b4;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* ---------- 背景 ---------- */
+  --bg-base: #edf3ee;
+  --bg-image:
+    radial-gradient(1100px 700px at 85% -10%, rgba(40, 170, 80, 0.14), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(30, 130, 60, 0.1), transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(20, 100, 45, 0.12), transparent 60%),
+    linear-gradient(180deg, #f4f9f4 0%, #e9f1ea 100%);
+
+  /* ---------- 文字 ---------- */
+  --text-primary: #17281c;
+  --text-secondary: #46584b;
+  --text-muted: #6b7c6f;
+  --blog-link-color: #0e8a38;
+  --blog-link-hover-color: #0a6d2b;
+
+  /* ---------- 强调色 ---------- */
+  --accent: #0f8a38;
+  --accent-bright: #0b6e2c;
+  --accent-strong: #0f8a38;
+  --accent-soft: rgba(15, 138, 56, 0.14);
+  --accent-border: rgba(15, 138, 56, 0.75);
+  --glow-shadow: 0 0 10px rgba(15, 138, 56, 0.28);
+  --title-gradient: linear-gradient(to right, #0d8a3a, #12b34c);
+
+  /* ---------- 头部 ---------- */
+  --header-bg: rgba(255, 255, 255, 0.86);
+  --header-text: #1d2e22;
+  --header-link: #31423a;
+  --header-border: linear-gradient(90deg, rgba(15, 138, 56, 0.45), rgba(30, 180, 90, 0.5), rgba(15, 138, 56, 0.45));
+  --drawer-bg: radial-gradient(circle at top left, rgba(180, 240, 200, 0.9), rgba(250, 252, 250, 0.97));
+
+  /* ---------- 卡片 / 面板 ---------- */
+  --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(226, 243, 231, 0.92));
+  --card-border: rgba(20, 90, 45, 0.2);
+  --card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.65);
+  --card-shadow: 0 4px 14px rgba(25, 80, 40, 0.14);
+  --card-hover-shadow: 0 6px 16px rgba(15, 138, 56, 0.24);
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-border: rgba(20, 90, 45, 0.22);
+
+  /* ---------- 控件 ---------- */
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-border: rgba(20, 90, 45, 0.3);
+  --input-text: #17281c;
+  --btn-bg: rgba(15, 138, 56, 0.1);
+  --btn-hover-bg: rgba(15, 138, 56, 0.2);
+  --btn-text: #17281c;
+  --pill-bg: rgba(15, 138, 56, 0.1);
+  --pill-border: rgba(15, 138, 56, 0.4);
+  --pill-text: #0d5c28;
+
+  /* ---------- 页脚 ---------- */
+  --footer-bg: rgba(255, 255, 255, 0.9);
+  --footer-text: #3a4b3f;
+  --footer-border: rgba(20, 90, 45, 0.25);
+
+  /* ---------- 滚动条 ---------- */
+  --scrollbar-track: #e6ede7;
+  --scrollbar-thumb: #b9ccbc;
+  --scrollbar-thumb-hover: #93ad97;
+
+  /* ---------- 其他 ---------- */
+  --overlay-mask: rgba(20, 40, 25, 0.45);
+  --error-text: #c23a3a;
+}
