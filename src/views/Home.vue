@@ -6,41 +6,63 @@
       <svg class="star-layer" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <!-- 星座连线 -->
         <path
-          class="constellation-line"
+          class="constellation-line" 
           d="M 160 120 L 320 190 L 470 110 L 620 220 L 760 140"
           fill="none"
         />
         <path
           class="constellation-line constellation-line--2"
-          d="M 980 90 L 1120 170 L 1260 80"
+          d="M 960 100 L 1100 180 L 1250 85 L 1370 160"
+          fill="none"
+        />
+        <path
+          class="constellation-line constellation-line--2"
+          d="M 220 480 L 380 560 L 540 470"
           fill="none"
         />
         <!-- 星座节点（亮星） -->
-        <circle class="star star--big" cx="160" cy="120" r="3" />
-        <circle class="star star--big star--t2" cx="320" cy="190" r="2.4" />
-        <circle class="star star--big star--t3" cx="470" cy="110" r="3.2" />
-        <circle class="star star--big" cx="620" cy="220" r="2.2" />
-        <circle class="star star--big star--t2" cx="760" cy="140" r="2.8" />
-        <circle class="star star--big star--t3" cx="980" cy="90" r="2.6" />
-        <circle class="star star--big" cx="1120" cy="170" r="2.2" />
-        <circle class="star star--big star--t2" cx="1260" cy="80" r="3" />
+        <circle class="star star--big" cx="160" cy="120" r="3.4" />
+        <circle class="star star--big star--t2" cx="320" cy="190" r="2.8" />
+        <circle class="star star--big star--t3" cx="470" cy="110" r="3.6" />
+        <circle class="star star--big" cx="620" cy="220" r="2.6" />
+        <circle class="star star--big star--t2" cx="760" cy="140" r="3.2" />
+        <circle class="star star--big star--t3" cx="960" cy="100" r="3" />
+        <circle class="star star--big" cx="1100" cy="180" r="2.6" />
+        <circle class="star star--big star--t2" cx="1250" cy="85" r="3.4" />
+        <circle class="star star--big" cx="220" cy="480" r="2.4" />
+        <circle class="star star--big star--t3" cx="380" cy="560" r="2.6" />
+        <circle class="star star--big star--t2" cx="540" cy="470" r="2.2" />
+        <!-- 四芒星（最亮，带十字光芒） -->
+        <g class="star-flare star--t2" transform="translate(760, 140)">
+          <path d="M 0 -14 L 2.2 -2.2 L 14 0 L 2.2 2.2 L 0 14 L -2.2 2.2 L -14 0 L -2.2 -2.2 Z" />
+        </g>
+        <g class="star-flare star-flare--sm" transform="translate(470, 110)">
+          <path d="M 0 -10 L 1.8 -1.8 L 10 0 L 1.8 1.8 L 0 10 L -1.8 1.8 L -10 0 L -1.8 -1.8 Z" />
+        </g>
+        <g class="star-flare star--t3" transform="translate(1250, 85)">
+          <path d="M 0 -11 L 2 -2 L 11 0 L 2 2 L 0 11 L -2 2 L -11 0 L -2 -2 Z" />
+        </g>
         <!-- 散星 -->
-        <circle class="star" cx="90" cy="330" r="1.4" />
-        <circle class="star star--t2" cx="230" cy="420" r="1.2" />
-        <circle class="star star--t3" cx="380" cy="300" r="1.6" />
-        <circle class="star" cx="520" cy="380" r="1.1" />
-        <circle class="star star--t2" cx="700" cy="320" r="1.5" />
-        <circle class="star star--t3" cx="860" cy="260" r="1.2" />
-        <circle class="star" cx="1040" cy="330" r="1.5" />
-        <circle class="star star--t2" cx="1180" cy="290" r="1.2" />
-        <circle class="star star--t3" cx="1330" cy="360" r="1.6" />
-        <circle class="star" cx="1420" cy="200" r="1.2" />
-        <circle class="star star--t2" cx="150" cy="560" r="1.3" />
-        <circle class="star star--t3" cx="330" cy="600" r="1.1" />
-        <circle class="star" cx="600" cy="560" r="1.4" />
-        <circle class="star star--t2" cx="820" cy="620" r="1.2" />
-        <circle class="star star--t3" cx="1060" cy="580" r="1.5" />
-        <circle class="star" cx="1290" cy="620" r="1.2" />
+        <circle class="star" cx="90" cy="330" r="1.7" />
+        <circle class="star star--t2" cx="230" cy="420" r="1.5" />
+        <circle class="star star--t3" cx="380" cy="300" r="1.9" />
+        <circle class="star" cx="520" cy="380" r="1.4" />
+        <circle class="star star--t2" cx="700" cy="320" r="1.8" />
+        <circle class="star star--t3" cx="860" cy="260" r="1.5" />
+        <circle class="star" cx="1040" cy="330" r="1.8" />
+        <circle class="star star--t2" cx="1180" cy="290" r="1.5" />
+        <circle class="star star--t3" cx="1330" cy="360" r="1.9" />
+        <circle class="star" cx="1420" cy="200" r="1.5" />
+        <circle class="star star--t2" cx="150" cy="560" r="1.6" />
+        <circle class="star star--t3" cx="330" cy="640" r="1.4" />
+        <circle class="star" cx="600" cy="600" r="1.7" />
+        <circle class="star star--t2" cx="820" cy="640" r="1.5" />
+        <circle class="star star--t3" cx="1060" cy="600" r="1.8" />
+        <circle class="star" cx="1290" cy="650" r="1.5" />
+        <circle class="star star--t2" cx="60" cy="150" r="1.4" />
+        <circle class="star star--t3" cx="700" cy="40" r="1.6" />
+        <circle class="star" cx="1000" cy="60" r="1.4" />
+        <circle class="star star--t2" cx="560" cy="60" r="1.3" />
       </svg>
 
       <!-- 书法水印 -->
@@ -72,18 +94,6 @@
             </button>
           </div>
 
-          <!-- 终端状态卡 -->
-          <div class="terminal-card" aria-hidden="true">
-            <div class="terminal-card-head">
-              <span class="tdot tdot--r"></span><span class="tdot tdot--y"></span><span class="tdot tdot--g"></span>
-              <span class="terminal-card-title">ning@blog: ~</span>
-            </div>
-            <div class="terminal-card-body">
-              <p><span class="tprompt">$</span> whoami <span class="tarrow">→</span> <b>寜（Ning）</b></p>
-              <p><span class="tprompt">$</span> focus <span class="tarrow">→</span> 学习 · 生活 · 思考</p>
-              <p><span class="tprompt">$</span> status <span class="tarrow">→</span> 持续更新中<span class="tcaret">_</span></p>
-            </div>
-          </div>
         </div>
 
         <!-- 右侧头像区：光辉 + 翻转 + 访客欢迎卡 -->
@@ -645,12 +655,22 @@ export default {
 
 .constellation-line {
   stroke: var(--constellation-line);
-  stroke-width: 1;
-  stroke-dasharray: 6 7;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 7;
 }
 
 .constellation-line--2 {
-  opacity: 0.7;
+  opacity: 0.75;
+}
+
+/* 四芒星（十字光芒） */
+.star-flare {
+  fill: var(--star-color);
+  animation: twinkle 4.5s ease-in-out 0.4s infinite;
+}
+
+.star-flare--sm {
+  opacity: 0.85;
 }
 
 /* 书法水印「寜」 */
@@ -812,78 +832,6 @@ export default {
 .hero-btn--ghost {
   background: transparent;
   border-color: var(--surface-border);
-}
-
-/* 终端状态卡 */
-.terminal-card {
-  margin-top: 24px;
-  max-width: 430px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: rgba(8, 12, 9, 0.92);
-  border: 1px solid var(--surface-border);
-  box-shadow: var(--card-shadow);
-}
-
-:root[data-theme='light'] .terminal-card {
-  background: rgba(43, 36, 24, 0.94);
-}
-
-.terminal-card-head {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.tdot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.tdot--r { background: #ff5f56; }
-.tdot--y { background: #ffbd2e; }
-.tdot--g { background: #27c93f; }
-
-.terminal-card-title {
-  margin-left: 8px;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.55);
-  font-family: 'Courier New', monospace;
-}
-
-.terminal-card-body {
-  padding: 12px 16px 14px;
-  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
-  font-size: 13px;
-  line-height: 2;
-  color: #9fe8b0;
-}
-
-.terminal-card-body p {
-  margin: 0;
-}
-
-.tprompt {
-  color: var(--accent-strong);
-  font-weight: 700;
-}
-
-.tarrow {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.terminal-card-body b {
-  color: #e8fff0;
-  font-weight: 700;
-}
-
-.tcaret {
-  display: inline-block;
-  animation: caretBlink 0.9s step-end infinite;
-  color: var(--accent-strong);
 }
 
 /* =========================
@@ -1286,12 +1234,6 @@ export default {
 
   .hero-actions {
     justify-content: center;
-  }
-
-  .terminal-card {
-    width: 100%;
-    max-width: 430px;
-    text-align: left;
   }
 
   .avatar-scene {
