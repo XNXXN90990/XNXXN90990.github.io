@@ -16,8 +16,13 @@
             t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
           }
           document.documentElement.dataset.theme = t;
+          // 主题色（accent）
+          var a = localStorage.getItem('ning-accent');
+          if (['green', 'blue', 'purple', 'orange', 'pink', 'red'].indexOf(a) === -1) a = 'green';
+          document.documentElement.dataset.accent = a;
         } catch (e) {
           document.documentElement.dataset.theme = 'dark';
+          document.documentElement.dataset.accent = 'green';
         }
       })();
       // GitHub Pages SPA 回退：直接访问 /posts/xxx 等深链时由 404.html 转到 /?/posts/xxx，再在这里还原地址

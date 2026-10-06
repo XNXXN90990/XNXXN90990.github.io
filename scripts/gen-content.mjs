@@ -74,20 +74,21 @@ async function encryptJson(obj, code) {
   return { salt: b64(salt), iv: b64(iv), ct: b64(new Uint8Array(ct)) };
 }
 
-// ---------- 1. 公开文章清单 ----------
+// ---------- 1. 文章清单（公开文章 + 杂想，同一套 front-matter 规则） ----------
 
-function genPublicManifest() {
-  if (!fs.existsSync(POSTS_DIR)) {
-    fs.mkdirSync(POSTS_DIR, { recursive: true });
+/** 扫描某个 markdown 目录并生成 manifest 数组 */
+function scanManifest(dir, label) {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
-  const posts = [];
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
+  const list = [];
   for (const file of files) {
     const id = file.replace(/\.md$/, '');
-    const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf-8');
+    const raw = fs.readFileSync(path.join(dir, file), 'utf-8');
     const { attributes } = parseFrontMatter(raw);
     const fmDate = attributes.date || attributes.updated || '';
-    posts.push({
+    list.push({
       id,
       title: attributes.title || id,
       date: fmDate,
@@ -100,16 +101,24 @@ function genPublicManifest() {
       featured: String(attributes.featured || '') === 'true'
     });
   }
-  posts.sort((a, b) => {
+  list.sort((a, b) => {
     const ta = Date.parse(a.updateTime || a.date || '') || 0;
     const tb = Date.parse(b.updateTime || b.date || '') || 0;
     if (ta !== tb) return tb - ta;
     if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
     return a.id.localeCompare(b.id);
   });
+  console.log(`[gen-content] ${label} ${list.length} 篇`);
+  return list;
+}
+
+function genPublicManifest() {
+  const posts = scanManifest(POSTS_DIR, '公开文章');
+  const thoughts = scanManifest(path.join(ROOT, 'content', 'thoughts'), '杂想');
   fs.mkdirSync(OUT_DIR, { recursive: true });
   fs.writeFileSync(path.join(OUT_DIR, 'manifest.json'), JSON.stringify(posts, null, 2), 'utf-8');
-  console.log(`[gen-content] 公开文章 ${posts.length} 篇 → src/content/manifest.json`);
+  fs.writeFileSync(path.join(OUT_DIR, 'thoughts-manifest.json'), JSON.stringify(thoughts, null, 2), 'utf-8');
+  console.log(`[gen-content] 清单 → src/content/manifest.json + thoughts-manifest.json`);
   return posts;
 }
 

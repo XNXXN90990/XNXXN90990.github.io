@@ -11,6 +11,7 @@
       <button
         v-if="headings.length"
         class="reader-toc-mobile-toggle"
+        :class="{ 'reader-toc-mobile-toggle--visible': isReaderTocCollapsed }"
         type="button"
         @click="toggleMobileReaderToc"
       >
@@ -23,9 +24,21 @@
           v-if="headings.length"
           class="reader-toc"
           :class="{ 'reader-toc--mobile-open': isMobileReaderTocOpen }"
+          v-show="!isReaderTocCollapsed"
           ref="readerToc"
         >
-          <div class="reader-toc-title">目录</div>
+          <div class="reader-toc-title">
+            目录
+            <button
+              class="toc-collapse-btn"
+              type="button"
+              title="收起目录"
+              aria-label="收起目录"
+              @click="isReaderTocCollapsed = true"
+            >
+              <i class="fa-solid fa-outdent"></i>
+            </button>
+          </div>
           <div class="reader-toc-content" ref="readerTocContent">
             <ul class="reader-toc-list">
               <li
@@ -112,14 +125,25 @@
     <!-- 目录（右侧，可折叠） -->
     <aside
       class="toc-sidebar"
-      :class="{ 'toc-sidebar--mobile-open': isMobileTocOpen }"
+      :class="{ 'toc-sidebar--mobile-open': isMobileTocOpen, 'toc-sidebar--collapsed': isTocCollapsed }"
       ref="tocSidebar"
       v-if="headings.length"
       tabindex="0"
       @blur="onMobileTocBlur"
     >
-      <div class="toc-title">目录</div>
-      <ul class="toc-list">
+      <div class="toc-head">
+        <span v-show="!isTocCollapsed" class="toc-title">目录</span>
+        <button
+          class="toc-collapse-btn"
+          type="button"
+          :title="isTocCollapsed ? '展开目录' : '收起目录'"
+          :aria-label="isTocCollapsed ? '展开目录' : '收起目录'"
+          @click="isTocCollapsed = !isTocCollapsed"
+        >
+          <i class="fa-solid" :class="isTocCollapsed ? 'fa-indent' : 'fa-outdent'"></i>
+        </button>
+      </div>
+      <ul class="toc-list" v-show="!isTocCollapsed">
         <li
           v-for="h in headings"
           :key="h.anchor"
@@ -175,7 +199,7 @@
 </template>
 
 <script>
-import { fetchPostById } from '@/api';
+import { fetchPostById, fetchThoughtById } from '@/api';
 import MarkdownIt from 'markdown-it';
 import markdownItTexmath from 'markdown-it-texmath';
 import katex from 'katex';
@@ -189,7 +213,11 @@ import { initSmoothScroll, destroySmoothScroll } from '@/plugins/smoothScroll';
 
 export default {
   name: 'PostDetail',
-  props: ['id'],
+  props: {
+    id: { type: String, required: true },
+    // 数据来源：posts（文章）| thoughts（杂想），两者共用阅读页
+    source: { type: String, default: 'posts' }
+  },
   data() {
     return {
       post: {},
@@ -197,6 +225,8 @@ export default {
       headings: [],     // { level, title, anchor }
       collapsedMap: {}, // { [anchor]: boolean }
       isMobileTocOpen: false,
+      isTocCollapsed: false,        // 桌面右侧目录收起
+      isReaderTocCollapsed: false,  // 阅读模式左侧目录收起
       isReadingMode: false,
       isMobileReaderTocOpen: false,
       activeReaderAnchor: null,
@@ -569,7 +599,11 @@ export default {
     // 阅读模式下：手机目录抽屉开关
     toggleMobileReaderToc() {
       if (typeof window === 'undefined') return;
-      if (window.innerWidth > 768) return; // 桌面端不需要手动开关
+      // 桌面端：目录被收起时，点这个按钮恢复显示
+      if (window.innerWidth > 768) {
+        if (this.isReaderTocCollapsed) this.isReaderTocCollapsed = false;
+        return;
+      }
       this.isMobileReaderTocOpen = !this.isMobileReaderTocOpen;
     },
 
@@ -789,7 +823,9 @@ export default {
   },
   async created() {
     try {
-      const response = await fetchPostById(this.id);
+      const response = this.source === 'thoughts'
+        ? await fetchThoughtById(this.id)
+        : await fetchPostById(this.id);
       this.post = response.data;
     } catch (error) {
       console.error('加载文章失败:', error);
@@ -894,10 +930,46 @@ export default {
   background: var(--scrollbar-thumb-hover);
 }
 
+.toc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .toc-title {
   font-weight: 600;
   font-size: 13px;
   margin-bottom: 8px;
+}
+
+.toc-head .toc-title {
+  margin-bottom: 0;
+}
+
+.toc-collapse-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--surface-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toc-collapse-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* 目录收起：侧栏变窄条 */
+.toc-sidebar.toc-sidebar--collapsed {
+  width: 44px;
+  padding: 6px;
 }
 
 .toc-list {
@@ -1321,6 +1393,10 @@ export default {
   box-shadow: 0 6px 18px rgba(17, 24, 39, 0.08);
 }
 
+.reader-toc-mobile-toggle--visible {
+  display: block; /* 目录收起时，桌面端也显示恢复按钮 */
+}
+
 .reader-toc-mobile-toggle:hover {
   background: #f9fafb;
 }
@@ -1367,6 +1443,20 @@ export default {
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.reader-toc-title .toc-collapse-btn {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+}
+
+.reader-toc-title .toc-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .reader-toc-list {

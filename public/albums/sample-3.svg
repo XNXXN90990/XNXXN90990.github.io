@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c2d12"/>
+      <stop offset="1" stop-color="#431407"/>
+    </linearGradient>
+    <radialGradient id="h" cx="0.8" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <rect width="800" height="600" fill="url(#h)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3">
+    <rect x="60" y="60" width="680" height="480" rx="18"/>
+    <circle cx="200" cy="200" r="40"/>
+    <path d="M100 460 L300 300 L420 400 L540 280 L700 460"/>
+  </g>
+  <text x="400" y="560" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="22" fill="#ffffff" fill-opacity="0.85">示例照片 · 暖阳</text>
+</svg>

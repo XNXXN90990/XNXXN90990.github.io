@@ -1,0 +1,3920 @@
+[
+  {
+    "id": "cs-self-learning",
+    "title": "CS 自学指南",
+    "intro": "来自北京大学的计算机科学自学指南。收录了欧美名校公开课的完整自学路线：数学基础、编程入门、数据结构与算法、计算机系统、人工智能……让任何人都能凭借优质开源资源，在两三年内成长为功底扎实的程序员。",
+    "source": {
+      "author": "PKUFlyingPig（北京大学）",
+      "site": "https://csdiy.wiki",
+      "repo": "https://github.com/PKUFlyingPig/cs-self-learning",
+      "license": "MIT"
+    },
+    "chapters": [
+      {
+        "title": "前言",
+        "path": "index",
+        "children": []
+      },
+      {
+        "title": "如何使用这本书",
+        "path": "使用指南",
+        "children": []
+      },
+      {
+        "title": "一个仅供参考的CS学习规划",
+        "path": "CS学习规划",
+        "children": []
+      },
+      {
+        "title": "必学工具",
+        "path": null,
+        "children": [
+          {
+            "title": "翻墙",
+            "path": "必学工具/翻墙",
+            "children": []
+          },
+          {
+            "title": "Vim",
+            "path": "必学工具/Vim",
+            "children": []
+          },
+          {
+            "title": "Emacs",
+            "path": "必学工具/Emacs",
+            "children": []
+          },
+          {
+            "title": "Git",
+            "path": "必学工具/Git",
+            "children": []
+          },
+          {
+            "title": "GitHub",
+            "path": "必学工具/GitHub",
+            "children": []
+          },
+          {
+            "title": "GNU Make",
+            "path": "必学工具/GNU_Make",
+            "children": []
+          },
+          {
+            "title": "CMake",
+            "path": "必学工具/CMake",
+            "children": []
+          },
+          {
+            "title": "LaTeX",
+            "path": "必学工具/LaTeX",
+            "children": []
+          },
+          {
+            "title": "Docker",
+            "path": "必学工具/Docker",
+            "children": []
+          },
+          {
+            "title": "Scoop",
+            "path": "必学工具/Scoop",
+            "children": []
+          },
+          {
+            "title": "日常学习工作流",
+            "path": "必学工具/workflow",
+            "children": []
+          },
+          {
+            "title": "实用工具箱",
+            "path": "必学工具/tools",
+            "children": []
+          },
+          {
+            "title": "毕业论文",
+            "path": "必学工具/thesis",
+            "children": []
+          },
+          {
+            "title": "信息检索",
+            "path": "必学工具/信息检索",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "好书推荐",
+        "path": "好书推荐",
+        "children": []
+      },
+      {
+        "title": "数学基础",
+        "path": null,
+        "children": [
+          {
+            "title": "MIT18.01/18.02: Calculus",
+            "path": "数学基础/MITmaths",
+            "children": []
+          },
+          {
+            "title": "MIT18.06: Linear Algebra",
+            "path": "数学基础/MITLA",
+            "children": []
+          },
+          {
+            "title": "MIT6.050J: Information theory and Entropy",
+            "path": "数学基础/information",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "数学进阶",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB CS70: discrete Math and probability theory",
+            "path": "数学进阶/CS70",
+            "children": []
+          },
+          {
+            "title": "UCB CS126: probability theory",
+            "path": "数学进阶/CS126",
+            "children": []
+          },
+          {
+            "title": "MIT 6.042J: Mathematics for Computer Science",
+            "path": "数学进阶/6.042J",
+            "children": []
+          },
+          {
+            "title": "MIT18.330: Introduction to numerical analysis",
+            "path": "数学进阶/numerical",
+            "children": []
+          },
+          {
+            "title": "Standford EE364A: Convex Optimization",
+            "path": "数学进阶/convex",
+            "children": []
+          },
+          {
+            "title": "The Information Theory, Pattern Recognition, and Neural Networks",
+            "path": "数学进阶/The_Information_Theory_Pattern_Recognition_and_Neural_Networks",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "编程入门",
+        "path": null,
+        "children": [
+          {
+            "title": "MIT-Missing-Semester",
+            "path": "编程入门/MIT-Missing-Semester",
+            "children": []
+          },
+          {
+            "title": "Sysadmin DeCal",
+            "path": "编程入门/DeCal",
+            "children": []
+          },
+          {
+            "title": "Python 语言",
+            "path": null,
+            "children": [
+              {
+                "title": "UCB CS61A: Structure and Interpretation of Computer Programs",
+                "path": "编程入门/Python/CS61A",
+                "children": []
+              },
+              {
+                "title": "CS50P: CS50's Introduction to Programming with Python",
+                "path": "编程入门/Python/CS50P",
+                "children": []
+              },
+              {
+                "title": "MIT6.100L: Introduction to CS and Programming using Python",
+                "path": "编程入门/Python/MIT6.100L",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "C 语言",
+            "path": null,
+            "children": [
+              {
+                "title": "Harvard CS50: This is CS50x",
+                "path": "编程入门/C/CS50",
+                "children": []
+              },
+              {
+                "title": "Duke University: Introductory C Programming Specialization",
+                "path": "编程入门/C/Duke-Coursera-Intro-C",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "C++ 语言",
+            "path": null,
+            "children": [
+              {
+                "title": "AmirKabir University of Technology AP1400-2: Advanced Programming",
+                "path": "编程入门/cpp/AUT1400",
+                "children": []
+              },
+              {
+                "title": "Stanford CS106L: Standard C++ Programming",
+                "path": "编程入门/cpp/CS106L",
+                "children": []
+              },
+              {
+                "title": "Stanford CS106B/X",
+                "path": "编程入门/cpp/CS106B_CS106X",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "Java 语言",
+            "path": null,
+            "children": [
+              {
+                "title": "MIT 6.092: Introduction To Programming In Java",
+                "path": "编程入门/Java/MIT 6.092",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "Rust 语言",
+            "path": null,
+            "children": [
+              {
+                "title": "Stanford CS110L: Safety in Systems Programming",
+                "path": "编程入门/Rust/CS110L",
+                "children": []
+              },
+              {
+                "title": "KAIST CS220: Programming Principles",
+                "path": "编程入门/Rust/cs220",
+                "children": []
+              },
+              {
+                "title": "KAIST CS431: Concurrent Programming",
+                "path": "编程入门/Rust/cs431",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "函数式语言",
+            "path": null,
+            "children": [
+              {
+                "title": "Cornell CS3110: OCaml Programming Correct + Efficient + Beautiful",
+                "path": "编程入门/Functional/CS3110",
+                "children": []
+              },
+              {
+                "title": "Haskell MOOC",
+                "path": "编程入门/Functional/Haskell-MOOC",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "电子基础",
+        "path": null,
+        "children": [
+          {
+            "title": "EE16A&B: Designing Information Devices and Systems I&II",
+            "path": "电子基础/EE16",
+            "children": []
+          },
+          {
+            "title": "UCB EE120 : Signal and Systems",
+            "path": "电子基础/signal",
+            "children": []
+          },
+          {
+            "title": "MIT 6.007 Signals and Systems",
+            "path": "电子基础/Signals_and_Systems_AVO",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "数据结构与算法",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB CS61B: Data Structures and Algorithms",
+            "path": "数据结构与算法/CS61B",
+            "children": []
+          },
+          {
+            "title": "Coursera: Algorithms I & II",
+            "path": "数据结构与算法/Algo",
+            "children": []
+          },
+          {
+            "title": "MIT 6.006: Introduction to Algorithms",
+            "path": "数据结构与算法/6.006",
+            "children": []
+          },
+          {
+            "title": "MIT 6.046: Design and Analysis of Algorithms",
+            "path": "数据结构与算法/6.046",
+            "children": []
+          },
+          {
+            "title": "UCB CS170: Efficient Algorithms and Intractable Problems",
+            "path": "数据结构与算法/CS170",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "软件工程",
+        "path": null,
+        "children": [
+          {
+            "title": "MIT 6.031: Software Construction",
+            "path": "软件工程/6031",
+            "children": []
+          },
+          {
+            "title": "UCB CS169: software engineering",
+            "path": "软件工程/CS169",
+            "children": []
+          },
+          {
+            "title": "CMU 17-803: Empirical Methods",
+            "path": "软件工程/17803",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "计算机系统基础",
+        "path": null,
+        "children": [
+          {
+            "title": "CMU 15-213: CSAPP",
+            "path": "计算机系统基础/CSAPP",
+            "children": []
+          },
+          {
+            "title": "Stanford CS110: Principles of Computer Systems",
+            "path": "计算机系统基础/CS110",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "体系结构",
+        "path": null,
+        "children": [
+          {
+            "title": "Coursera: Nand2Tetris",
+            "path": "体系结构/N2T",
+            "children": []
+          },
+          {
+            "title": "UCB CS61C: Great Ideas in Computer Architecture",
+            "path": "体系结构/CS61C",
+            "children": []
+          },
+          {
+            "title": "ETHz: Digital Design and Computer Architecture",
+            "path": "体系结构/DDCA",
+            "children": []
+          },
+          {
+            "title": "ETHz: Computer Architecture",
+            "path": "体系结构/CA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "操作系统",
+        "path": null,
+        "children": [
+          {
+            "title": "MIT 6.1810 (6.S081): Operating System Engineering",
+            "path": "操作系统/MIT6.S081",
+            "children": []
+          },
+          {
+            "title": "UCB CS162: Operating Systems and Systems Programming",
+            "path": "操作系统/CS162",
+            "children": []
+          },
+          {
+            "title": "NJU OS: Operating System Design and Implementation",
+            "path": "操作系统/NJUOS",
+            "children": []
+          },
+          {
+            "title": "HIT OS: Operating System",
+            "path": "操作系统/HITOS",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "并行与分布式系统",
+        "path": null,
+        "children": [
+          {
+            "title": "CMU 15-418/Stanford CS149: Parallel Computing",
+            "path": "并行与分布式系统/CS149",
+            "children": []
+          },
+          {
+            "title": "MIT 6.5840 (6.824): Distributed System",
+            "path": "并行与分布式系统/MIT6.824",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "计算机系统安全",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB CS161: Computer Security",
+            "path": "系统安全/CS161",
+            "children": []
+          },
+          {
+            "title": "MIT 6.1600: Foundations of Computer Security",
+            "path": "系统安全/MIT6.1600",
+            "children": []
+          },
+          {
+            "title": "MIT 6.858: Computer System Security",
+            "path": "系统安全/MIT6.858",
+            "children": []
+          },
+          {
+            "title": "ASU CSE365: Introduction to Cybersecurity",
+            "path": "系统安全/CSE365",
+            "children": []
+          },
+          {
+            "title": "ASU CSE466: Computer Systems Security",
+            "path": "系统安全/CSE466",
+            "children": []
+          },
+          {
+            "title": "SU SEED Labs",
+            "path": "系统安全/SEEDLabs",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "计算机网络",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB CS168: Introduction to the Internet: Architecture and Protocols",
+            "path": "计算机网络/CS168",
+            "children": []
+          },
+          {
+            "title": "Stanford CS144: Computer Network",
+            "path": "计算机网络/CS144",
+            "children": []
+          },
+          {
+            "title": "USTC Computer Networking:A Top-Down Approach",
+            "path": "计算机网络/topdown_ustc",
+            "children": []
+          },
+          {
+            "title": "Computer Networking: A Top-Down Approach",
+            "path": "计算机网络/topdown",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "数据库系统",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB CS186: Introduction to Database System",
+            "path": "数据库系统/CS186",
+            "children": []
+          },
+          {
+            "title": "CMU 15-445: Database Systems",
+            "path": "数据库系统/15445",
+            "children": []
+          },
+          {
+            "title": "Caltech CS122: Database System Implementation",
+            "path": "数据库系统/CS122",
+            "children": []
+          },
+          {
+            "title": "Stanford CS346: Database System Implementation",
+            "path": "数据库系统/CS346",
+            "children": []
+          },
+          {
+            "title": "CMU 15-799: Special Topics in Database Systems",
+            "path": "数据库系统/15799",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "编译原理",
+        "path": null,
+        "children": [
+          {
+            "title": "PKU 编译原理实践",
+            "path": "编译原理/PKU-Compilers",
+            "children": []
+          },
+          {
+            "title": "Stanford CS143: Compilers",
+            "path": "编译原理/CS143",
+            "children": []
+          },
+          {
+            "title": "NJU 编译原理",
+            "path": "编译原理/NJU-Compilers",
+            "children": []
+          },
+          {
+            "title": "KAIST CS420: Compiler Design",
+            "path": "编译原理/CS420",
+            "children": []
+          },
+          {
+            "title": "USTC 编译原理与技术",
+            "path": "编译原理/USTC-Compilers",
+            "children": []
+          },
+          {
+            "title": "SJTU 编译原理",
+            "path": "编译原理/SJTU-Compilers",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "编程语言设计与分析",
+        "path": null,
+        "children": [
+          {
+            "title": "Stanford CS242: Programming Languages",
+            "path": "编程语言设计与分析/CS242",
+            "children": []
+          },
+          {
+            "title": "NJU 软件分析",
+            "path": "编程语言设计与分析/NJU-SoftwareAnalysis",
+            "children": []
+          },
+          {
+            "title": "PKU 软件分析",
+            "path": "编程语言设计与分析/PKU-SoftwareAnalysis",
+            "children": []
+          },
+          {
+            "title": "Cambridge: Semantics of Programming Languages",
+            "path": "编程语言设计与分析/Cambridge-Semantics",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "计算机图形学",
+        "path": null,
+        "children": [
+          {
+            "title": "GAMES101",
+            "path": "计算机图形学/GAMES101",
+            "children": []
+          },
+          {
+            "title": "GAMES202",
+            "path": "计算机图形学/GAMES202",
+            "children": []
+          },
+          {
+            "title": "GAMES103",
+            "path": "计算机图形学/GAMES103",
+            "children": []
+          },
+          {
+            "title": "Stanford CS148",
+            "path": "计算机图形学/CS148",
+            "children": []
+          },
+          {
+            "title": "CMU 15-462",
+            "path": "计算机图形学/15462",
+            "children": []
+          },
+          {
+            "title": "USTC CG",
+            "path": "计算机图形学/USTC ComputerGraphics",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "Web开发",
+        "path": null,
+        "children": [
+          {
+            "title": "MIT web development course",
+            "path": "Web开发/mitweb",
+            "children": []
+          },
+          {
+            "title": "Stanford CS142: Web Applications",
+            "path": "Web开发/CS142",
+            "children": []
+          },
+          {
+            "title": "University of Helsinki: Full Stack open 2022",
+            "path": "Web开发/fullstackopen",
+            "children": []
+          },
+          {
+            "title": "CS571 Building UI (React & React Native)",
+            "path": "Web开发/CS571",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "数据科学",
+        "path": null,
+        "children": [
+          {
+            "title": "UCB Data100: Principles and Techniques of Data Science",
+            "path": "数据科学/Data100",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "人工智能",
+        "path": null,
+        "children": [
+          {
+            "title": "Neural Networks: Zero to Hero",
+            "path": "人工智能/Neural Networks：Zero to Hero",
+            "children": []
+          },
+          {
+            "title": "Harvard CS50's Introduction to AI with Python",
+            "path": "人工智能/CS50",
+            "children": []
+          },
+          {
+            "title": "UCB CS188: Introduction to Artificial Intelligence",
+            "path": "人工智能/CS188",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "机器学习",
+        "path": null,
+        "children": [
+          {
+            "title": "Coursera: Machine Learning",
+            "path": "机器学习/ML",
+            "children": []
+          },
+          {
+            "title": "Stanford CS229: Machine Learning",
+            "path": "机器学习/CS229",
+            "children": []
+          },
+          {
+            "title": "UCB CS189: Introduction to Machine Learning",
+            "path": "机器学习/CS189",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "机器学习系统",
+        "path": null,
+        "children": [
+          {
+            "title": "CMU 15-442/642: Machine Learning Systems",
+            "path": "机器学习系统/CMU15-442",
+            "children": []
+          },
+          {
+            "title": "智能计算系统",
+            "path": "机器学习系统/AICS",
+            "children": []
+          },
+          {
+            "title": "CMU 10-414/714: Deep Learning Systems",
+            "path": "机器学习系统/CMU10-414",
+            "children": []
+          },
+          {
+            "title": "MIT6.5940: TinyML and Efficient Deep Learning Computing",
+            "path": "机器学习系统/EML",
+            "children": []
+          },
+          {
+            "title": "Machine Learning Compilation",
+            "path": "机器学习系统/MLC",
+            "children": []
+          },
+          {
+            "title": "UCSD CSE234: Data Systems for Machine Learning",
+            "path": "机器学习系统/CSE234",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "深度学习",
+        "path": null,
+        "children": [
+          {
+            "title": "Coursera: Deep Learning",
+            "path": "深度学习/CS230",
+            "children": []
+          },
+          {
+            "title": "国立台湾大学: 李宏毅机器学习",
+            "path": "深度学习/LHY",
+            "children": []
+          },
+          {
+            "title": "CMU 11-785: Introduction to Deep Learning",
+            "path": "深度学习/CMU11-785",
+            "children": []
+          },
+          {
+            "title": "MIT 6.7960: Deep Learning",
+            "path": "深度学习/MIT6-7960",
+            "children": []
+          },
+          {
+            "title": "NYU DLSP21: NYU Deep Learning Spring 2021",
+            "path": "深度学习/NYU-DLSP21",
+            "children": []
+          },
+          {
+            "title": "UMich EECS 498-007 / 598-005: Deep Learning for Computer Vision",
+            "path": "深度学习/EECS498-007",
+            "children": []
+          },
+          {
+            "title": "Stanford CS231n: CNN for Visual Recognition",
+            "path": "深度学习/CS231",
+            "children": []
+          },
+          {
+            "title": "Stanford CS224n: Natural Language Processing",
+            "path": "深度学习/CS224n",
+            "children": []
+          },
+          {
+            "title": "Stanford CS224w: Machine Learning with Graphs",
+            "path": "深度学习/CS224w",
+            "children": []
+          },
+          {
+            "title": "UCB CS285: Deep Reinforcement Learning",
+            "path": "深度学习/CS285",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "深度生成模型",
+        "path": null,
+        "children": [
+          {
+            "title": "学习路线图",
+            "path": "深度生成模型/roadmap",
+            "children": []
+          },
+          {
+            "title": "MIT 6.S184: Generative AI with Stochastic Differential Equations",
+            "path": "深度生成模型/MIT6.S184",
+            "children": []
+          },
+          {
+            "title": "大语言模型",
+            "path": null,
+            "children": [
+              {
+                "title": "CMU 11-868: Large Language Model System",
+                "path": "深度生成模型/大语言模型/CMU11-868",
+                "children": []
+              },
+              {
+                "title": "CMU 11-667: Large Language Models: Methods and Applications",
+                "path": "深度生成模型/大语言模型/CMU11-667",
+                "children": []
+              },
+              {
+                "title": "CMU 11-711: Advanced Natural Language Processing",
+                "path": "深度生成模型/大语言模型/CMU11-711",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "机器学习进阶",
+        "path": null,
+        "children": [
+          {
+            "title": "学习路线图",
+            "path": "机器学习进阶/roadmap",
+            "children": []
+          },
+          {
+            "title": "CMU 10-708: Probabilistic Graphical Models",
+            "path": "机器学习进阶/CMU10-708",
+            "children": []
+          },
+          {
+            "title": "Columbia STAT 8201: Deep Generative Models",
+            "path": "机器学习进阶/STAT8201",
+            "children": []
+          },
+          {
+            "title": "U Toronto STA 4273 Winter 2021: Minimizing Expectations",
+            "path": "机器学习进阶/STA4273",
+            "children": []
+          },
+          {
+            "title": "Stanford STATS214 / CS229M: Machine Learning Theory",
+            "path": "机器学习进阶/CS229M",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "后记",
+        "path": "后记",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "sjtu-survival",
+    "title": "上海交通大学生存手册",
+    "intro": "2008 年由一群上海交通大学本科生写就的传奇手册，十二年后由社区重新维护。关于志向、思维方式、学习方式、生存技巧与出路选择的真诚长谈——虽然出身交大，但对每一名大学生都值得一读。",
+    "source": {
+      "author": "SurviveSJTU 社区（原书：2008 级交大本科生团队）",
+      "site": "https://survivesjtu.github.io/SJTU-Survival-Guide/",
+      "repo": "https://github.com/SurviveSJTU/SJTU-Survival-Guide",
+      "license": "开源社区维护"
+    },
+    "chapters": [
+      {
+        "title": "README",
+        "path": "README",
+        "children": []
+      },
+      {
+        "title": "旧版声明",
+        "path": "xu/sheng-ming",
+        "children": []
+      },
+      {
+        "title": "新版声明",
+        "path": "xu/xin-ban-sheng-ming-todo",
+        "children": []
+      },
+      {
+        "title": "旧版序",
+        "path": "xu/xu",
+        "children": []
+      },
+      {
+        "title": "新版序",
+        "path": "xu/xin-ban-xu-todo",
+        "children": []
+      },
+      {
+        "title": "欢迎来到上海交通大学",
+        "path": "li-zhi-pian/huan-ying-lai-dao-shang-hai-jiao-tong-da-xue",
+        "children": []
+      },
+      {
+        "title": "你想要做什么",
+        "path": "li-zhi-pian/ben-ke-si-nian-yao-zuo-shen-me",
+        "children": []
+      },
+      {
+        "title": "失败的思维方式",
+        "path": "li-zhi-pian/shi-bai-de-si-wei-fang-shi/README",
+        "children": [
+          {
+            "title": "高考思维",
+            "path": "li-zhi-pian/shi-bai-de-si-wei-fang-shi/gao-kao-si-wei",
+            "children": []
+          },
+          {
+            "title": "被动思维",
+            "path": "li-zhi-pian/shi-bai-de-si-wei-fang-shi/bei-dong-si-wei",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "反对PUA",
+        "path": "li-zhi-pian/fan-dui-pua",
+        "children": []
+      },
+      {
+        "title": "悲壮的学习方式",
+        "path": "li-zhi-pian/bei-zhuang-de-xue-xi-fang-shi",
+        "children": []
+      },
+      {
+        "title": "你的身价是多少",
+        "path": "li-zhi-pian/ni-de-shen-jia-shi-duo-shao",
+        "children": []
+      },
+      {
+        "title": "正确地浪费剩下的时间",
+        "path": "li-zhi-pian/zheng-que-di-lang-fei-sheng-xia-de-shi-jian",
+        "children": []
+      },
+      {
+        "title": "总有更值得做的事情",
+        "path": "li-zhi-pian/zong-you-geng-zhi-de-zuo-de-shi-qing",
+        "children": []
+      },
+      {
+        "title": "认识信息素养",
+        "path": "li-zhi-pian/ren-shi-xin-xi-su-yang",
+        "children": []
+      },
+      {
+        "title": "做研究的兴趣",
+        "path": "li-zhi-pian/zuo-yan-jiu-de-xing-qu",
+        "children": []
+      },
+      {
+        "title": "关于工作",
+        "path": "li-zhi-pian/guan-yu-gong-zuo/README",
+        "children": []
+      },
+      {
+        "title": "选调生介绍（TODO)",
+        "path": "li-zhi-pian/guan-yu-gong-zuo/xuan-tiao-sheng-jie-shao-todo",
+        "children": []
+      },
+      {
+        "title": "为了留学而出国",
+        "path": "fang-tan-ji/untitled/README",
+        "children": [
+          {
+            "title": "为什么要出国?",
+            "path": "fang-tan-ji/untitled/wei-shen-me-yao-chu-guo",
+            "children": []
+          },
+          {
+            "title": "出国读什么学位什么专业?",
+            "path": "fang-tan-ji/untitled/chu-guo-du-shen-me-xue-wei-shen-me-zhuan-ye",
+            "children": []
+          },
+          {
+            "title": "出国都有哪些步骤",
+            "path": "fang-tan-ji/untitled/chu-guo-du-you-na-xie-bu-zhou",
+            "children": []
+          },
+          {
+            "title": "为了申请出国，大学期间需要准备什么",
+            "path": "fang-tan-ji/untitled/wei-le-shen-qing-chu-guo-da-xue-qi-jian-xu-yao-zhun-bei-shen-me",
+            "children": []
+          },
+          {
+            "title": "警惕出国中介",
+            "path": "fang-tan-ji/untitled/jing-ti-chu-guo-zhong-jie",
+            "children": []
+          },
+          {
+            "title": "疫情后的留学新常态",
+            "path": "fang-tan-ji/untitled/yi-qing-xia-de-liu-xue-xin-chang-tai",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "做真正的研究",
+        "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/README",
+        "children": [
+          {
+            "title": "合理的研究态度",
+            "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/he-li-de-yan-jiu-tai-du",
+            "children": []
+          },
+          {
+            "title": "区分上学与研究",
+            "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/qu-fen-shang-xue-yu-yan-jiu",
+            "children": []
+          },
+          {
+            "title": "知识积累",
+            "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/zhi-shi-ji-lei",
+            "children": []
+          },
+          {
+            "title": "衡量学术价值",
+            "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/heng-liang-xue-shu-jia-zhi",
+            "children": []
+          },
+          {
+            "title": "一些常见误区",
+            "path": "fang-tan-ji/zuo-zhen-zheng-de-yan-jiu/yi-xie-chang-jian-wu-qu",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "管理者的智慧",
+        "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/README",
+        "children": [
+          {
+            "title": "御人先御己",
+            "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/yu-ren-xian-yu-ji",
+            "children": []
+          },
+          {
+            "title": "培养团队",
+            "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/pei-yang-tuan-dui",
+            "children": []
+          },
+          {
+            "title": "重在参与",
+            "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/zhong-zai-can-yu",
+            "children": []
+          },
+          {
+            "title": "认识设计类课程",
+            "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/ren-shi-she-ji-lei-ke-cheng",
+            "children": []
+          },
+          {
+            "title": "进度控制",
+            "path": "fang-tan-ji/guan-li-zhe-de-zhi-hui/jin-du-kong-zhi",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "小心项目的陷阱",
+        "path": "fang-tan-ji/xiao-xin-xiang-mu-de-xian-jing/README",
+        "children": [
+          {
+            "title": "辨别项目的质量",
+            "path": "fang-tan-ji/xiao-xin-xiang-mu-de-xian-jing/bian-bie-xiang-mu-de-zhi-liang",
+            "children": []
+          },
+          {
+            "title": "如何选择导师",
+            "path": "fang-tan-ji/xiao-xin-xiang-mu-de-xian-jing/xuan-dui-dao-shi",
+            "children": []
+          },
+          {
+            "title": "团队与合作伙伴",
+            "path": "fang-tan-ji/xiao-xin-xiang-mu-de-xian-jing/tuan-dui-yu-he-zuo-huo-ban",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "保研者说",
+        "path": "fang-tan-ji/bao-yan-zhe-shuo/README",
+        "children": [
+          {
+            "title": "明确目的",
+            "path": "fang-tan-ji/bao-yan-zhe-shuo/ming-que-mu-de",
+            "children": []
+          },
+          {
+            "title": "需要做些什么",
+            "path": "fang-tan-ji/bao-yan-zhe-shuo/xu-yao-zuo-xie-shen-me",
+            "children": []
+          },
+          {
+            "title": "硕士之后",
+            "path": "fang-tan-ji/bao-yan-zhe-shuo/shuo-shi-zhi-hou",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "考研（TODO)",
+        "path": "fang-tan-ji/kao-yan-todo",
+        "children": []
+      },
+      {
+        "title": "破解留沪政策",
+        "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/README",
+        "children": [
+          {
+            "title": "面对户口，我们应该持有什么样的心态",
+            "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/mian-dui-hu-kou-wo-men-ying-gai-chi-you-shen-me-yang-de-xin-tai",
+            "children": []
+          },
+          {
+            "title": "户口审批制度是否规范？",
+            "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/hu-kou-shen-pi-zhi-du-shi-fou-gui-fan",
+            "children": []
+          },
+          {
+            "title": "分！分！学生的命根！",
+            "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/fen-fen-xue-sheng-de-ming-gen",
+            "children": []
+          },
+          {
+            "title": "其他琐碎问题",
+            "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/qi-ta-suo-sui-wen-ti",
+            "children": []
+          },
+          {
+            "title": "上海应届毕业生落户不完整指南",
+            "path": "fang-tan-ji/po-jie-liu-hu-zheng-ce/shang-hai-ying-jie-bi-ye-sheng-luo-hu-bu-wan-zheng-zhi-nan",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "交大转专业指南",
+        "path": "sheng-cun-ji-qiao/jiao-da-zhuan-zhuan-ye-zhi-nan",
+        "children": []
+      },
+      {
+        "title": "选课原则与选课技巧",
+        "path": "sheng-cun-ji-qiao/untitled/README",
+        "children": [
+          {
+            "title": "我是否一定要选辅修？",
+            "path": "sheng-cun-ji-qiao/untitled/wo-shi-fou-yi-ding-yao-xuan-fu-xiu",
+            "children": []
+          },
+          {
+            "title": "选课选什么",
+            "path": "sheng-cun-ji-qiao/untitled/xuan-ke-xuan-shen-me",
+            "children": []
+          },
+          {
+            "title": "广占坑，占好坑",
+            "path": "sheng-cun-ji-qiao/untitled/guang-zhan-keng-zhan-hao-keng",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "突击备考",
+        "path": "sheng-cun-ji-qiao/tu-ji-bei-kao/README",
+        "children": [
+          {
+            "title": "注意复习范围",
+            "path": "sheng-cun-ji-qiao/tu-ji-bei-kao/zhu-yi-fu-xi-fan-wei",
+            "children": []
+          },
+          {
+            "title": "三天冲刺",
+            "path": "sheng-cun-ji-qiao/tu-ji-bei-kao/san-tian-chong-ci",
+            "children": []
+          },
+          {
+            "title": "考试结束后",
+            "path": "sheng-cun-ji-qiao/tu-ji-bei-kao/kao-shi-jie-shu-hou",
+            "children": []
+          },
+          {
+            "title": "复习箴言",
+            "path": "sheng-cun-ji-qiao/tu-ji-bei-kao/fu-xi-zhen-yan",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "正确解读成绩算法",
+        "path": "sheng-cun-ji-qiao/zheng-que-jie-du-cheng-ji-suan-fa/README",
+        "children": [
+          {
+            "title": "GPA制度概览",
+            "path": "sheng-cun-ji-qiao/zheng-que-jie-du-cheng-ji-suan-fa/gpa-zhi-du-gai-lan",
+            "children": []
+          },
+          {
+            "title": "伟大的选修课",
+            "path": "sheng-cun-ji-qiao/zheng-que-jie-du-cheng-ji-suan-fa/wei-da-de-xuan-xiu-ke",
+            "children": []
+          },
+          {
+            "title": "理性挂科，合理重修",
+            "path": "sheng-cun-ji-qiao/zheng-que-jie-du-cheng-ji-suan-fa/li-xing-gua-ke-he-li-zhong-xiu",
+            "children": []
+          },
+          {
+            "title": "风险与收益并存",
+            "path": "sheng-cun-ji-qiao/zheng-que-jie-du-cheng-ji-suan-fa/feng-xian-yu-shou-yi-bing-cun",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "旁门左道",
+        "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/README",
+        "children": [
+          {
+            "title": "开学前两周的点名",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/kai-xue-qian-liang-zhou-de-dian-ming",
+            "children": []
+          },
+          {
+            "title": "善用GPT",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/shan-yong-gpt",
+            "children": []
+          },
+          {
+            "title": "形势政策考试",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/xing-shi-zheng-ce-kao-shi",
+            "children": []
+          },
+          {
+            "title": "物理实验",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/wu-li-shi-yan",
+            "children": []
+          },
+          {
+            "title": "学术灌水",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/xue-shu-guan-shui",
+            "children": []
+          },
+          {
+            "title": "关于交大邮箱",
+            "path": "sheng-cun-ji-qiao/pang-men-zuo-dao/guan-yu-jiao-da-you-xiang",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "本科生专业介绍TODO",
+        "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/README",
+        "children": [
+          {
+            "title": "生物医学工程16级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/sheng-wu-yi-xue-gong-cheng-16-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "电院IEEE试点班介绍-1",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/dian-yuan-ieee-shi-dian-ban-jie-shao-1",
+            "children": []
+          },
+          {
+            "title": "电院电子系信息工程专业17级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/dian-yuan-dian-zi-xi-xin-xi-gong-cheng-zhuan-ye-17-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "电院计算机系13级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/dian-yuan-ji-suan-ji-xi-13-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "CS自救指北",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/cs-zi-jiu-zhi-bei",
+            "children": []
+          },
+          {
+            "title": "电院信息安全16级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/dian-yuan-xin-xi-an-quan-16-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "密西根学院15级ECE同学介绍",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/mi-xi-gen-xue-yuan-15-ji-ece-tong-xue-jie-shao",
+            "children": []
+          },
+          {
+            "title": "机动学院机械工程专业15级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/ji-dong-xue-yuan-ji-xie-gong-cheng-zhuan-ye-15-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "人文学院同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/ren-wen-xue-yuan-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "数学系14级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/shu-xue-xi-14-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "会计学15级同学分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/hui-ji-xue-15-ji-tong-xue-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "软件学院介绍",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/ruan-jian-xue-yuan-jie-shao",
+            "children": []
+          },
+          {
+            "title": "ACM班小透明分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/acm-ban-xiao-tou-ming-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "日语系 13 级学姐分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-ye-jie-shao-todo/ri-yu-xi-13-ji-xue-jie-fen-xiang",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "本科生转专业经验分享TODO",
+        "path": "fu-lu/ben-ke-sheng-zhuan-zhuan-ye-jing-yan-fen-xiang-todo/README",
+        "children": [
+          {
+            "title": "CS19级转入SE经验分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-zhuan-ye-jing-yan-fen-xiang-todo/cs19-ji-zhuan-ru-se-jing-yan-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "19级测控技术与仪器转信息安全",
+            "path": "fu-lu/ben-ke-sheng-zhuan-zhuan-ye-jing-yan-fen-xiang-todo/19-ji-ce-kong-ji-shu-yu-yi-qi-zhuan-xin-xi-an-quan",
+            "children": []
+          },
+          {
+            "title": "19级工科平台转软件工程分享",
+            "path": "fu-lu/ben-ke-sheng-zhuan-zhuan-ye-jing-yan-fen-xiang-todo/19-ji-chuan-yuan-zhuan-ruan-jian-gong-cheng-fen-xiang",
+            "children": []
+          },
+          {
+            "title": "19级测控转软件工程",
+            "path": "fu-lu/ben-ke-sheng-zhuan-zhuan-ye-jing-yan-fen-xiang-todo/19-ji-ce-kong-zhuan-ruan-jian-gong-cheng",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "本科转学经验分享TODO",
+        "path": "fu-lu/ben-ke-zhuan-xue-jing-yan-fen-xiang-todo/README",
+        "children": [
+          {
+            "title": "本科生转学经验分享-新加坡",
+            "path": "fu-lu/ben-ke-zhuan-xue-jing-yan-fen-xiang-todo/ben-ke-sheng-zhuan-xue-jing-yan-fen-xiang-xin-jia-po",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "本科生找实习经验分享TODO",
+        "path": "fu-lu/ben-ke-sheng-zhao-shi-xi-jing-yan-fen-xiang-todo",
+        "children": []
+      },
+      {
+        "title": "本科生科研经验分享TODO",
+        "path": "fu-lu/ben-ke-sheng-ke-yan-jing-yan-fen-xiang-todo",
+        "children": []
+      },
+      {
+        "title": "交大学生社团介绍TODO",
+        "path": "fu-lu/jiao-da-xue-sheng-she-tuan-jie-shao-todo",
+        "children": []
+      },
+      {
+        "title": "通识课介绍TODO",
+        "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/README",
+        "children": [
+          {
+            "title": "必修类",
+            "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/bi-xiu-lei",
+            "children": []
+          },
+          {
+            "title": "选修类",
+            "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/xuan-xiu-lei",
+            "children": []
+          },
+          {
+            "title": "人文类通识课",
+            "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/ren-wen-lei-tong-shi-ke",
+            "children": []
+          },
+          {
+            "title": "社科类",
+            "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/she-ke-lei",
+            "children": []
+          },
+          {
+            "title": "自然科学类",
+            "path": "fu-lu/ren-wen-jing-guan-lei-ke-cheng/zi-ran-ke-xue-lei",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "已经工作学长的人生经验TODO",
+        "path": "fu-lu/yi-jing-gong-zuo-xue-chang-de-ren-sheng-jing-yan/README",
+        "children": [
+          {
+            "title": "上海交通大学CS生存指南--番外篇1",
+            "path": "fu-lu/yi-jing-gong-zuo-xue-chang-de-ren-sheng-jing-yan/shang-hai-jiao-tong-da-xue-cs-sheng-cun-zhi-nan-fan-wai-pian-1",
+            "children": []
+          },
+          {
+            "title": "软件工程15级-互联网产品经理经验分享",
+            "path": "fu-lu/yi-jing-gong-zuo-xue-chang-de-ren-sheng-jing-yan/ruan-jian-gong-cheng-15-ji-hu-lian-wang-chan-pin-jing-li-jing-yan-fen-xiang",
+            "children": []
+          }
+        ]
+      },
+      {
+        "title": "本科毕业之后",
+        "path": "fu-lu/sjtu-application",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "ic-guide",
+    "title": "IC 自学指南",
+    "intro": "来自复旦大学集成电路（微电子）专业的自学指南。包含 17 个科研方向导览（器件与制造、模拟射频、计算架构、EDA、量子芯片……）、分学科课程地图与工程工具教程，是摸清集成电路学习路径的宝藏地图。",
+    "source": {
+      "author": "Crys-Chen（复旦大学）",
+      "site": "https://crys-chen.github.io/ic-guide/",
+      "repo": "https://github.com/Crys-Chen/ic-guide",
+      "license": "MIT"
+    },
+    "chapters": [
+      {
+        "title": "首页",
+        "path": "index",
+        "children": []
+      },
+      {
+        "title": "科研方向",
+        "path": null,
+        "children": [
+          {
+            "title": "index",
+            "path": "科研方向/index",
+            "children": []
+          },
+          {
+            "title": "器件与制造",
+            "path": null,
+            "children": [
+              {
+                "title": "半导体器件与先进工艺",
+                "path": "科研方向/半导体器件与先进工艺",
+                "children": []
+              },
+              {
+                "title": "功率半导体与宽禁带器件",
+                "path": "科研方向/功率半导体与宽禁带器件",
+                "children": []
+              },
+              {
+                "title": "光电子与硅光集成",
+                "path": "科研方向/光电子与硅光集成",
+                "children": []
+              },
+              {
+                "title": "MEMS与微纳传感器",
+                "path": "科研方向/MEMS与微纳传感器",
+                "children": []
+              },
+              {
+                "title": "先进封装与异构集成",
+                "path": "科研方向/先进封装与异构集成",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "模拟与射频电路",
+            "path": null,
+            "children": [
+              {
+                "title": "模拟与混合信号IC",
+                "path": "科研方向/模拟与混合信号IC",
+                "children": []
+              },
+              {
+                "title": "射频与毫米波IC",
+                "path": "科研方向/射频与毫米波IC",
+                "children": []
+              },
+              {
+                "title": "生物电子与脑机接口",
+                "path": "科研方向/生物电子与脑机接口",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "计算架构",
+            "path": null,
+            "children": [
+              {
+                "title": "处理器架构与编译系统",
+                "path": "科研方向/处理器架构与编译系统",
+                "children": []
+              },
+              {
+                "title": "可重构计算与FPGA",
+                "path": "科研方向/可重构计算与FPGA",
+                "children": []
+              },
+              {
+                "title": "存算一体与近存计算",
+                "path": "科研方向/存算一体与近存计算",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "设计工具与安全",
+            "path": null,
+            "children": [
+              {
+                "title": "EDA与设计自动化",
+                "path": "科研方向/EDA与设计自动化",
+                "children": []
+              },
+              {
+                "title": "硬件安全与可信计算",
+                "path": "科研方向/硬件安全与可信计算",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "交叉前沿",
+            "path": null,
+            "children": [
+              {
+                "title": "AI算法与系统",
+                "path": "科研方向/AI算法与系统",
+                "children": []
+              },
+              {
+                "title": "具身智能",
+                "path": "科研方向/具身智能",
+                "children": []
+              },
+              {
+                "title": "量子计算与量子芯片",
+                "path": "科研方向/量子计算与量子芯片",
+                "children": []
+              },
+              {
+                "title": "类脑芯片",
+                "path": "科研方向/类脑芯片",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "学习地图",
+        "path": null,
+        "children": [
+          {
+            "title": "导言",
+            "path": "学习地图/index",
+            "children": []
+          },
+          {
+            "title": "数学",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/数学/index",
+                "children": []
+              },
+              {
+                "title": "入门速成",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/入门速成/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 工程数学",
+                    "path": "学习地图/数学/入门速成/FDU_MICR130008",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS70",
+                    "path": "学习地图/数学/入门速成/UCB_CS70",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.042J",
+                    "path": "学习地图/数学/入门速成/MIT_6.042J",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "分析",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/分析/index",
+                    "children": []
+                  },
+                  {
+                    "title": "数学分析",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦 高数A",
+                        "path": "学习地图/数学/分析/数学分析/FDU_MATH10015-16",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 数分B",
+                        "path": "学习地图/数学/分析/数学分析/FDU_MATH120016-17",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 18.01/18.02",
+                        "path": "学习地图/数学/分析/数学分析/MIT_18.01-18.02",
+                        "children": []
+                      },
+                      {
+                        "title": "补充资源",
+                        "path": "学习地图/数学/分析/数学分析/补充资源",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "复变函数",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "西交",
+                        "path": "学习地图/数学/分析/复变函数/XJTU_complex",
+                        "children": []
+                      },
+                      {
+                        "title": "高数叔",
+                        "path": "学习地图/数学/分析/复变函数/gaoshushu_complex",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "代数",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/代数/index",
+                    "children": []
+                  },
+                  {
+                    "title": "线性代数",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/数学/代数/线性代数/FDU_COMP120004",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 18.06",
+                        "path": "学习地图/数学/代数/线性代数/MIT_18.06",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "高等代数",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "北大 丘维声",
+                        "path": "学习地图/数学/代数/高等代数/PKU_qiuweisheng",
+                        "children": []
+                      },
+                      {
+                        "title": "Axler",
+                        "path": "学习地图/数学/代数/高等代数/Axler_LADR",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "矩阵分析",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "MIT 18.065",
+                        "path": "学习地图/数学/代数/矩阵分析/MIT_18.065",
+                        "children": []
+                      },
+                      {
+                        "title": "哈工大 严质彬",
+                        "path": "学习地图/数学/代数/矩阵分析/HIT_yanzhibin",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "抽象代数",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "南大 孙智伟",
+                        "path": "学习地图/数学/代数/抽象代数/NJU_sunzhiwei",
+                        "children": []
+                      },
+                      {
+                        "title": "Harvard Gross",
+                        "path": "学习地图/数学/代数/抽象代数/Harvard_gross",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "概率与统计",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/概率与统计/index",
+                    "children": []
+                  },
+                  {
+                    "title": "浙大",
+                    "path": "学习地图/数学/概率与统计/ZJU_probability",
+                    "children": []
+                  },
+                  {
+                    "title": "Harvard Stat110",
+                    "path": "学习地图/数学/概率与统计/Harvard_Stat110",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.041",
+                    "path": "学习地图/数学/概率与统计/MIT_6.041",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.262",
+                    "path": "学习地图/数学/概率与统计/MIT_6.262",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "离散数学",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/离散数学/index",
+                    "children": []
+                  },
+                  {
+                    "title": "北大 屈婉玲",
+                    "path": "学习地图/数学/离散数学/PKU_discrete",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "数值与优化",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/数值与优化/index",
+                    "children": []
+                  },
+                  {
+                    "title": "数值分析",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦 吴宗敏",
+                        "path": "学习地图/数学/数值与优化/数值分析/FDU_wu_numerical",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 计算物理",
+                        "path": "学习地图/数学/数值与优化/数值分析/FDU_PHYS20009",
+                        "children": []
+                      },
+                      {
+                        "title": "中科大",
+                        "path": "学习地图/数学/数值与优化/数值分析/USTC_numerical",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 18.330",
+                        "path": "学习地图/数学/数值与优化/数值分析/MIT_18.330",
+                        "children": []
+                      },
+                      {
+                        "title": "补充资源",
+                        "path": "学习地图/数学/数值与优化/数值分析/补充资源",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "凸优化",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "中科大 凌青",
+                        "path": "学习地图/数学/数值与优化/凸优化/USTC_ling_convex",
+                        "children": []
+                      },
+                      {
+                        "title": "Stanford EE364A",
+                        "path": "学习地图/数学/数值与优化/凸优化/Stanford_EE364A",
+                        "children": []
+                      },
+                      {
+                        "title": "补充资源",
+                        "path": "学习地图/数学/数值与优化/凸优化/补充资源",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "专题",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/数学/专题/index",
+                    "children": []
+                  },
+                  {
+                    "title": "信息论",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "MacKay",
+                        "path": "学习地图/数学/专题/信息论/MacKay_infotheory",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "密码学",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "北邮",
+                        "path": "学习地图/数学/专题/密码学/BUPT_crypto",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 6.875",
+                        "path": "学习地图/数学/专题/密码学/MIT_6.875",
+                        "children": []
+                      },
+                      {
+                        "title": "Stanford",
+                        "path": "学习地图/数学/专题/密码学/Stanford_crypto",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "物理",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/物理/index",
+                "children": []
+              },
+              {
+                "title": "大学物理",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/大学物理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/物理/大学物理/FDU_PHYS120013-14",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 8.01/8.02",
+                    "path": "学习地图/物理/大学物理/MIT_8.01-8.02",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "物理实验",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/物理实验/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/物理/物理实验/FDU_PHYS120015",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "电磁场与微波(待建)",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/电磁场与微波/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 电磁场与电磁波",
+                    "path": "学习地图/物理/电磁场与微波/FDU_ICE50009",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "量子力学",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/量子力学/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/物理/量子力学/FDU_MICR130015",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 8.04",
+                    "path": "学习地图/物理/量子力学/MIT_8.04",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "量子计算",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/量子计算/index",
+                    "children": []
+                  },
+                  {
+                    "title": "北大 李彤阳",
+                    "path": "学习地图/物理/量子计算/PKU_li_quantum",
+                    "children": []
+                  },
+                  {
+                    "title": "Qiskit",
+                    "path": "学习地图/物理/量子计算/qiskit_watrous",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "热力学与统计物理(待建)",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/热力学与统计物理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 热统I",
+                    "path": "学习地图/物理/热力学与统计物理/FDU_PHYS20013",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "固体物理",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/固体物理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/物理/固体物理/FDU_MICR130013",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 物理系",
+                    "path": "学习地图/物理/固体物理/FDU_PHYS30011",
+                    "children": []
+                  },
+                  {
+                    "title": "山大 赵明文",
+                    "path": "学习地图/物理/固体物理/SDU_zhaomw",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "半导体物理",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/物理/半导体物理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/物理/半导体物理/FDU_MICR130005",
+                    "children": []
+                  },
+                  {
+                    "title": "西电 柴常春",
+                    "path": "学习地图/物理/半导体物理/XDU_semiconductor",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "光学",
+                "path": null,
+                "children": [
+                  {
+                    "title": "导言",
+                    "path": "学习地图/物理/光学/index",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 8.03",
+                    "path": "学习地图/物理/光学/MIT_8.03",
+                    "children": []
+                  },
+                  {
+                    "title": "MITx 集成光子学",
+                    "path": "学习地图/物理/光学/MITx_integrated_photonics",
+                    "children": []
+                  },
+                  {
+                    "title": "北大 周治平",
+                    "path": "学习地图/物理/光学/PKU_zhou_optoelectronics",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 光电子器件",
+                    "path": "学习地图/物理/光学/FDU_ICSE30008",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 光电集成",
+                    "path": "学习地图/物理/光学/FDU_ICSE30004",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "传热学",
+                "path": null,
+                "children": [
+                  {
+                    "title": "导言",
+                    "path": "学习地图/物理/传热学/index",
+                    "children": []
+                  },
+                  {
+                    "title": "西交 陶文铨",
+                    "path": "学习地图/物理/传热学/XJTU_taowq",
+                    "children": []
+                  },
+                  {
+                    "title": "上交",
+                    "path": "学习地图/物理/传热学/SJTU_heat_transfer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "器件与工艺",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/器件与工艺/index",
+                "children": []
+              },
+              {
+                "title": "半导体器件",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/半导体器件/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/器件与工艺/半导体器件/FDU_MICR130006",
+                    "children": []
+                  },
+                  {
+                    "title": "Purdue ECE606",
+                    "path": "学习地图/器件与工艺/半导体器件/Purdue_ECE606",
+                    "children": []
+                  },
+                  {
+                    "title": "补充资源",
+                    "path": "学习地图/器件与工艺/半导体器件/补充资源",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "前沿器件",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/前沿器件/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 超低功耗器件",
+                    "path": "学习地图/器件与工艺/前沿器件/FDU_ICSE30031",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 微纳器件",
+                    "path": "学习地图/器件与工艺/前沿器件/FDU_ICSE30012",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 表面界面",
+                    "path": "学习地图/器件与工艺/前沿器件/FDU_ICSE30029",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "集成电路工艺",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/集成电路工艺/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/器件与工艺/集成电路工艺/FDU_MICR130007",
+                    "children": []
+                  },
+                  {
+                    "title": "哈工大 王蔚",
+                    "path": "学习地图/器件与工艺/集成电路工艺/HIT_micro_fab",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 光刻",
+                    "path": "学习地图/器件与工艺/集成电路工艺/FDU_ICSE30032",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 纳米技术",
+                    "path": "学习地图/器件与工艺/集成电路工艺/FDU_ICSE40003",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 先进工艺",
+                    "path": "学习地图/器件与工艺/集成电路工艺/FDU_ICSE40016",
+                    "children": []
+                  },
+                  {
+                    "title": "补充资源",
+                    "path": "学习地图/器件与工艺/集成电路工艺/补充资源",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 制造仿真",
+                    "path": "学习地图/器件与工艺/集成电路工艺/FDU_ICSE30014",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "存储器",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/存储器/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 存储器技术",
+                    "path": "学习地图/器件与工艺/存储器/FDU_ICSE30005",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 闪存",
+                    "path": "学习地图/器件与工艺/存储器/FDU_ICSE30024",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 存储器电路",
+                    "path": "学习地图/器件与工艺/存储器/FDU_ICSE30025",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "材料",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/材料/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 半导体材料",
+                    "path": "学习地图/器件与工艺/材料/FDU_ICSE20003",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 材料科学导论",
+                    "path": "学习地图/器件与工艺/材料/FDU_MASE20002",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 薄膜技术",
+                    "path": "学习地图/器件与工艺/材料/FDU_MASE30019",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 材料分析",
+                    "path": "学习地图/器件与工艺/材料/FDU_MASE30023",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 电子材料分析",
+                    "path": "学习地图/器件与工艺/材料/FDU_MASE30015",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 薄膜表征",
+                    "path": "学习地图/器件与工艺/材料/FDU_ICSE40017",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 有机微电子",
+                    "path": "学习地图/器件与工艺/材料/FDU_ICSE40011",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "功率半导体器件(待建)",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/功率半导体器件/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 功率工艺",
+                    "path": "学习地图/器件与工艺/功率半导体器件/FDU_ICSE20012",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "MEMS器件与微纳加工(待建)",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/MEMS/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 MEMS应用",
+                    "path": "学习地图/器件与工艺/MEMS/FDU_ICSE40015",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 传感器",
+                    "path": "学习地图/器件与工艺/MEMS/FDU_ICSE30023",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "先进封装(待建)",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/器件与工艺/先进封装/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 封装与测试",
+                    "path": "学习地图/器件与工艺/先进封装/FDU_ICSE40004",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 先进封装",
+                    "path": "学习地图/器件与工艺/先进封装/FDU_ICSE40006",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 封装材料",
+                    "path": "学习地图/器件与工艺/先进封装/FDU_ICSE30013",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "电路",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/电路/index",
+                "children": []
+              },
+              {
+                "title": "入门速成",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/入门速成/index",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB EE16A&B",
+                    "path": "学习地图/电路/入门速成/UCB_EE16AB",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "数字设计",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/数字设计/index",
+                    "children": []
+                  },
+                  {
+                    "title": "数字逻辑基础",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/数字设计/数字逻辑基础/FDU_MICR130003",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 6.004",
+                        "path": "学习地图/电路/数字设计/数字逻辑基础/MIT_6.004",
+                        "children": []
+                      },
+                      {
+                        "title": "Neso Academy",
+                        "path": "学习地图/电路/数字设计/数字逻辑基础/neso_digital",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "硬件描述语言(HDL)",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "Verilog",
+                        "path": null,
+                        "children": [
+                          {
+                            "title": "浙大",
+                            "path": "学习地图/电路/数字设计/HDL/Verilog/ZJU_digital_system",
+                            "children": []
+                          },
+                          {
+                            "title": "HDLBits",
+                            "path": "学习地图/电路/数字设计/HDL/Verilog/HDLBits",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Chisel",
+                        "path": null,
+                        "children": [
+                          {
+                            "title": "Chisel Bootcamp",
+                            "path": "学习地图/电路/数字设计/HDL/Chisel/chisel_bootcamp",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "title": "HLS",
+                        "path": null,
+                        "children": [
+                          {
+                            "title": "高亚军",
+                            "path": "学习地图/电路/数字设计/HDL/HLS/gaoyajun_hls",
+                            "children": []
+                          },
+                          {
+                            "title": "Lehigh",
+                            "path": "学习地图/电路/数字设计/HDL/HLS/Lehigh_hls",
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "title": "复旦 高级HDL",
+                        "path": "学习地图/电路/数字设计/HDL/FDU_ICSE30027",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "FPGA",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/数字设计/FPGA/FDU_MICR130024",
+                        "children": []
+                      },
+                      {
+                        "title": "小梅哥",
+                        "path": "学习地图/电路/数字设计/FPGA/xiaomeige_fpga",
+                        "children": []
+                      },
+                      {
+                        "title": "Nandland",
+                        "path": "学习地图/电路/数字设计/FPGA/nandland",
+                        "children": []
+                      },
+                      {
+                        "title": "Coursera",
+                        "path": "学习地图/电路/数字设计/FPGA/Coursera_fpga",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "数字集成电路",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/数字设计/数字集成电路/FDU_MICR130029",
+                        "children": []
+                      },
+                      {
+                        "title": "UCB EECS151",
+                        "path": "学习地图/电路/数字设计/数字集成电路/UCB_EECS151",
+                        "children": []
+                      },
+                      {
+                        "title": "NPTEL",
+                        "path": "学习地图/电路/数字设计/数字集成电路/NPTEL_vlsi_design",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "低功耗设计",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦 超低功耗IC",
+                        "path": "学习地图/电路/数字设计/低功耗设计/FDU_ICSE40005",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "数字验证(待建)",
+                    "path": "学习地图/电路/数字设计/数字验证/index",
+                    "children": []
+                  },
+                  {
+                    "title": "ASIC与数字后端",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/FDU_INFO130094",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 逻辑综合概论",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/FDU_ICSE20016",
+                        "children": []
+                      },
+                      {
+                        "title": "NPTEL 物理设计",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/NPTEL_physical_design",
+                        "children": []
+                      },
+                      {
+                        "title": "NPTEL 综合",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/NPTEL_synthesis",
+                        "children": []
+                      },
+                      {
+                        "title": "数字后端(待建)",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/数字后端",
+                        "children": []
+                      },
+                      {
+                        "title": "补充资源",
+                        "path": "学习地图/电路/数字设计/ASIC与数字后端/补充资源",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "模拟与射频",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/模拟与射频/index",
+                    "children": []
+                  },
+                  {
+                    "title": "电路分析基础",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/模拟与射频/电路分析基础/FDU_yiting",
+                        "children": []
+                      },
+                      {
+                        "title": "清华 于歆杰",
+                        "path": "学习地图/电路/模拟与射频/电路分析基础/THU_yu_circuit",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "模拟电子线路",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/FDU_MICR130002",
+                        "children": []
+                      },
+                      {
+                        "title": "Razavi 1",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/razavi_e1",
+                        "children": []
+                      },
+                      {
+                        "title": "Razavi 2",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/razavi_e2",
+                        "children": []
+                      },
+                      {
+                        "title": "清华 华成英",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/THU_huachengying",
+                        "children": []
+                      },
+                      {
+                        "title": "上交 郑益慧",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/SJTU_zheng_analog",
+                        "children": []
+                      },
+                      {
+                        "title": "成电",
+                        "path": "学习地图/电路/模拟与射频/模拟电子线路/UESTC_analog",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "模拟集成电路",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/模拟与射频/模拟集成电路/FDU_MICR130030",
+                        "children": []
+                      },
+                      {
+                        "title": "东南 吴金",
+                        "path": "学习地图/电路/模拟与射频/模拟集成电路/SEU_wujin",
+                        "children": []
+                      },
+                      {
+                        "title": "西交 张鸿",
+                        "path": "学习地图/电路/模拟与射频/模拟集成电路/XJTU_zhanghong",
+                        "children": []
+                      },
+                      {
+                        "title": "IITK EE613",
+                        "path": "学习地图/电路/模拟与射频/模拟集成电路/IITK_EE613",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "数模模数转换器",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/模拟与射频/数模模数转换器/FDU_INFO130270",
+                        "children": []
+                      },
+                      {
+                        "title": "NPTEL",
+                        "path": "学习地图/电路/模拟与射频/数模模数转换器/NPTEL_data_converters",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "射频电路",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "西电 高频",
+                        "path": "学习地图/电路/模拟与射频/射频电路/XDU_high_freq",
+                        "children": []
+                      },
+                      {
+                        "title": "川大 刘长军",
+                        "path": "学习地图/电路/模拟与射频/射频电路/SCU_RF_comm",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 高频A",
+                        "path": "学习地图/电路/模拟与射频/射频电路/FDU_ICSE20001",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 殷韵",
+                        "path": "学习地图/电路/模拟与射频/射频电路/FDU_yin_RFIC",
+                        "children": []
+                      },
+                      {
+                        "title": "成电 RFIC",
+                        "path": "学习地图/电路/模拟与射频/射频电路/UESTC_RFIC",
+                        "children": []
+                      },
+                      {
+                        "title": "Razavi RF",
+                        "path": "学习地图/电路/模拟与射频/射频电路/razavi_rf",
+                        "children": []
+                      },
+                      {
+                        "title": "UCB EE142",
+                        "path": "学习地图/电路/模拟与射频/射频电路/UCB_EE142",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "功率电子(待建)",
+                    "path": "学习地图/电路/模拟与射频/功率电子/index",
+                    "children": []
+                  },
+                  {
+                    "title": "版图设计(待建)",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "index",
+                        "path": "学习地图/电路/模拟与射频/版图设计/index",
+                        "children": []
+                      },
+                      {
+                        "title": "复旦 版图基础",
+                        "path": "学习地图/电路/模拟与射频/版图设计/FDU_ICSE20015",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "信号处理",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/信号处理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "信号与系统",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/信号处理/信号与系统/FDU_MICR130004",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 6.003",
+                        "path": "学习地图/电路/信号处理/信号与系统/MIT_6.003",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 6.007",
+                        "path": "学习地图/电路/信号处理/信号与系统/MIT_6.007",
+                        "children": []
+                      },
+                      {
+                        "title": "UCB EE120",
+                        "path": "学习地图/电路/信号处理/信号与系统/UCB_EE120",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "数字信号处理",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "复旦",
+                        "path": "学习地图/电路/信号处理/数字信号处理/FDU_INFO130010",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT Oppenheim",
+                        "path": "学习地图/电路/信号处理/数字信号处理/MIT_DSP",
+                        "children": []
+                      },
+                      {
+                        "title": "EPFL",
+                        "path": "学习地图/电路/信号处理/数字信号处理/EPFL_dsp",
+                        "children": []
+                      },
+                      {
+                        "title": "补充资源",
+                        "path": "学习地图/电路/信号处理/数字信号处理/补充资源",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "复旦 模拟信号处理",
+                    "path": "学习地图/电路/信号处理/FDU_ICSE30030",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "EDA",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/EDA/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 数字EDA",
+                    "path": "学习地图/电路/EDA/FDU_ICSE30019",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 模拟EDA",
+                    "path": "学习地图/电路/EDA/FDU_ICSE30018",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 物理设计数学",
+                    "path": "学习地图/电路/EDA/FDU_ICSE30026",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 EDA软件方法学",
+                    "path": "学习地图/电路/EDA/FDU_ICSE30028",
+                    "children": []
+                  },
+                  {
+                    "title": "Vivado",
+                    "path": "学习地图/电路/EDA/vivado",
+                    "children": []
+                  },
+                  {
+                    "title": "Cadence Virtuoso",
+                    "path": "学习地图/电路/EDA/cadence",
+                    "children": []
+                  },
+                  {
+                    "title": "UIUC VLSI CAD",
+                    "path": "学习地图/电路/EDA/UIUC_VLSI_CAD",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 SPICE仿真",
+                    "path": "学习地图/电路/EDA/FDU_ICSE30002",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "测试与可靠性",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/测试与可靠性/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 模拟电路测试",
+                    "path": "学习地图/电路/测试与可靠性/FDU_ICSE30003",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 模拟测试与设计",
+                    "path": "学习地图/电路/测试与可靠性/FDU_ICSE30033",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 射频测试",
+                    "path": "学习地图/电路/测试与可靠性/FDU_ICSE40010",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 器件可靠性",
+                    "path": "学习地图/电路/测试与可靠性/FDU_ICSE50008",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "嵌入式SoC",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/嵌入式SoC/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 韩军",
+                    "path": "学习地图/电路/嵌入式SoC/FDU_hanjun",
+                    "children": []
+                  },
+                  {
+                    "title": "Cornell ECE4760",
+                    "path": "学习地图/电路/嵌入式SoC/Cornell_ECE4760",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "电路实验",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/电路/电路实验/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 模数电实验",
+                    "path": "学习地图/电路/电路实验/FDU_EST40012",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 IC设计实验",
+                    "path": "学习地图/电路/电路实验/FDU_ICSE40014",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 IC实验(上)",
+                    "path": "学习地图/电路/电路实验/FDU_ICSE40008",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 IC实验(下)",
+                    "path": "学习地图/电路/电路实验/FDU_ICSE40009",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "生物电子接口(待建)",
+                "path": "学习地图/电路/生物电子/index",
+                "children": []
+              },
+              {
+                "title": "控制与机器人(待建)",
+                "path": "学习地图/电路/控制与机器人/index",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "系统架构",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/系统架构/index",
+                "children": []
+              },
+              {
+                "title": "计算机系统基础",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/计算机系统基础/index",
+                    "children": []
+                  },
+                  {
+                    "title": "CMU 15-213",
+                    "path": "学习地图/系统架构/计算机系统基础/CMU_15-213",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS110",
+                    "path": "学习地图/系统架构/计算机系统基础/Stanford_CS110",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "体系结构",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/体系结构/index",
+                    "children": []
+                  },
+                  {
+                    "title": "清华",
+                    "path": "学习地图/系统架构/体系结构/THU_computer_org",
+                    "children": []
+                  },
+                  {
+                    "title": "国科大 胡伟武",
+                    "path": "学习地图/系统架构/体系结构/UCAS_hu_archbase",
+                    "children": []
+                  },
+                  {
+                    "title": "Nand2Tetris",
+                    "path": "学习地图/系统架构/体系结构/Coursera_nand2tetris",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS61C",
+                    "path": "学习地图/系统架构/体系结构/UCB_CS61C",
+                    "children": []
+                  },
+                  {
+                    "title": "ETH DDCA",
+                    "path": "学习地图/系统架构/体系结构/ETH_DDCA",
+                    "children": []
+                  },
+                  {
+                    "title": "ETH CA",
+                    "path": "学习地图/系统架构/体系结构/ETH_CA",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "操作系统",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/操作系统/index",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.S081",
+                    "path": "学习地图/系统架构/操作系统/MIT_6.S081",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS162",
+                    "path": "学习地图/系统架构/操作系统/UCB_CS162",
+                    "children": []
+                  },
+                  {
+                    "title": "南大 蒋炎岩",
+                    "path": "学习地图/系统架构/操作系统/NJU_OS",
+                    "children": []
+                  },
+                  {
+                    "title": "哈工大 李治军",
+                    "path": "学习地图/系统架构/操作系统/HIT_OS",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "并行与分布式系统",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/并行与分布式系统/index",
+                    "children": []
+                  },
+                  {
+                    "title": "中科大",
+                    "path": "学习地图/系统架构/并行与分布式系统/USTC_parallel",
+                    "children": []
+                  },
+                  {
+                    "title": "parallel101",
+                    "path": "学习地图/系统架构/并行与分布式系统/parallel101",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS149",
+                    "path": "学习地图/系统架构/并行与分布式系统/Stanford_CS149",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "GPU体系结构",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/GPU体系结构/index",
+                    "children": []
+                  },
+                  {
+                    "title": "NPTEL",
+                    "path": "学习地图/系统架构/GPU体系结构/NPTEL_GPU",
+                    "children": []
+                  },
+                  {
+                    "title": "ETH HetSys",
+                    "path": "学习地图/系统架构/GPU体系结构/ETH_HetSys",
+                    "children": []
+                  },
+                  {
+                    "title": "ZOMI酱",
+                    "path": "学习地图/系统架构/GPU体系结构/ZOMI_GPU",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "AI加速器",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/AI加速器/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 智能计算芯片导论",
+                    "path": "学习地图/系统架构/AI加速器/FDU_ICSE30034",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI处理器架构",
+                    "path": "学习地图/系统架构/AI加速器/FDU_ICSE40002",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI芯片设计",
+                    "path": "学习地图/系统架构/AI加速器/FDU_ICSE30036",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 FPGA加速AI",
+                    "path": "学习地图/系统架构/AI加速器/FDU_ICSE40018",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "编译原理",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/系统架构/编译原理/index",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS143",
+                    "path": "学习地图/系统架构/编译原理/Stanford_CS143",
+                    "children": []
+                  },
+                  {
+                    "title": "南大",
+                    "path": "学习地图/系统架构/编译原理/NJU_compilers",
+                    "children": []
+                  },
+                  {
+                    "title": "KAIST CS420",
+                    "path": "学习地图/系统架构/编译原理/KAIST_CS420",
+                    "children": []
+                  },
+                  {
+                    "title": "中科大",
+                    "path": "学习地图/系统架构/编译原理/USTC_compilers",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "算法编程",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/算法编程/index",
+                "children": []
+              },
+              {
+                "title": "编程入门",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/算法编程/编程入门/index",
+                    "children": []
+                  },
+                  {
+                    "title": "Missing Semester",
+                    "path": "学习地图/算法编程/编程入门/MIT_missing_semester",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB DeCal",
+                    "path": "学习地图/算法编程/编程入门/UCB_DeCal",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 程序设计",
+                    "path": "学习地图/算法编程/编程入门/FDU_CS10004",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 软件基础",
+                    "path": "学习地图/算法编程/编程入门/FDU_ICSE20014",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 Perl",
+                    "path": "学习地图/算法编程/编程入门/FDU_ICSE20002",
+                    "children": []
+                  },
+                  {
+                    "title": "Python",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "北理工 嵩天",
+                        "path": "学习地图/算法编程/编程入门/Python/BIT_songtian",
+                        "children": []
+                      },
+                      {
+                        "title": "北大 陈斌",
+                        "path": "学习地图/算法编程/编程入门/Python/PKU_chenbin_python",
+                        "children": []
+                      },
+                      {
+                        "title": "UCB CS61A",
+                        "path": "学习地图/算法编程/编程入门/Python/UCB_CS61A",
+                        "children": []
+                      },
+                      {
+                        "title": "Harvard CS50P",
+                        "path": "学习地图/算法编程/编程入门/Python/Harvard_CS50P",
+                        "children": []
+                      },
+                      {
+                        "title": "MIT 6.100L",
+                        "path": "学习地图/算法编程/编程入门/Python/MIT_6.100L",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "C",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "浙大 翁恺",
+                        "path": "学习地图/算法编程/编程入门/C/ZJU_wengkai",
+                        "children": []
+                      },
+                      {
+                        "title": "北大 郭炜",
+                        "path": "学习地图/算法编程/编程入门/C/PKU_guowei_C",
+                        "children": []
+                      },
+                      {
+                        "title": "Harvard CS50",
+                        "path": "学习地图/算法编程/编程入门/C/Harvard_CS50",
+                        "children": []
+                      },
+                      {
+                        "title": "Duke",
+                        "path": "学习地图/算法编程/编程入门/C/Duke_intro_c",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "C++",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "北大 郭炜",
+                        "path": "学习地图/算法编程/编程入门/cpp/PKU_guowei_cpp",
+                        "children": []
+                      },
+                      {
+                        "title": "侯捷",
+                        "path": "学习地图/算法编程/编程入门/cpp/houjie_cpp",
+                        "children": []
+                      },
+                      {
+                        "title": "Stanford CS106L",
+                        "path": "学习地图/算法编程/编程入门/cpp/Stanford_CS106L",
+                        "children": []
+                      },
+                      {
+                        "title": "Stanford CS106B/X",
+                        "path": "学习地图/算法编程/编程入门/cpp/Stanford_CS106BX",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Rust",
+                    "path": null,
+                    "children": [
+                      {
+                        "title": "杨旭",
+                        "path": "学习地图/算法编程/编程入门/Rust/yangxu_rust",
+                        "children": []
+                      },
+                      {
+                        "title": "令狐壹冲",
+                        "path": "学习地图/算法编程/编程入门/Rust/linghu_rust",
+                        "children": []
+                      },
+                      {
+                        "title": "Stanford CS110L",
+                        "path": "学习地图/算法编程/编程入门/Rust/Stanford_CS110L",
+                        "children": []
+                      },
+                      {
+                        "title": "KAIST CS431",
+                        "path": "学习地图/算法编程/编程入门/Rust/KAIST_CS431",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "数据结构与算法",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/算法编程/数据结构与算法/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦",
+                    "path": "学习地图/算法编程/数据结构与算法/FDU_MICR130009",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS61B",
+                    "path": "学习地图/算法编程/数据结构与算法/UCB_CS61B",
+                    "children": []
+                  },
+                  {
+                    "title": "Coursera Algorithms",
+                    "path": "学习地图/算法编程/数据结构与算法/Coursera_algorithms",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.006",
+                    "path": "学习地图/算法编程/数据结构与算法/MIT_6.006",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.046",
+                    "path": "学习地图/算法编程/数据结构与算法/MIT_6.046",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS170",
+                    "path": "学习地图/算法编程/数据结构与算法/UCB_CS170",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "编程语言设计与分析",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/算法编程/编程语言设计与分析/index",
+                    "children": []
+                  },
+                  {
+                    "title": "南大",
+                    "path": "学习地图/算法编程/编程语言设计与分析/NJU_software_analysis",
+                    "children": []
+                  },
+                  {
+                    "title": "北大",
+                    "path": "学习地图/算法编程/编程语言设计与分析/PKU_software_analysis",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "人工智能",
+            "path": null,
+            "children": [
+              {
+                "title": "导言",
+                "path": "学习地图/人工智能/index",
+                "children": []
+              },
+              {
+                "title": "入门速成",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/入门速成/index",
+                    "children": []
+                  },
+                  {
+                    "title": "浙大 吴飞",
+                    "path": "学习地图/人工智能/入门速成/ZJU_wufei_AI",
+                    "children": []
+                  },
+                  {
+                    "title": "北大 微课十讲",
+                    "path": "学习地图/人工智能/入门速成/PKU_AI_micro",
+                    "children": []
+                  },
+                  {
+                    "title": "Karpathy",
+                    "path": "学习地图/人工智能/入门速成/karpathy_zero2hero",
+                    "children": []
+                  },
+                  {
+                    "title": "Harvard CS50AI",
+                    "path": "学习地图/人工智能/入门速成/Harvard_CS50AI",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS188",
+                    "path": "学习地图/人工智能/入门速成/UCB_CS188",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI导论",
+                    "path": "学习地图/人工智能/入门速成/FDU_EST10001",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "机器学习",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/机器学习/index",
+                    "children": []
+                  },
+                  {
+                    "title": "南大 周志华",
+                    "path": "学习地图/人工智能/机器学习/NJU_zhou_ML",
+                    "children": []
+                  },
+                  {
+                    "title": "Coursera ML",
+                    "path": "学习地图/人工智能/机器学习/Coursera_ML",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS229",
+                    "path": "学习地图/人工智能/机器学习/Stanford_CS229",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS189",
+                    "path": "学习地图/人工智能/机器学习/UCB_CS189",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB Data100",
+                    "path": "学习地图/人工智能/机器学习/UCB_Data100",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 机器学习算法",
+                    "path": "学习地图/人工智能/机器学习/FDU_ICSE30001",
+                    "children": []
+                  },
+                  {
+                    "title": "补充资源",
+                    "path": "学习地图/人工智能/机器学习/补充资源",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "深度学习",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/深度学习/index",
+                    "children": []
+                  },
+                  {
+                    "title": "李沐 d2l",
+                    "path": "学习地图/人工智能/深度学习/limu_d2l",
+                    "children": []
+                  },
+                  {
+                    "title": "Coursera DL",
+                    "path": "学习地图/人工智能/深度学习/Coursera_DL",
+                    "children": []
+                  },
+                  {
+                    "title": "李宏毅",
+                    "path": "学习地图/人工智能/深度学习/NTU_lihongyi",
+                    "children": []
+                  },
+                  {
+                    "title": "UMich 498-007",
+                    "path": "学习地图/人工智能/深度学习/UMich_EECS498-007",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS231n",
+                    "path": "学习地图/人工智能/深度学习/Stanford_CS231n",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS224n",
+                    "path": "学习地图/人工智能/深度学习/Stanford_CS224n",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS224w",
+                    "path": "学习地图/人工智能/深度学习/Stanford_CS224w",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS285",
+                    "path": "学习地图/人工智能/深度学习/UCB_CS285",
+                    "children": []
+                  },
+                  {
+                    "title": "补充资源",
+                    "path": "学习地图/人工智能/深度学习/补充资源",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "深度生成模型",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/深度生成模型/index",
+                    "children": []
+                  },
+                  {
+                    "title": "学习路线图",
+                    "path": "学习地图/人工智能/深度生成模型/roadmap",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.S184",
+                    "path": "学习地图/人工智能/深度生成模型/MIT_6.S184",
+                    "children": []
+                  },
+                  {
+                    "title": "UCB CS294-158",
+                    "path": "学习地图/人工智能/深度生成模型/UCB_CS294-158",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "大语言模型",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/大语言模型/index",
+                    "children": []
+                  },
+                  {
+                    "title": "OpenBMB 刘知远",
+                    "path": "学习地图/人工智能/大语言模型/OpenBMB_LLM",
+                    "children": []
+                  },
+                  {
+                    "title": "李沐 论文精读",
+                    "path": "学习地图/人工智能/大语言模型/limu_paper_reading",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS336",
+                    "path": "学习地图/人工智能/大语言模型/Stanford_CS336",
+                    "children": []
+                  },
+                  {
+                    "title": "CMU 11-711",
+                    "path": "学习地图/人工智能/大语言模型/CMU_11-711",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 NLP与大模型",
+                    "path": "学习地图/人工智能/大语言模型/FDU_EST20001",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "强化学习",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/强化学习/index",
+                    "children": []
+                  },
+                  {
+                    "title": "西湖 赵世钰",
+                    "path": "学习地图/人工智能/强化学习/Westlake_zhao_RL",
+                    "children": []
+                  },
+                  {
+                    "title": "David Silver",
+                    "path": "学习地图/人工智能/强化学习/silver_RL",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "AI系统",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/AI系统/index",
+                    "children": []
+                  },
+                  {
+                    "title": "智能计算系统",
+                    "path": "学习地图/人工智能/AI系统/AICS",
+                    "children": []
+                  },
+                  {
+                    "title": "陈天奇 MLC",
+                    "path": "学习地图/人工智能/AI系统/chentianqi_mlc",
+                    "children": []
+                  },
+                  {
+                    "title": "CMU 10-414",
+                    "path": "学习地图/人工智能/AI系统/CMU_10-414",
+                    "children": []
+                  },
+                  {
+                    "title": "MIT 6.5940",
+                    "path": "学习地图/人工智能/AI系统/MIT_6.5940",
+                    "children": []
+                  },
+                  {
+                    "title": "补充资源",
+                    "path": "学习地图/人工智能/AI系统/补充资源",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "AI交叉应用",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/AI交叉应用/index",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI for EDA",
+                    "path": "学习地图/人工智能/AI交叉应用/FDU_ICSE40019",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI制造",
+                    "path": "学习地图/人工智能/AI交叉应用/FDU_ICSE30035",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 自动驾驶",
+                    "path": "学习地图/人工智能/AI交叉应用/FDU_AIT410017",
+                    "children": []
+                  },
+                  {
+                    "title": "复旦 AI软件基础",
+                    "path": "学习地图/人工智能/AI交叉应用/FDU_EST30001",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "机器学习理论",
+                "path": null,
+                "children": [
+                  {
+                    "title": "index",
+                    "path": "学习地图/人工智能/机器学习理论/index",
+                    "children": []
+                  },
+                  {
+                    "title": "张志华 统计",
+                    "path": "学习地图/人工智能/机器学习理论/zhangzhihua_statML",
+                    "children": []
+                  },
+                  {
+                    "title": "张志华 导论",
+                    "path": "学习地图/人工智能/机器学习理论/zhangzhihua_introML",
+                    "children": []
+                  },
+                  {
+                    "title": "学习路线图",
+                    "path": "学习地图/人工智能/机器学习理论/roadmap",
+                    "children": []
+                  },
+                  {
+                    "title": "CMU 10-708",
+                    "path": "学习地图/人工智能/机器学习理论/CMU_10-708",
+                    "children": []
+                  },
+                  {
+                    "title": "Stanford CS229M",
+                    "path": "学习地图/人工智能/机器学习理论/Stanford_CS229M",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "title": "类脑与SNN",
+                "path": "学习地图/人工智能/类脑与SNN/index",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "工程工具",
+        "path": null,
+        "children": [
+          {
+            "title": "index",
+            "path": "工程工具/index",
+            "children": []
+          },
+          {
+            "title": "通用工具",
+            "path": null,
+            "children": [
+              {
+                "title": "翻墙",
+                "path": "工程工具/翻墙",
+                "children": []
+              },
+              {
+                "title": "Git",
+                "path": "工程工具/Git",
+                "children": []
+              },
+              {
+                "title": "GitHub",
+                "path": "工程工具/GitHub",
+                "children": []
+              },
+              {
+                "title": "LaTeX",
+                "path": "工程工具/LaTeX",
+                "children": []
+              },
+              {
+                "title": "Vim",
+                "path": "工程工具/Vim",
+                "children": []
+              },
+              {
+                "title": "日常学习工作流",
+                "path": "工程工具/workflow",
+                "children": []
+              },
+              {
+                "title": "实用工具箱",
+                "path": "工程工具/tools",
+                "children": []
+              },
+              {
+                "title": "信息检索",
+                "path": "工程工具/信息检索",
+                "children": []
+              },
+              {
+                "title": "毕业论文",
+                "path": "工程工具/thesis",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "EE 专用工具",
+            "path": null,
+            "children": [
+              {
+                "title": "MATLAB 与科学计算",
+                "path": "工程工具/科学计算",
+                "children": []
+              },
+              {
+                "title": "MATLAB 学习资源",
+                "path": "工程工具/MATLAB/mathworks_matlab",
+                "children": []
+              },
+              {
+                "title": "LTspice 电路仿真",
+                "path": "工程工具/LTspice",
+                "children": []
+              },
+              {
+                "title": "KiCad PCB 设计",
+                "path": "工程工具/KiCad",
+                "children": []
+              },
+              {
+                "title": "ModelSim HDL仿真",
+                "path": "工程工具/ModelSim",
+                "children": []
+              },
+              {
+                "title": "Gem5 体系结构仿真",
+                "path": "工程工具/Gem5",
+                "children": []
+              },
+              {
+                "title": "GPGPU-Sim GPU 仿真",
+                "path": "工程工具/GPGPUSIM",
+                "children": []
+              },
+              {
+                "title": "TCAD 器件工艺仿真",
+                "path": "工程工具/TCAD",
+                "children": []
+              }
+            ]
+          },
+          {
+            "title": "构建与开发",
+            "path": null,
+            "children": [
+              {
+                "title": "Docker",
+                "path": "工程工具/Docker",
+                "children": []
+              },
+              {
+                "title": "GNU Make",
+                "path": "工程工具/GNU_Make",
+                "children": []
+              },
+              {
+                "title": "CMake",
+                "path": "工程工具/CMake",
+                "children": []
+              },
+              {
+                "title": "Scoop",
+                "path": "工程工具/Scoop",
+                "children": []
+              },
+              {
+                "title": "Emacs",
+                "path": "工程工具/Emacs",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "专题社区",
+        "path": "专题社区/index",
+        "children": []
+      }
+    ]
+  }
+]

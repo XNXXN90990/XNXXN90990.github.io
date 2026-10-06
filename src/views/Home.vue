@@ -432,6 +432,10 @@ export default {
         import('@/views/Links.vue');
         import('@/views/PostDetail.vue');
         import('@/views/Private.vue');
+        import('@/views/Talks.vue');
+        import('@/views/Thoughts.vue');
+        import('@/views/Albums.vue');
+        import('@/views/GuideHome.vue');
       };
 
       if (typeof window.requestIdleCallback === 'function') {
@@ -524,7 +528,7 @@ export default {
   display: inline-block;
   opacity: 0;
   color: var(--text-primary);
-  text-shadow: 0 0 18px rgba(57, 255, 126, 0.35);
+  text-shadow: 0 0 18px var(--accent-glow-strong);
   animation: fadeIn 0.5s forwards;
 }
 
@@ -564,7 +568,7 @@ export default {
   margin-left: 4px;
   margin-top: 0.3em;
   background: var(--accent-strong);
-  box-shadow: 0 0 8px rgba(57, 255, 126, 0.7);
+  box-shadow: 0 0 8px var(--accent-glow-strong);
   animation: caretBlink 0.9s step-end infinite;
   flex-shrink: 0;
 }
@@ -637,16 +641,12 @@ export default {
   position: absolute;
   inset: -18px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(57, 255, 126, 0.4) 0%, rgba(0, 184, 40, 0.16) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow-strong) 0%, var(--accent-soft) 45%, transparent 70%);
   filter: blur(10px);
   opacity: 0.75;
   transition: opacity 0.45s ease, transform 0.45s ease;
   animation: glowBreath 3.6s ease-in-out infinite;
   pointer-events: none;
-}
-
-:root[data-theme='light'] .avatar-glow {
-  background: radial-gradient(circle, rgba(15, 138, 56, 0.3) 0%, rgba(15, 138, 56, 0.12) 45%, transparent 70%);
 }
 
 @keyframes glowBreath {
@@ -684,11 +684,7 @@ export default {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border: 4px solid var(--card-border);
-  box-shadow: var(--card-shadow), 0 0 22px rgba(57, 255, 126, 0.28);
-}
-
-:root[data-theme='light'] .avatar-face {
-  box-shadow: var(--card-shadow), 0 0 18px rgba(15, 138, 56, 0.2);
+  box-shadow: var(--card-shadow), 0 0 22px var(--accent-glow-strong);
 }
 
 .avatar-face img {
@@ -733,7 +729,7 @@ export default {
   height: 40px;
   background-color: var(--accent);
   border-radius: 999px;
-  box-shadow: 0 0 5px var(--accent);
+  box-shadow: 0 0 5px var(--accent-glow-mid);
 }
 
 .arrow-down {

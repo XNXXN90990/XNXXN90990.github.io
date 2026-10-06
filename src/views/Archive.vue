@@ -437,12 +437,12 @@ export default {
 
 .toolbar-input:focus,
 .toolbar-select:focus {
-  border: 1px solid rgba(0, 184, 40, 0.9);
-  box-shadow: 0 0 0 3px rgba(0, 184, 40, 0.16);
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .toolbar-select:hover:not(:disabled) {
-  border: 1px solid rgba(0, 184, 40, 0.75);
+  border: 1px solid var(--accent-border);
 }
 
 .toolbar-input {
@@ -477,8 +477,8 @@ export default {
 
 .toolbar-btn:hover {
   transform: translateY(-1px);
-  border: 1px solid rgba(0, 184, 40, 0.9);
-  box-shadow: 0 6px 14px rgba(0, 184, 40, 0.22);
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 6px 14px var(--accent-soft);
 }
 
 .toolbar-btn--active {
@@ -562,9 +562,9 @@ export default {
   top: 6px;
   bottom: 8px;
   width: 2px;
-  background: linear-gradient(to bottom, rgba(0, 184, 40, 0.9), rgba(255, 255, 255, 0.15));
+  background: linear-gradient(to bottom, var(--accent-border), rgba(255, 255, 255, 0.15));
   border-radius: 999px;
-  box-shadow: 0 0 10px rgba(0, 184, 40, 0.25);
+  box-shadow: 0 0 10px var(--accent-glow-mid);
 }
 
 .timeline-item {
@@ -585,8 +585,8 @@ export default {
 }
 
 .timeline-item:focus-visible .timeline-card {
-  border: 1px solid rgba(0, 184, 40, 0.95);
-  box-shadow: 0 8px 18px rgba(0, 184, 40, 0.18);
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 8px 18px var(--accent-soft);
 }
 
 .timeline-card {

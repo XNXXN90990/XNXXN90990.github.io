@@ -8,6 +8,13 @@ const Archive = () => import('@/views/Archive.vue');
 const Links = () => import('@/views/Links.vue');
 const PostDetail = () => import('@/views/PostDetail.vue');
 const Private = () => import('@/views/Private.vue');
+const Talks = () => import('@/views/Talks.vue');
+const Thoughts = () => import('@/views/Thoughts.vue');
+const Albums = () => import('@/views/Albums.vue');
+const AlbumDetail = () => import('@/views/AlbumDetail.vue');
+const GuideHome = () => import('@/views/GuideHome.vue');
+const GuideDetail = () => import('@/views/GuideDetail.vue');
+const GuideDoc = () => import('@/views/GuideDoc.vue');
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -15,11 +22,25 @@ const routes = [
   { path: '/archive', name: 'Archive', component: Archive },
   { path: '/links', name: 'Links', component: Links },
   { path: '/private', name: 'Private', component: Private },
+  { path: '/talks', name: 'Talks', component: Talks },
+  { path: '/thoughts', name: 'Thoughts', component: Thoughts },
+  { path: '/albums', name: 'Albums', component: Albums },
+  { path: '/albums/:id', name: 'AlbumDetail', component: AlbumDetail, props: true },
+  { path: '/guide', name: 'GuideHome', component: GuideHome },
+  { path: '/guide/:gid', name: 'GuideDetail', component: GuideDetail, props: true },
+  // doc 是多级路径（可能含中文，URL 编码），用通配捕获
+  { path: '/guide/:gid/:doc(.*)', name: 'GuideDoc', component: GuideDoc, props: true },
   {
     path: '/posts/:id',
     name: 'PostDetail',
     component: PostDetail,
-    props: true // 允许通过 props 接收路由参数
+    props: (route) => ({ id: route.params.id, source: 'posts' })
+  },
+  {
+    path: '/thoughts/:id',
+    name: 'ThoughtDetail',
+    component: PostDetail,
+    props: (route) => ({ id: route.params.id, source: 'thoughts' })
   },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ];

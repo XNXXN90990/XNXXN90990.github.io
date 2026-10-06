@@ -1,0 +1,29 @@
+{
+  "_说明": "相册数据：photos 里的 src 指向 public/albums/<相册id>/ 下的图片文件，把照片丢进去再编辑本文件即可。",
+  "_示例封面": "封面可以先用 /albums/<id>/cover.jpg，或直接用下方示例渐变图",
+  "albums": [
+    {
+      "id": "campus",
+      "name": "校园日常",
+      "cover": "/albums/sample-1.svg",
+      "date": "2026-09-01",
+      "description": "随手记录的校园光影（示例相册，把照片放进 public/albums/campus/ 后编辑 content/albums.json 替换）。",
+      "photos": [
+        { "src": "/albums/sample-1.svg", "caption": "示例照片 1：替换成你自己的照片" },
+        { "src": "/albums/sample-2.svg", "caption": "示例照片 2：替换成你自己的照片" },
+        { "src": "/albums/sample-3.svg", "caption": "示例照片 3：替换成你自己的照片" }
+      ]
+    },
+    {
+      "id": "screenshots",
+      "name": "桌面与截图",
+      "cover": "/albums/sample-4.svg",
+      "date": "2026-09-10",
+      "description": "代码、壁纸和有趣的截图（示例相册）。",
+      "photos": [
+        { "src": "/albums/sample-4.svg", "caption": "示例照片 4：替换成你自己的照片" },
+        { "src": "/albums/sample-5.svg", "caption": "示例照片 5：替换成你自己的照片" }
+      ]
+    }
+  ]
+}

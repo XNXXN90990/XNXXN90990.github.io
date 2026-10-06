@@ -8,9 +8,11 @@
 
 - 🖥️ **纯静态、零成本**：无后端、无数据库，GitHub Pages 直接托管
 - 📝 **Markdown 写作**：一个 `.md` 文件就是一篇文章
+- 📚 **指南收藏**：站内完整收录三本开源手册（CS 自学指南 / 上交生存手册 / IC 自学指南），带目录树、出处标注与上一篇/下一篇
+- 💬 **说说 / 杂想 / 相册**：编辑 `content/` 下 JSON 或 Markdown 即可
 - 🔐 **私人空间**：两级访问码门禁，文章内容 AES-GCM 加密后才会发布
-- 🌗 **深色 / 浅色模式**：一键切换，跟随系统，自动记忆
-- ⚡ **轻量**：代码高亮按需加载，文章正文懒加载
+- 🌗 **深色 / 浅色模式 + 六色主题色**：一键切换，跟随系统，自动记忆
+- ⚡ **轻量**：代码高亮按需加载，文章与指南正文全部懒加载
 
 ## 如何写文章
 
@@ -64,6 +66,17 @@
 
 > 换访问码：改 md 或 空间配置.json 里的码 → 重新 `npm run build` → 提交更新的 `private-encrypted.json`。
 
+## 导入指南（可选）
+
+三本开源手册已导入并提交（`content/guide/` + `public/guide-assets/` + `src/content/guides.json`）。若要更新或重新导入：
+
+```bash
+# 把三个指南项目放到 ../素材/ 下（北大CS自学指南、上海交通大学生存手册、IC自学指南）
+npm run import-guides
+```
+
+导入脚本会按各项目的导航（mkdocs.yml / SUMMARY.md）收录章节、重写站内链接、拷贝图片到 `public/guide-assets/<指南id>/`。素材原始文件夹不入仓库，但 `content/guide/` 产物需要提交。
+
 ## 本地开发
 
 ```bash
@@ -88,7 +101,11 @@ npm run preview  # 本地预览构建结果
 | 头像 / 头像背面 / 微信名片 | 替换 `src/assets/imgs/` 下同名文件 |
 | 背景图 | `src/assets/css/style.css` 顶部注释说明 |
 | 深浅色配色 | `src/assets/css/theme-vars.css` |
-| 友链 | `content/links.json` |
+| 朋友（友链） | `content/links.json` |
+| 说说 | `content/talks.json` |
+| 杂想 | `content/thoughts/` 下加 `.md`（front-matter 同文章） |
+| 相册 | 照片放 `public/albums/<相册id>/`，编辑 `content/albums.json` |
+| 主题色 | header 调色板按钮（六色可选），定义在 `src/assets/css/theme-vars.css` |
 | 关于页 | `content/about.md` |
 | 页脚 | `src/components/Footer.vue` |
 

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "shou-cang-jia-chi-hui",
+    "title": "示例杂想：关于「收藏夹吃灰」这件事",
+    "date": "2026-09-22",
+    "updateTime": "2026-09-22",
+    "tags": [
+      "杂想",
+      "学习方法"
+    ],
+    "category": [],
+    "cover": "",
+    "description": "收藏从未停止，学习从未开始——聊聊怎么治好「收藏 = 学会」的错觉。",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "shen-ye-hu-si-luan-xiang",
+    "title": "深夜胡思乱想合集（一）",
+    "date": "2026-09-15",
+    "updateTime": "2026-09-15",
+    "tags": [
+      "杂想",
+      "碎碎念"
+    ],
+    "category": [],
+    "cover": "",
+    "description": "睡前的一些不成熟的小想法，想到什么写什么。",
+    "pinned": false,
+    "featured": false
+  }
+]

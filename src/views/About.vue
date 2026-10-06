@@ -111,11 +111,11 @@ export default {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--card-border);
-  box-shadow: 0 0 18px rgba(57, 255, 126, 0.28), var(--card-shadow);
+  box-shadow: 0 0 18px var(--accent-glow-strong), var(--card-shadow);
 }
 
 :root[data-theme='light'] .hero-avatar {
-  box-shadow: 0 0 14px rgba(15, 138, 56, 0.2), var(--card-shadow);
+  box-shadow: 0 0 14px var(--accent-glow-mid), var(--card-shadow);
 }
 
 .hero-titles {

@@ -5,7 +5,9 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const siteCreatedAt = new Date('2026-10-06T00:00:00');
 
 const runningTimeText = ref('');
+const statsVisible = ref(false); // 不蒜子加载成功才显示统计行
 let timerId = null;
+let busuanziTimer = null;
 
 const updateRunningTime = () => {
   const now = new Date();
@@ -21,31 +23,51 @@ const updateRunningTime = () => {
 
   const pad = (n) => String(n).padStart(2, '0');
 
-  runningTimeText.value = `本站已运行 ${days} 天 ${pad(hours)} 时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
+  runningTimeText.value = `本站已经运行 ${days} 天 ${pad(hours)} 时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
+};
+
+/** 加载不蒜子访问统计；服务不可用时静默隐藏统计行 */
+const loadBusuanzi = () => {
+  const script = document.createElement('script');
+  script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+  script.async = true;
+  script.onload = () => {
+    // 不蒜子异步拉取数值，稍等再检查是否渲染出来
+    busuanziTimer = setTimeout(() => {
+      const pv = document.getElementById('busuanzi_value_site_pv');
+      const uv = document.getElementById('busuanzi_value_site_uv');
+      if (pv && pv.textContent && uv && uv.textContent) {
+        statsVisible.value = true;
+      }
+    }, 1200);
+  };
+  script.onerror = () => {
+    console.warn('不蒜子统计加载失败，已隐藏统计行');
+  };
+  document.head.appendChild(script);
 };
 
 onMounted(() => {
   updateRunningTime();
   timerId = setInterval(updateRunningTime, 1000);
+  loadBusuanzi();
 });
 
 onUnmounted(() => {
-  if (timerId) {
-    clearInterval(timerId);
-  }
+  if (timerId) clearInterval(timerId);
+  if (busuanziTimer) clearTimeout(busuanziTimer);
 });
 </script>
 
 <template>
   <footer class="site-footer">
     <div class="footer-content">
-      <span class="footer-line">宁静致远 · 记录学习、生活与思考</span>
       <span class="footer-line">{{ runningTimeText }}</span>
-      <span class="footer-line">
-        © 2026 寜 Ning ·
-        <a href="https://github.com/XNXXN90990" target="_blank" rel="noopener noreferrer">GitHub</a>
-        · Powered by Vue &amp; GitHub Pages
+      <span v-show="statsVisible" class="footer-line">
+        总访问量（PV）：<span id="busuanzi_value_site_pv">...</span>
+        ｜ 总访客数（UV）：<span id="busuanzi_value_site_uv">...</span>
       </span>
+      <span class="footer-line">2026-2026 by 寜</span>
     </div>
   </footer>
 </template>
@@ -54,7 +76,7 @@ onUnmounted(() => {
 .site-footer {
   width: 100%;
   margin-top: 60px;
-  padding: 34px 16px 24px;
+  padding: 30px 16px 22px;
   background-color: var(--footer-bg);
   color: var(--footer-text);
   font-size: 13px;
@@ -75,23 +97,9 @@ onUnmounted(() => {
   text-align: center;
 }
 
-.footer-line:first-child {
-  margin-top: 6px;
-}
-
-.site-footer a {
-  color: var(--blog-link-color);
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  color: var(--blog-link-hover-color);
-  text-decoration: underline;
-}
-
 @media (max-width: 768px) {
   .site-footer {
-    padding: 22px 10px 20px;
+    padding: 20px 10px 16px;
     font-size: 12px;
   }
 }

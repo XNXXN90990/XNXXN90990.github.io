@@ -12,13 +12,13 @@
             </div>
         </div>
 
-        <!-- 右侧：PC 导航 + 主题切换 + 汉堡按钮 -->
+        <!-- 右侧：PC 导航 + 色板 + 主题切换 + 汉堡按钮 -->
         <div class="header-right">
             <!-- 导航栏的导航项（大屏显示） -->
             <nav class="header-nav">
                 <ul>
                     <li
-                        v-for="(item, index) in navEntries"
+                        v-for="(item, index) in primaryEntries"
                         :key="index"
                         class="nav-item"
                     >
@@ -31,8 +31,59 @@
                         <a v-else @click.prevent="navigate(item.section)" href="#">{{ item.name }}</a>
                         <div class="fluorescent-bar"></div>
                     </li>
+
+                    <!-- 更多（次要栏目收进下拉，防止导航挤爆） -->
+                    <li class="nav-item nav-more" :class="{ 'is-open': moreOpen, 'is-active': moreActive }">
+                        <a href="#" @click.prevent="moreOpen = !moreOpen">
+                            更多
+                            <i class="fa-solid fa-chevron-down more-caret"></i>
+                        </a>
+                        <div class="fluorescent-bar"></div>
+                        <div v-if="moreOpen" class="more-dropdown">
+                            <a
+                                v-for="item in moreEntries"
+                                :key="'more-' + item.name"
+                                href="#"
+                                :class="{ 'is-current': isCurrent(item) }"
+                                @click.prevent="goFromMore(item)"
+                            >
+                                <i v-if="item.icon" :class="item.icon" class="more-icon"></i>
+                                {{ item.name }}
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
+
+            <!-- 主题色色板 -->
+            <div class="accent-wrap">
+                <button
+                    class="theme-toggle"
+                    @click="paletteOpen = !paletteOpen"
+                    aria-label="选择主题色"
+                    title="选择主题色"
+                >
+                    <i class="fa-solid fa-palette"></i>
+                </button>
+                <transition name="palette-pop">
+                    <div v-if="paletteOpen" class="accent-palette">
+                        <span class="palette-title">主题色</span>
+                        <div class="palette-dots">
+                            <button
+                                v-for="a in accents"
+                                :key="a.id"
+                                class="palette-dot"
+                                :class="{ 'is-active': currentAccent === a.id }"
+                                type="button"
+                                :style="{ background: a.color }"
+                                :title="a.name"
+                                :aria-label="'主题色：' + a.name"
+                                @click="onPickAccent(a.id)"
+                            ></button>
+                        </div>
+                    </div>
+                </transition>
+            </div>
 
             <!-- 深色/浅色切换 -->
             <button
@@ -93,6 +144,24 @@
                                 <div class="side-drawer-bar"></div>
                             </li>
                         </ul>
+
+                        <!-- 主题色 -->
+                        <div class="side-drawer-accent">
+                            <span class="side-drawer-accent-title"><i class="fa-solid fa-palette"></i> 主题色</span>
+                            <div class="side-drawer-dots">
+                                <button
+                                    v-for="a in accents"
+                                    :key="'sd-' + a.id"
+                                    class="palette-dot"
+                                    :class="{ 'is-active': currentAccent === a.id }"
+                                    type="button"
+                                    :style="{ background: a.color }"
+                                    :title="a.name"
+                                    :aria-label="'主题色：' + a.name"
+                                    @click="onPickAccent(a.id)"
+                                ></button>
+                            </div>
+                        </div>
                     </div>
                 </aside>
             </transition>
@@ -105,17 +174,24 @@
 </template>
 
 <script>
-import { toggleTheme } from '@/utils/theme';
+import { toggleTheme, ACCENTS, getAccent, setAccent } from '@/utils/theme';
 
 const GITHUB_URL =
     (import.meta.env.VITE_GITHUB_URL && String(import.meta.env.VITE_GITHUB_URL).trim()) ||
     'https://github.com/XNXXN90990';
 
+// 桌面端平铺的栏目数，其余收进「更多」下拉
+const PRIMARY_COUNT = 6;
+
 export default {
     data() {
         return {
             isMenuOpen: false,
-            isDark: document.documentElement.dataset.theme !== 'light'
+            isDark: document.documentElement.dataset.theme !== 'light',
+            moreOpen: false,
+            paletteOpen: false,
+            currentAccent: getAccent(),
+            accents: ACCENTS
         };
     },
     computed: {
@@ -123,11 +199,24 @@ export default {
             return [
                 { name: '首页', section: '' },
                 { name: '归档', section: 'archive' },
-                { name: '友链', section: 'links' },
+                { name: '指南', section: 'guide' },
+                { name: '杂想', section: 'thoughts' },
+                { name: '说说', section: 'talks' },
+                { name: '相册', section: 'albums' },
+                { name: '朋友', section: 'links' },
                 { name: '关于', section: 'about' },
                 { name: '私人空间', section: 'private', icon: 'fa-solid fa-lock' },
                 { name: 'GitHub', href: GITHUB_URL, external: true }
             ];
+        },
+        primaryEntries() {
+            return this.navEntries.slice(0, PRIMARY_COUNT);
+        },
+        moreEntries() {
+            return this.navEntries.slice(PRIMARY_COUNT, PRIMARY_COUNT + 3);
+        },
+        moreActive() {
+            return this.moreEntries.some((item) => this.isCurrent(item));
         }
     },
     mounted() {
@@ -137,9 +226,23 @@ export default {
             this.animateNavItems(); // 执行导航项动画
         });
 
+        // 点击页面其他区域时收起下拉
+        this._onDocClick = (e) => {
+            if (this.moreOpen && !e.target.closest('.nav-more')) this.moreOpen = false;
+            if (this.paletteOpen && !e.target.closest('.accent-wrap')) this.paletteOpen = false;
+        };
+        document.addEventListener('click', this._onDocClick);
+
         window.addEventListener("resize", this.handleResize);
+        // 路由切换时收起下拉
+        this._removeRouteHook = this.$router.afterEach(() => {
+            this.moreOpen = false;
+            this.closeMenu();
+        });
     },
     beforeUnmount() {
+        document.removeEventListener('click', this._onDocClick);
+        if (this._removeRouteHook) this._removeRouteHook();
         window.removeEventListener("resize", this.handleResize);
     },
     methods: {
@@ -180,7 +283,7 @@ export default {
                     item.style.transform = "translateX(100%)";
                     item.style.position = "relative";
 
-                    const delay = index * 200 + 400; // 每200ms一个间隔
+                    const delay = index * 120 + 400;
 
                     setTimeout(() => {
                         item.style.transition = "all 0.6s ease-out";
@@ -196,9 +299,24 @@ export default {
         navigate(section) {
             this.$router.push(`/${section}`);
         },
+        isCurrent(item) {
+            if (item.href) return false;
+            const path = '/' + (item.section || '');
+            return this.$route.path === path || (item.section && this.$route.path.startsWith(path));
+        },
+        goFromMore(item) {
+            this.moreOpen = false;
+            this.handleMenuClick(item.section);
+        },
         onToggleTheme() {
             const next = toggleTheme();
             this.isDark = next !== 'light';
+            this.closeMenu();
+        },
+        onPickAccent(id) {
+            setAccent(id);
+            this.currentAccent = id;
+            this.paletteOpen = false;
             this.closeMenu();
         },
         toggleMenu() {
@@ -262,7 +380,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 40px;
+    padding: 5px 28px;
     background-color: var(--header-bg);
     backdrop-filter: blur(6px);
     color: var(--header-text);
@@ -285,7 +403,7 @@ export default {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 /* 标题样式 */
@@ -305,7 +423,7 @@ export default {
 .header-nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 22px;
     width: 100%;
     min-width: max-content;
     margin: 0;
@@ -320,7 +438,7 @@ export default {
 .header-nav a {
     text-decoration: none;
     color: var(--header-link);
-    font-size: 18px;
+    font-size: 17px;
     transition: color 0.3s ease;
 }
 
@@ -374,9 +492,144 @@ export default {
     width: 130%;
     height: 1px;
     background: linear-gradient(90deg, var(--accent), var(--accent-strong), var(--accent));
-    box-shadow: 0 -15px 30px rgba(6, 204, 26, 0.55), 0 -20px 40px rgba(37, 252, 145, 0.35);
+    box-shadow: 0 -15px 30px var(--accent-glow-mid), 0 -20px 40px var(--accent-glow-strong);
     opacity: 1;
     z-index: 1002;
+}
+
+/* 「更多」下拉 */
+.nav-more .more-caret {
+    font-size: 11px;
+    margin-left: 4px;
+    transition: transform 0.25s ease;
+}
+
+.nav-more.is-open .more-caret {
+    transform: rotate(180deg);
+}
+
+.nav-more.is-active > a,
+.nav-more.is-open > a {
+    color: var(--accent-bright);
+}
+
+.more-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 150px;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--card-shadow), 0 10px 30px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1003;
+}
+
+.more-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--surface);
+    border-left: 1px solid var(--surface-border);
+    border-top: 1px solid var(--surface-border);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.more-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.more-dropdown a:hover {
+    background: var(--pill-bg);
+    color: var(--text-primary);
+}
+
+.more-dropdown a.is-current {
+    color: var(--blog-link-color);
+    font-weight: 600;
+}
+
+.more-icon {
+    color: var(--accent);
+    font-size: 12px;
+    width: 14px;
+    text-align: center;
+}
+
+/* 主题色色板 */
+.accent-wrap {
+    position: relative;
+}
+
+.accent-palette {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--card-shadow), 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 1003;
+}
+
+.palette-title {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+}
+
+.palette-dots,
+.side-drawer-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.palette-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    padding: 0;
+}
+
+.palette-dot:hover {
+    transform: scale(1.15);
+}
+
+.palette-dot.is-active {
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 2px var(--surface), 0 0 10px currentColor;
+}
+
+.palette-pop-enter-active,
+.palette-pop-leave-active {
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.palette-pop-enter,
+.palette-pop-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
 }
 
 /* 深浅色切换按钮 */
@@ -421,7 +674,7 @@ export default {
     height: 3px;
     background: linear-gradient(90deg, var(--accent), var(--accent-strong), var(--accent));
     border-radius: 999px;
-    box-shadow: 0 0 8px rgba(6, 204, 26, 0.8);
+    box-shadow: 0 0 8px var(--accent-glow-mid);
     transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease, background 0.25s ease;
 }
 
@@ -466,6 +719,7 @@ export default {
     width: 70%;
     max-width: 320px;
     height: 100%;
+    overflow-y: auto;
     background: var(--drawer-bg);
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
     border-left: 1px solid var(--surface-border);
@@ -529,7 +783,7 @@ export default {
     width: 0;
     height: 1px;
     background: linear-gradient(90deg, var(--accent), var(--accent-strong), var(--accent));
-    box-shadow: 0 -10px 24px rgba(6, 204, 26, 0.6);
+    box-shadow: 0 -10px 24px var(--accent-glow-mid);
     transition: width 0.3s ease;
 }
 
@@ -541,13 +795,32 @@ export default {
     width: 100%;
 }
 
+/* 抽屉里的主题色区 */
+.side-drawer-accent {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--surface-border);
+}
+
+.side-drawer-accent-title {
+    display: block;
+    font-size: 14px;
+    color: var(--header-text);
+    margin-bottom: 12px;
+}
+
+.side-drawer-accent-title i {
+    color: var(--accent);
+    margin-right: 8px;
+}
+
 /* 侧边抽屉过渡动画 */
 .side-drawer-enter-active,
 .side-drawer-leave-active {
     transition: opacity 0.25s ease;
 }
 
-.side-drawer-enter,
+.side-drawer-enter-from,
 .side-drawer-leave-to {
     opacity: 0;
 }
@@ -557,7 +830,7 @@ export default {
     transition: transform 0.25s ease;
 }
 
-.side-drawer-enter .side-drawer-panel,
+.side-drawer-enter-from .side-drawer-panel,
 .side-drawer-leave-to .side-drawer-panel {
     transform: translateX(100%);
 }
@@ -583,6 +856,17 @@ export default {
     .header-title h1,
     .header-title h1 span {
         font-size: 20px;
+    }
+}
+
+/* 中屏：平铺栏目减少间距，防止挤压 */
+@media (max-width: 1080px) {
+    .header-nav ul {
+        gap: 14px;
+    }
+
+    .header-nav a {
+        font-size: 15px;
     }
 }
 </style>
