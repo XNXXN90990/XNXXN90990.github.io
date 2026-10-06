@@ -18,9 +18,10 @@
             <nav class="header-nav">
                 <ul>
                     <li
-                        v-for="(item, index) in primaryEntries"
+                        v-for="(item, index) in navEntries"
                         :key="index"
                         class="nav-item"
+                        :class="{ 'is-active': isCurrent(item) }"
                     >
                         <a
                             v-if="item.href"
@@ -30,27 +31,6 @@
                         >{{ item.name }}</a>
                         <a v-else @click.prevent="navigate(item.section)" href="#">{{ item.name }}</a>
                         <div class="fluorescent-bar"></div>
-                    </li>
-
-                    <!-- 更多（次要栏目收进下拉，防止导航挤爆） -->
-                    <li class="nav-item nav-more" :class="{ 'is-open': moreOpen, 'is-active': moreActive }">
-                        <a href="#" @click.prevent="moreOpen = !moreOpen">
-                            更多
-                            <i class="fa-solid fa-chevron-down more-caret"></i>
-                        </a>
-                        <div class="fluorescent-bar"></div>
-                        <div v-if="moreOpen" class="more-dropdown">
-                            <a
-                                v-for="item in moreEntries"
-                                :key="'more-' + item.name"
-                                href="#"
-                                :class="{ 'is-current': isCurrent(item) }"
-                                @click.prevent="goFromMore(item)"
-                            >
-                                <i v-if="item.icon" :class="item.icon" class="more-icon"></i>
-                                {{ item.name }}
-                            </a>
-                        </div>
                     </li>
                 </ul>
             </nav>
@@ -180,15 +160,11 @@ const GITHUB_URL =
     (import.meta.env.VITE_GITHUB_URL && String(import.meta.env.VITE_GITHUB_URL).trim()) ||
     'https://github.com/XNXXN90990';
 
-// 桌面端平铺的栏目数，其余收进「更多」下拉
-const PRIMARY_COUNT = 6;
-
 export default {
     data() {
         return {
             isMenuOpen: false,
             isDark: document.documentElement.dataset.theme !== 'light',
-            moreOpen: false,
             paletteOpen: false,
             currentAccent: getAccent(),
             accents: ACCENTS
@@ -208,15 +184,6 @@ export default {
                 { name: '私人空间', section: 'private', icon: 'fa-solid fa-lock' },
                 { name: 'GitHub', href: GITHUB_URL, external: true }
             ];
-        },
-        primaryEntries() {
-            return this.navEntries.slice(0, PRIMARY_COUNT);
-        },
-        moreEntries() {
-            return this.navEntries.slice(PRIMARY_COUNT, PRIMARY_COUNT + 3);
-        },
-        moreActive() {
-            return this.moreEntries.some((item) => this.isCurrent(item));
         }
     },
     mounted() {
@@ -226,17 +193,15 @@ export default {
             this.animateNavItems(); // 执行导航项动画
         });
 
-        // 点击页面其他区域时收起下拉
+        // 点击页面其他区域时收起色板
         this._onDocClick = (e) => {
-            if (this.moreOpen && !e.target.closest('.nav-more')) this.moreOpen = false;
             if (this.paletteOpen && !e.target.closest('.accent-wrap')) this.paletteOpen = false;
         };
         document.addEventListener('click', this._onDocClick);
 
         window.addEventListener("resize", this.handleResize);
-        // 路由切换时收起下拉
+        // 路由切换时关闭抽屉
         this._removeRouteHook = this.$router.afterEach(() => {
-            this.moreOpen = false;
             this.closeMenu();
         });
     },
@@ -303,10 +268,6 @@ export default {
             if (item.href) return false;
             const path = '/' + (item.section || '');
             return this.$route.path === path || (item.section && this.$route.path.startsWith(path));
-        },
-        goFromMore(item) {
-            this.moreOpen = false;
-            this.handleMenuClick(item.section);
         },
         onToggleTheme() {
             const next = toggleTheme();
@@ -497,78 +458,10 @@ export default {
     z-index: 1002;
 }
 
-/* 「更多」下拉 */
-.nav-more .more-caret {
-    font-size: 11px;
-    margin-left: 4px;
-    transition: transform 0.25s ease;
-}
-
-.nav-more.is-open .more-caret {
-    transform: rotate(180deg);
-}
-
-.nav-more.is-active > a,
-.nav-more.is-open > a {
+/* 当前栏目高亮 */
+.nav-item.is-active > a {
     color: var(--accent-bright);
-}
-
-.more-dropdown {
-    position: absolute;
-    top: calc(100% + 14px);
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 150px;
-    padding: 8px;
-    border-radius: 12px;
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    box-shadow: var(--card-shadow), 0 10px 30px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    z-index: 1003;
-}
-
-.more-dropdown::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    background: var(--surface);
-    border-left: 1px solid var(--surface-border);
-    border-top: 1px solid var(--surface-border);
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.more-dropdown a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    color: var(--text-secondary);
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.more-dropdown a:hover {
-    background: var(--pill-bg);
-    color: var(--text-primary);
-}
-
-.more-dropdown a.is-current {
-    color: var(--blog-link-color);
-    font-weight: 600;
-}
-
-.more-icon {
-    color: var(--accent);
-    font-size: 12px;
-    width: 14px;
-    text-align: center;
+    text-shadow: var(--glow-shadow);
 }
 
 /* 主题色色板 */
@@ -835,8 +728,8 @@ export default {
     transform: translateX(100%);
 }
 
-/* 响应式：小屏使用汉堡菜单，大屏保持原布局 */
-@media (max-width: 768px) {
+/* 响应式：≤900px 使用汉堡菜单，大屏全平铺 */
+@media (max-width: 900px) {
     .blog-header {
         padding: 10px 25px;
     }
@@ -859,8 +752,8 @@ export default {
     }
 }
 
-/* 中屏：平铺栏目减少间距，防止挤压 */
-@media (max-width: 1080px) {
+/* 大屏平铺 10 项：间距与字号自适应收紧 */
+@media (max-width: 1180px) {
     .header-nav ul {
         gap: 14px;
     }

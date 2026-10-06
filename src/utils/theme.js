@@ -66,7 +66,7 @@ export function getAccent() {
   } catch (e) {
     /* ignore */
   }
-  return 'green';
+  return 'purple';
 }
 
 export function applyAccent(accent) {

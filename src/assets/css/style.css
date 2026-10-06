@@ -31,9 +31,9 @@ body {
 body {
   background-color: var(--bg-base);
   background-image: var(--bg-image);
-  background-size: cover;
+  background-size: 48px 48px, 48px 48px, cover, cover, cover;
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
   background-position: center;
-  background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-y: scroll; /* 强制显示垂直滚动条 */
   color: var(--text-primary);

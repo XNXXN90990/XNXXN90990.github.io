@@ -1,10 +1,51 @@
 <template>
   <div class="home">
-    <!-- 开机终端加载动画 -->
-    <LoadingSpinner v-if="isLoading" />
-
     <!-- 首屏 Hero：左文右头像 -->
     <section class="hero">
+      <!-- 星空/星座层 -->
+      <svg class="star-layer" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <!-- 星座连线 -->
+        <path
+          class="constellation-line"
+          d="M 160 120 L 320 190 L 470 110 L 620 220 L 760 140"
+          fill="none"
+        />
+        <path
+          class="constellation-line constellation-line--2"
+          d="M 980 90 L 1120 170 L 1260 80"
+          fill="none"
+        />
+        <!-- 星座节点（亮星） -->
+        <circle class="star star--big" cx="160" cy="120" r="3" />
+        <circle class="star star--big star--t2" cx="320" cy="190" r="2.4" />
+        <circle class="star star--big star--t3" cx="470" cy="110" r="3.2" />
+        <circle class="star star--big" cx="620" cy="220" r="2.2" />
+        <circle class="star star--big star--t2" cx="760" cy="140" r="2.8" />
+        <circle class="star star--big star--t3" cx="980" cy="90" r="2.6" />
+        <circle class="star star--big" cx="1120" cy="170" r="2.2" />
+        <circle class="star star--big star--t2" cx="1260" cy="80" r="3" />
+        <!-- 散星 -->
+        <circle class="star" cx="90" cy="330" r="1.4" />
+        <circle class="star star--t2" cx="230" cy="420" r="1.2" />
+        <circle class="star star--t3" cx="380" cy="300" r="1.6" />
+        <circle class="star" cx="520" cy="380" r="1.1" />
+        <circle class="star star--t2" cx="700" cy="320" r="1.5" />
+        <circle class="star star--t3" cx="860" cy="260" r="1.2" />
+        <circle class="star" cx="1040" cy="330" r="1.5" />
+        <circle class="star star--t2" cx="1180" cy="290" r="1.2" />
+        <circle class="star star--t3" cx="1330" cy="360" r="1.6" />
+        <circle class="star" cx="1420" cy="200" r="1.2" />
+        <circle class="star star--t2" cx="150" cy="560" r="1.3" />
+        <circle class="star star--t3" cx="330" cy="600" r="1.1" />
+        <circle class="star" cx="600" cy="560" r="1.4" />
+        <circle class="star star--t2" cx="820" cy="620" r="1.2" />
+        <circle class="star star--t3" cx="1060" cy="580" r="1.5" />
+        <circle class="star" cx="1290" cy="620" r="1.2" />
+      </svg>
+
+      <!-- 书法水印 -->
+      <div class="calligraphy-watermark" aria-hidden="true">寜</div>
+
       <div class="hero-inner">
         <!-- 左侧文字区 -->
         <div class="hero-text">
@@ -30,9 +71,22 @@
               <i class="fas fa-arrow-down"></i>
             </button>
           </div>
+
+          <!-- 终端状态卡 -->
+          <div class="terminal-card" aria-hidden="true">
+            <div class="terminal-card-head">
+              <span class="tdot tdot--r"></span><span class="tdot tdot--y"></span><span class="tdot tdot--g"></span>
+              <span class="terminal-card-title">ning@blog: ~</span>
+            </div>
+            <div class="terminal-card-body">
+              <p><span class="tprompt">$</span> whoami <span class="tarrow">→</span> <b>寜（Ning）</b></p>
+              <p><span class="tprompt">$</span> focus <span class="tarrow">→</span> 学习 · 生活 · 思考</p>
+              <p><span class="tprompt">$</span> status <span class="tarrow">→</span> 持续更新中<span class="tcaret">_</span></p>
+            </div>
+          </div>
         </div>
 
-        <!-- 右侧头像区：光辉 + 翻转 -->
+        <!-- 右侧头像区：光辉 + 翻转 + 访客欢迎卡 -->
         <div class="hero-avatar">
           <div class="avatar-scene">
             <div class="avatar-glow" aria-hidden="true"></div>
@@ -53,10 +107,16 @@
               </div>
             </div>
           </div>
-          <p class="avatar-hint">
-            <span class="hint-desktop">鼠标放到头像上试试 ✨</span>
-            <span class="hint-mobile">点头像试试 ✨</span>
-          </p>
+
+          <!-- 访客欢迎卡（IP 归属地 + 时间问候 + 距离） -->
+          <transition name="welcome-fade">
+            <div v-if="welcome.show" class="welcome-card">
+              <i class="fa-solid fa-location-dot welcome-icon"></i>
+              <p class="welcome-text">
+                欢迎来自 <b>{{ welcome.region }}</b> 的小伙伴，{{ welcome.greeting }}。<template v-if="welcome.distance">您现在距离站长约 <b>{{ welcome.distance }}</b>。</template>
+              </p>
+            </div>
+          </transition>
         </div>
       </div>
 
@@ -117,7 +177,7 @@
       </div>
 
       <!-- 空状态 -->
-      <p v-if="!isLoading && posts.length === 0" class="empty-state">
+      <p v-if="posts.length === 0" class="empty-state">
         还没有文章，快去 content/posts/ 里写第一篇吧！
       </p>
 
@@ -133,22 +193,62 @@
 
 <script>
 import { fetchPosts } from '@/api';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import { getPostCardBadges } from '@/utils/postCardBadges';
 import avatarUrl from '@/assets/imgs/avatar.jpg';
 import avatarBackUrl from '@/assets/imgs/avatar-back.jpg';
 
 const TYPE_PHRASES = [
   '寜的小站·Ning\'s Blog',
-  '宁静致远·记录学习、生活与思考',
+  '宁静致远 | 记录学习、生活与思考',
   '教程/学习路线/随笔/杂谈说说'
 ];
 
+// 站长坐标（杭州 · 拱墅），用于计算与访客的距离；想改位置改这里即可
+const OWNER_LOCATION = { lat: 30.3197, lon: 120.1419 };
+
+// 省级中心坐标（IP 归属地到经纬度的轻量兜底；海外/未知则不显示距离）
+const PROVINCE_CENTERS = {
+  浙江省: [30.27, 120.15], 江苏省: [32.06, 118.78], 上海市: [31.23, 121.47], 北京市: [39.9, 116.4],
+  广东省: [23.13, 113.26], 四川省: [30.66, 104.07], 湖北省: [30.59, 114.3], 湖南省: [28.23, 112.94],
+  陕西省: [34.34, 108.94], 山东省: [36.67, 116.99], 河南省: [34.75, 113.62], 河北省: [38.04, 114.51],
+  安徽省: [31.82, 117.23], 福建省: [26.08, 119.3], 江西省: [28.68, 115.86], 辽宁省: [41.8, 123.43],
+  吉林省: [43.88, 125.32], 黑龙江省: [45.8, 126.53], 山西省: [37.87, 112.55], 内蒙古自治区: [40.82, 111.65],
+  重庆: [29.56, 106.55], 天津市: [39.13, 117.2], 贵州省: [26.65, 106.63], 云南省: [25.04, 102.71],
+  广西壮族自治区: [22.82, 108.32], 海南省: [20.02, 110.35], 甘肃省: [36.06, 103.83], 青海省: [36.62, 101.78],
+  宁夏回族自治区: [38.49, 106.23], 新疆维吾尔自治区: [43.79, 87.62], 西藏自治区: [29.65, 91.14],
+  香港特别行政区: [22.32, 114.17], 澳门特别行政区: [22.2, 113.55], 台湾省: [25.03, 121.57]
+};
+
+function timeGreeting() {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 8) return '清晨好，一日之计在于晨';
+  if (h >= 8 && h < 11) return '上午好，今天也要元气满满';
+  if (h >= 11 && h < 13) return '中午好，记得吃午饭呀';
+  if (h >= 13 && h < 18) return '下午好，来杯茶歇一歇';
+  if (h >= 18 && h < 23) return '晚上好，今天过得怎么样';
+  return '夜深了，早点休息，少熬夜';
+}
+
+/** 球面距离（km） */
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function formatDistance(km) {
+  if (!Number.isFinite(km)) return '';
+  if (km < 1) return '就在站长身边';
+  if (km < 100) return `${Math.round(km)} 公里`;
+  return `${Math.round(km / 10) * 10} 公里`;
+}
+
 export default {
   name: 'Home',
-  components: {
-    LoadingSpinner
-  },
   data() {
     return {
       // 素材
@@ -168,6 +268,9 @@ export default {
       // 头像翻转（触屏点击用；桌面端走 CSS hover）
       avatarFlipped: false,
 
+      // 访客欢迎卡
+      welcome: { show: false, region: '', greeting: timeGreeting(), distance: '' },
+
       // 打字机
       typewriterText: '',
       typewriterTimer: null,
@@ -185,10 +288,7 @@ export default {
 
       // 卡片滚动观察器
       cardObserver: null,
-      resizeTimer: null,
-
-      // 加载状态
-      isLoading: true
+      resizeTimer: null
     };
   },
   computed: {
@@ -196,18 +296,15 @@ export default {
       return Math.max(1, Math.ceil(this.total / this.pageSize));
     }
   },
-  async mounted() {
-    try {
-      await Promise.all([this.loadPosts(), this.delay(1100)]);
-    } finally {
-      this.isLoading = false; // 隐藏加载动画
-      this.animateText(); // 触发大标题动画
-      this.startTypewriter(); // 启动打字机
-      window.addEventListener('scroll', this.updateActivePosts, { passive: true });
-      window.addEventListener('resize', this.handleHomeResize, { passive: true });
-      this.setupHomeRowReveal();
-      this.warmupRouteChunks();
-    }
+  mounted() {
+    this.animateText(); // 大标题逐字动画
+    this.startTypewriter(); // 打字机
+    this.loadPosts();
+    this.loadWelcome(); // 访客欢迎卡（失败静默）
+    window.addEventListener('scroll', this.updateActivePosts, { passive: true });
+    window.addEventListener('resize', this.handleHomeResize, { passive: true });
+    this.setupHomeRowReveal();
+    this.warmupRouteChunks();
   },
   beforeUnmount() {
     if (this.typewriterTimer) clearTimeout(this.typewriterTimer);
@@ -223,8 +320,52 @@ export default {
     }
   },
   methods: {
-    delay(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
+    // ---------- 访客欢迎卡 ----------
+    async loadWelcome() {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 6000);
+      try {
+        // 主源：中文归属地（纯真库数据）；备用：ipwho.is（带经纬度，海外/兜底）
+        let region = '';
+        let lat = null;
+        let lon = null;
+        try {
+          const resp = await fetch('https://api.vore.top/api/IPdata', { signal: controller.signal });
+          const data = await resp.json();
+          if (data && data.code === 200 && data.ipinfo) {
+            const info = data.ipinfo;
+            const prov = info.province || '';
+            const city = info.city || '';
+            region = [prov, city].filter(Boolean).join(' ');
+            lat = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][0] : null;
+            lon = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][1] : null;
+          }
+        } catch (e) {
+          /* 尝试备用源 */
+        }
+
+        if (!region) {
+          const resp = await fetch('https://ipwho.is/', { signal: controller.signal });
+          const data = await resp.json();
+          if (data && data.success !== false) {
+            region = [data.region, data.city].filter(Boolean).join(', ');
+            lat = Number(data.latitude);
+            lon = Number(data.longitude);
+          }
+        }
+
+        if (!region) return; // 两个源都失败：不显示卡片
+
+        let distance = '';
+        if (Number.isFinite(lat) && Number.isFinite(lon)) {
+          distance = formatDistance(haversineKm(lat, lon, OWNER_LOCATION.lat, OWNER_LOCATION.lon));
+        }
+        this.welcome = { show: true, region, greeting: timeGreeting(), distance };
+      } catch (e) {
+        // 网络/超时/被墙：静默隐藏，不影响页面
+      } finally {
+        clearTimeout(timer);
+      }
     },
 
     // ---------- 打字机 ----------
@@ -459,7 +600,7 @@ export default {
 }
 
 .home {
-  padding: 20px 20px 0;
+  padding: 12px 20px 0;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
@@ -470,21 +611,76 @@ export default {
    ========================= */
 .hero {
   position: relative;
-  min-height: calc(100vh - 108px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
+}
+
+/* 星空/星座层 */
+.star-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  fill: var(--star-color-dim);
+}
+
+.star--big {
+  fill: var(--star-color);
+}
+
+.star--t2 { animation: twinkle 3.2s ease-in-out 0.8s infinite; }
+.star--t3 { animation: twinkle 4.1s ease-in-out 1.9s infinite; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.constellation-line {
+  stroke: var(--constellation-line);
+  stroke-width: 1;
+  stroke-dasharray: 6 7;
+}
+
+.constellation-line--2 {
+  opacity: 0.7;
+}
+
+/* 书法水印「寜」 */
+.calligraphy-watermark {
+  position: absolute;
+  right: -2%;
+  bottom: -18%;
+  font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
+  font-size: clamp(280px, 34vw, 520px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text-primary);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  padding: 30px 10px 70px;
+  gap: 24px;
+  padding: 18px 10px 30px;
 }
 
 .hero-text {
@@ -547,7 +743,7 @@ export default {
 
 /* 打字机副标题（固定高度防跳动） */
 .typewriter-line {
-  margin-top: 18px;
+  margin-top: 16px;
   min-height: 2.1em;
   font-size: clamp(17px, 2vw, 23px);
   line-height: 1.7;
@@ -579,14 +775,14 @@ export default {
 }
 
 .hero-intro {
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   font-size: 16px;
   color: var(--text-muted);
   max-width: 520px;
 }
 
 .hero-actions {
-  margin-top: 26px;
+  margin-top: 20px;
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
@@ -618,6 +814,78 @@ export default {
   border-color: var(--surface-border);
 }
 
+/* 终端状态卡 */
+.terminal-card {
+  margin-top: 24px;
+  max-width: 430px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(8, 12, 9, 0.92);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+}
+
+:root[data-theme='light'] .terminal-card {
+  background: rgba(43, 36, 24, 0.94);
+}
+
+.terminal-card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tdot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tdot--r { background: #ff5f56; }
+.tdot--y { background: #ffbd2e; }
+.tdot--g { background: #27c93f; }
+
+.terminal-card-title {
+  margin-left: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-card-body {
+  padding: 12px 16px 14px;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 2;
+  color: #9fe8b0;
+}
+
+.terminal-card-body p {
+  margin: 0;
+}
+
+.tprompt {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.tarrow {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.terminal-card-body b {
+  color: #e8fff0;
+  font-weight: 700;
+}
+
+.tcaret {
+  display: inline-block;
+  animation: caretBlink 0.9s step-end infinite;
+  color: var(--accent-strong);
+}
+
 /* =========================
    头像：光辉 + 3D 翻转
    ========================= */
@@ -626,13 +894,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .avatar-scene {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 290px;
+  height: 290px;
   perspective: 1100px; /* 3D 透视：翻转更有立体感 */
 }
 
@@ -699,22 +967,51 @@ export default {
   transform: rotateY(180deg);
 }
 
-.avatar-hint {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-muted);
+/* 访客欢迎卡 */
+.welcome-card {
+  max-width: 340px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--card-gradient);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-inner-glow), var(--card-shadow);
 }
 
-.hint-mobile {
-  display: none;
+.welcome-icon {
+  color: var(--accent);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.welcome-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.welcome-text b {
+  color: var(--text-primary);
+}
+
+.welcome-fade-enter-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.welcome-fade-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 /* 下滑引导箭头 */
 .arrow-container {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  margin-top: -14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -726,15 +1023,15 @@ export default {
 
 .guide-line {
   width: 2px;
-  height: 40px;
+  height: 36px;
   background-color: var(--accent);
   border-radius: 999px;
   box-shadow: 0 0 5px var(--accent-glow-mid);
 }
 
 .arrow-down {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   background-color: var(--accent-strong);
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
@@ -742,12 +1039,12 @@ export default {
 
 @keyframes floatAndBlink {
   0%, 100% {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
     opacity: 1;
   }
 
   50% {
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateY(-5px);
     opacity: 0.72;
   }
 }
@@ -756,9 +1053,11 @@ export default {
    公告条 + 文章卡片
    ========================= */
 .notice-strip {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto 18px;
+  max-width: 1150px;
+  margin: 10px auto 18px;
   padding: 12px 18px;
   border-radius: 12px;
   background: var(--card-gradient);
@@ -778,8 +1077,10 @@ export default {
 }
 
 .card-container {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -958,8 +1259,8 @@ export default {
 @media (max-width: 900px) {
   .hero-inner {
     flex-direction: column-reverse; /* 手机端：头像在上，文字在下 */
-    gap: 22px;
-    padding-bottom: 60px;
+    gap: 20px;
+    padding-bottom: 30px;
     text-align: center;
   }
 
@@ -987,23 +1288,31 @@ export default {
     justify-content: center;
   }
 
+  .terminal-card {
+    width: 100%;
+    max-width: 430px;
+    text-align: left;
+  }
+
   .avatar-scene {
-    width: 210px;
-    height: 210px;
+    width: 220px;
+    height: 220px;
   }
 
-  .hint-desktop {
-    display: none;
+  .calligraphy-watermark {
+    font-size: 240px;
+    bottom: 4%;
+    opacity: 0.06;
   }
 
-  .hint-mobile {
-    display: inline;
+  .welcome-card {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .home {
-    padding: 16px 16px 0;
+    padding: 10px 16px 0;
   }
 
   .posts-container {
@@ -1038,8 +1347,10 @@ export default {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .arrow-container,
-  .avatar-glow {
+  .star--t2,
+  .star--t3,
+  .avatar-glow,
+  .arrow-container {
     animation: none;
   }
 

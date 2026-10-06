@@ -13,6 +13,8 @@
   /* ---------- 背景 ---------- */
   --bg-base: #030603;
   --bg-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     radial-gradient(1100px 700px at 85% -10%, rgba(28, 150, 60, 0.22), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(18, 105, 45, 0.18), transparent 55%),
     radial-gradient(1000px 800px at 50% 110%, rgba(10, 70, 30, 0.2), transparent 60%),
@@ -42,7 +44,8 @@
   --drawer-bg: radial-gradient(circle at top left, rgba(11, 184, 47, 0.25), rgba(0, 0, 0, 0.94));
 
   /* ---------- 卡片 / 面板 ---------- */
-  --card-gradient: linear-gradient(135deg, rgba(108, 171, 106, 0.3), rgba(42, 184, 73, 0.55));
+  /* 卡片雾面渐变跟随主题色（color-mix 现代浏览器支持，旧浏览器回退到上方 --card-border 深色） */
+  --card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, transparent), color-mix(in srgb, var(--accent) 40%, transparent));
   --card-border: rgba(255, 255, 255, 0.32);
   --card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.18);
   --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
@@ -70,6 +73,11 @@
   --scrollbar-track: #050705;
   --scrollbar-thumb: #1e211e;
   --scrollbar-thumb-hover: #5c665c;
+
+  /* ---------- 星空元素（夜空亮星） ---------- */
+  --star-color: rgba(255, 255, 255, 0.75);
+  --star-color-dim: rgba(255, 255, 255, 0.4);
+  --constellation-line: rgba(255, 255, 255, 0.22);
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(0, 0, 0, 0.6);
@@ -230,68 +238,77 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  /* ---------- 背景 ---------- */
-  --bg-base: #edf3ee;
+  /* ---------- 背景（牛皮纸淡黄） ---------- */
+  --bg-base: #f3ecdc;
   --bg-image:
-    radial-gradient(1100px 700px at 85% -10%, rgba(40, 170, 80, 0.14), transparent 60%),
-    radial-gradient(900px 600px at -10% 30%, rgba(30, 130, 60, 0.1), transparent 55%),
-    radial-gradient(1000px 800px at 50% 110%, rgba(20, 100, 45, 0.12), transparent 60%),
-    linear-gradient(180deg, #f4f9f4 0%, #e9f1ea 100%);
+    linear-gradient(rgba(120, 95, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 95, 55, 0.04) 1px, transparent 1px),
+    radial-gradient(1100px 700px at 85% -10%, rgba(176, 141, 87, 0.16), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(150, 120, 70, 0.1), transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(120, 95, 55, 0.12), transparent 60%),
+    linear-gradient(180deg, #f6f0e1 0%, #efe6d0 100%);
 
   /* ---------- 文字 ---------- */
-  --text-primary: #17281c;
-  --text-secondary: #46584b;
-  --text-muted: #6b7c6f;
+  --text-primary: #2f2617;
+  --text-secondary: #5f523b;
+  --text-muted: #8a7c62;
   --blog-link-color: var(--accent);
   --blog-link-hover-color: var(--accent-bright);
 
-  /* ---------- 强调色 ---------- */
-  --accent: #0f8a38;
-  --accent-bright: #0b6e2c;
-  --accent-strong: #0f8a38;
-  --accent-soft: rgba(15, 138, 56, 0.14);
-  --accent-border: rgba(15, 138, 56, 0.75);
-  --glow-shadow: 0 0 10px rgba(15, 138, 56, 0.28);
-  --title-gradient: linear-gradient(to right, #0d8a3a, #12b34c);
+  /* ---------- 强调色（牛皮纸浅色下的通用兜底，实际以各主题色套装为准） ---------- */
+  --accent: #7c5cd6;
+  --accent-bright: #5b3fae;
+  --accent-strong: #7c5cd6;
+  --accent-soft: rgba(124, 92, 214, 0.12);
+  --accent-border: rgba(124, 92, 214, 0.7);
+  --accent-glow-strong: rgba(124, 92, 214, 0.3);
+  --accent-glow-mid: rgba(124, 92, 214, 0.28);
+  --glow-shadow: 0 0 10px rgba(124, 92, 214, 0.25);
+  --title-gradient: linear-gradient(to right, #6b4fc4, #8a63e8);
 
   /* ---------- 头部 ---------- */
-  --header-bg: rgba(255, 255, 255, 0.86);
-  --header-text: #1d2e22;
-  --header-link: #31423a;
-  --header-border: linear-gradient(90deg, rgba(15, 138, 56, 0.45), rgba(30, 180, 90, 0.5), rgba(15, 138, 56, 0.45));
-  --drawer-bg: radial-gradient(circle at top left, rgba(180, 240, 200, 0.9), rgba(250, 252, 250, 0.97));
+  --header-bg: rgba(249, 244, 232, 0.88);
+  --header-text: #33291a;
+  --header-link: #4c4030;
+  --header-border: linear-gradient(90deg, rgba(160, 125, 65, 0.5), rgba(190, 155, 90, 0.55), rgba(160, 125, 65, 0.5));
+  --drawer-bg: radial-gradient(circle at top left, rgba(240, 226, 196, 0.97), rgba(250, 246, 236, 0.99));
 
   /* ---------- 卡片 / 面板 ---------- */
-  --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(226, 243, 231, 0.92));
-  --card-border: rgba(20, 90, 45, 0.2);
-  --card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.65);
-  --card-shadow: 0 4px 14px rgba(25, 80, 40, 0.14);
-  --card-hover-shadow: 0 6px 16px rgba(15, 138, 56, 0.24);
-  --surface: rgba(255, 255, 255, 0.9);
-  --surface-border: rgba(20, 90, 45, 0.22);
+  --card-gradient: linear-gradient(135deg, rgba(255, 252, 244, 0.95), rgba(246, 238, 220, 0.94));
+  --card-border: rgba(150, 118, 66, 0.28);
+  --card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.6);
+  --card-shadow: 0 4px 14px rgba(96, 76, 42, 0.14);
+  --card-hover-shadow: 0 6px 16px rgba(124, 92, 214, 0.2);
+  --surface: rgba(253, 249, 240, 0.94);
+  --surface-border: rgba(150, 118, 66, 0.3);
 
   /* ---------- 控件 ---------- */
-  --input-bg: rgba(255, 255, 255, 0.9);
-  --input-border: rgba(20, 90, 45, 0.3);
-  --input-text: #17281c;
-  --btn-bg: rgba(15, 138, 56, 0.1);
-  --btn-hover-bg: rgba(15, 138, 56, 0.2);
-  --btn-text: #17281c;
+  --input-bg: rgba(255, 253, 247, 0.92);
+  --input-border: rgba(150, 118, 66, 0.35);
+  --input-text: #2f2617;
+  --btn-bg: rgba(150, 118, 66, 0.1);
+  --btn-hover-bg: rgba(150, 118, 66, 0.2);
+  --btn-text: #2f2617;
   --pill-bg: var(--accent-soft);
   --pill-border: var(--accent-border);
   --pill-text: var(--accent-bright);
 
   /* ---------- 页脚 ---------- */
-  --footer-bg: rgba(255, 255, 255, 0.9);
-  --footer-text: #3a4b3f;
-  --footer-border: rgba(20, 90, 45, 0.25);
+  --footer-bg: rgba(246, 240, 225, 0.92);
+  --footer-text: #5c4f38;
+  --footer-border: rgba(150, 118, 66, 0.3);
 
   /* ---------- 滚动条 ---------- */
-  --scrollbar-track: #e6ede7;
-  --scrollbar-thumb: #b9ccbc;
-  --scrollbar-thumb-hover: #93ad97;
+  --scrollbar-track: #ece3cf;
+  --scrollbar-thumb: #c4b18c;
+  --scrollbar-thumb-hover: #a8916b;
+
+  /* ---------- 星空元素（牛皮纸上的暗金星图） ---------- */
+  --star-color: rgba(158, 122, 60, 0.55);
+  --star-color-dim: rgba(158, 122, 60, 0.28);
+  --constellation-line: rgba(150, 116, 60, 0.35);
 
   /* ---------- 其他 ---------- */
-  --overlay-mask: rgba(20, 40, 25, 0.45);
-  --error-text: #c23a3a;
+  --overlay-mask: rgba(64, 50, 28, 0.45);
+  --error-text: #b03a2e;
 }
