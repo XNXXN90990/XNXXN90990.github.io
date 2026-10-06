@@ -22,8 +22,8 @@
   --text-primary: #f2f7f2;
   --text-secondary: #b9c4ba;
   --text-muted: #8b988d;
-  --blog-link-color: #8dff98;
-  --blog-link-hover-color: #c8ffb8;
+  --blog-link-color: var(--accent-bright);
+  --blog-link-hover-color: var(--accent-strong);
 
   /* ---------- 强调色（荧光绿） ---------- */
   --accent: #00b828;
@@ -57,9 +57,9 @@
   --btn-bg: rgba(255, 255, 255, 0.2);
   --btn-hover-bg: rgba(255, 255, 255, 0.4);
   --btn-text: #ffffff;
-  --pill-bg: rgba(0, 184, 40, 0.16);
-  --pill-border: rgba(0, 184, 40, 0.45);
-  --pill-text: #dfffe5;
+  --pill-bg: var(--accent-soft);
+  --pill-border: var(--accent-border);
+  --pill-text: var(--accent-bright);
 
   /* ---------- 页脚 ---------- */
   --footer-bg: rgba(2, 5, 3, 0.85);
@@ -242,8 +242,8 @@
   --text-primary: #17281c;
   --text-secondary: #46584b;
   --text-muted: #6b7c6f;
-  --blog-link-color: #0e8a38;
-  --blog-link-hover-color: #0a6d2b;
+  --blog-link-color: var(--accent);
+  --blog-link-hover-color: var(--accent-bright);
 
   /* ---------- 强调色 ---------- */
   --accent: #0f8a38;
@@ -277,9 +277,9 @@
   --btn-bg: rgba(15, 138, 56, 0.1);
   --btn-hover-bg: rgba(15, 138, 56, 0.2);
   --btn-text: #17281c;
-  --pill-bg: rgba(15, 138, 56, 0.1);
-  --pill-border: rgba(15, 138, 56, 0.4);
-  --pill-text: #0d5c28;
+  --pill-bg: var(--accent-soft);
+  --pill-border: var(--accent-border);
+  --pill-text: var(--accent-bright);
 
   /* ---------- 页脚 ---------- */
   --footer-bg: rgba(255, 255, 255, 0.9);
