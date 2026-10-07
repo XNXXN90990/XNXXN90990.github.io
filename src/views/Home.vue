@@ -880,11 +880,12 @@ export default {
   opacity: 0.85;
 }
 
-/* 书法水印「寜」：桌面端贴最右侧、垂直居中，字号顶天立地铺满 hero 高度 */
+/* 书法水印「寜」：桌面端贴最右侧、字号顶天立地；
+   fixed 定位 —— 首页上下滚动时水印固定在屏幕同一位置，文章卡片从其上方滑过 */
 .calligraphy-watermark {
-  position: absolute;
+  position: fixed;
   right: -6%;
-  top: 47%;
+  top: 45%;
   bottom: auto;
   transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
