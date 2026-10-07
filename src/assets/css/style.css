@@ -31,8 +31,9 @@ body {
 body {
   background-color: var(--bg-base);
   background-image: var(--bg-image);
-  background-size: 48px 48px, 48px 48px, cover, cover, cover;
-  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
+  /* 图层数与尺寸随主题不同，由 theme-vars.css 按主题给出 */
+  background-size: var(--bg-size);
+  background-repeat: var(--bg-repeat);
   background-position: center;
   background-attachment: fixed;
   overflow-y: scroll; /* 强制显示垂直滚动条 */

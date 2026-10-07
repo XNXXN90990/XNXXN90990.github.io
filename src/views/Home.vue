@@ -2,23 +2,18 @@
   <div class="home">
     <!-- 首屏 Hero：左文右头像 -->
     <section class="hero">
+      <!-- 星轨（仅深色模式）：参考天环引导页的 canvas 旋转星轨，轨迹累积成圆弧 -->
+      <canvas ref="trailCanvas" class="star-trail-canvas" aria-hidden="true"></canvas>
+
       <!-- 星空/星座层 -->
       <svg class="star-layer" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- 星轨（仅深色模式）：以右上方天极为中心的慢速旋转弧线 -->
-        <g class="star-trails">
-          <g class="trail-rotor">
-            <circle class="trail trail--1" cx="1240" cy="-70" r="190" pathLength="360" stroke-dasharray="16 74" />
-            <circle class="trail trail--1" cx="1240" cy="-70" r="190" pathLength="360" stroke-dasharray="10 350" stroke-dashoffset="150" />
-            <circle class="trail trail--2" cx="1240" cy="-70" r="310" pathLength="360" stroke-dasharray="26 94" />
-            <circle class="trail trail--2" cx="1240" cy="-70" r="310" pathLength="360" stroke-dasharray="12 348" stroke-dashoffset="210" />
-            <circle class="trail trail--3" cx="1240" cy="-70" r="450" pathLength="360" stroke-dasharray="34 116" />
-            <circle class="trail trail--4" cx="1240" cy="-70" r="600" pathLength="360" stroke-dasharray="44 136" />
-            <animateTransform attributeName="transform" type="rotate" from="0 1240 -70" to="360 1240 -70" dur="180s" repeatCount="indefinite" />
-          </g>
-        </g>
-
-        <!-- 真实星座（d3-celestial 数据，scripts/gen-constellations.mjs 生成） -->
-        <g v-for="c in constellationItems" :key="c.id" class="constellation">
+        <!-- 真实星座（d3-celestial 数据，scripts/gen-constellations.mjs 生成），错峰淡入淡出 + 缓慢漂浮 -->
+        <g
+          v-for="(c, ci) in constellationItems"
+          :key="c.id"
+          class="constellation"
+          :style="constellationMotion(c, ci)"
+        >
           <path v-for="(seg, i) in c.paths" :key="'p' + i" class="constellation-line" :d="seg" fill="none" />
           <circle v-for="(s, i) in c.stars" :key="'s' + i" class="constellation-star" :cx="s[0]" :cy="s[1]" r="2.1" />
           <text class="constellation-label" :x="c.label[0]" :y="c.label[1]" text-anchor="middle">{{ c.name }}</text>
@@ -90,7 +85,11 @@
 
         <!-- 右侧头像区：光辉 + 翻转 + 访客欢迎卡 -->
         <div class="hero-avatar">
-          <div class="avatar-scene">
+          <div
+            class="avatar-scene"
+            @mouseenter="flipToBack"
+            @mouseleave="flipToFront"
+          >
             <div class="avatar-glow" aria-hidden="true"></div>
             <div
               class="avatar-flip"
@@ -98,8 +97,6 @@
               role="button"
               tabindex="0"
               aria-label="头像，悬停或点击翻面"
-              @mouseenter="flipToBack"
-              @mouseleave="flipToFront"
               @click="onAvatarClick"
               @keydown.enter.prevent="toggleFlip"
             >
@@ -200,7 +197,7 @@ import { fetchPosts } from '@/api';
 import { getPostCardBadges } from '@/utils/postCardBadges';
 import avatarUrl from '@/assets/imgs/avatar.jpg';
 import avatarBackUrl from '@/assets/imgs/avatar-back.jpg';
-import avatarBack2Url from '@/assets/imgs/avatar-back2.jpg';
+import avatarBack2Url from '@/assets/imgs/avatar-back2.png';
 import constellationData from '@/content/constellations.json';
 
 const TYPE_PHRASES = [
@@ -294,8 +291,14 @@ export default {
 
       // 卡片滚动观察器
       cardObserver: null,
-      resizeTimer: null
-    };
+      resizeTimer: null,
+
+      // canvas 星轨
+      trailRaf: null,
+      trailFrame: 0,
+      trailState: null,
+      themeObserver: null
+  };
   },
   computed: {
     totalPages() {
@@ -337,6 +340,7 @@ export default {
     window.addEventListener('scroll', this.updateActivePosts, { passive: true });
     window.addEventListener('resize', this.handleHomeResize, { passive: true });
     this.setupHomeRowReveal();
+    this.setupStarTrails(); // canvas 星轨（仅深色模式）
     this.warmupRouteChunks();
   },
   beforeUnmount() {
@@ -351,8 +355,128 @@ export default {
       clearTimeout(this.resizeTimer);
       this.resizeTimer = null;
     }
+    this.teardownStarTrails();
   },
   methods: {
+    // ---------- canvas 星轨（参考天环引导页：星场盖印 + 旋转累积 + 周期淡出） ----------
+    isDarkTheme() {
+      return document.documentElement.getAttribute('data-theme') !== 'light';
+    },
+    setupStarTrails() {
+      // 系统开了"减少动态效果"就不启动
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // 深浅色切换时启停
+      this.themeObserver = new MutationObserver(() => {
+        if (this.isDarkTheme()) this.startStarTrails();
+        else this.stopStarTrails();
+      });
+      this.themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      if (this.isDarkTheme()) this.startStarTrails();
+    },
+    startStarTrails() {
+      const canvas = this.$refs.trailCanvas;
+      if (!canvas || this.trailRaf || !canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const hero = canvas.parentElement;
+      const w = (canvas.width = hero.clientWidth);
+      const h = (canvas.height = hero.clientHeight);
+      const n = Math.max(w, h);
+
+      // 离屏星场：随机散布的小星点
+      const os = Math.round(2.3 * n);
+      const off = document.createElement('canvas');
+      off.width = os;
+      off.height = os;
+      const octx = off.getContext('2d');
+      const count = Math.min(4200, Math.round((os * os) / 3200));
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * os;
+        const y = Math.random() * os;
+        const r = 0.35 + Math.random() * 0.5;
+        const tint = Math.random();
+        // 大多数偏冷白，少数带紫/蓝，呼应夜空
+        const cr = tint < 0.75 ? 210 + Math.round(Math.random() * 45) : 170 + Math.round(Math.random() * 60);
+        const cg = tint < 0.75 ? 215 + Math.round(Math.random() * 40) : 180 + Math.round(Math.random() * 50);
+        const cb = 230 + Math.round(Math.random() * 25);
+        const alpha = 0.1 + Math.random() * 0.28;
+        octx.beginPath();
+        octx.arc(x, y, r, 0, Math.PI * 2, true);
+        octx.fillStyle = `rgba(${cr},${cg},${cb},${alpha})`;
+        octx.fill();
+      }
+
+      // 天极（旋转中心）放在 hero 右上区域
+      const pivotX = w * 0.82;
+      const pivotY = h * 0.02;
+      ctx.clearRect(0, 0, w, h);
+      ctx.translate(pivotX, pivotY);
+
+      this.trailFrame = 0;
+      let lastDraw = 0;
+      const step = (time) => {
+        this.trailRaf = requestAnimationFrame(step);
+        if (time - lastDraw < 33) return; // ~30fps 足够
+        lastDraw = time;
+        const state = this.trailState;
+        if (!state) return;
+        // 盖印星场（不清屏，轨迹自然累积）
+        state.ctx.drawImage(state.off, -state.os / 2, -state.os / 2);
+        state.ctx.rotate((0.035 * Math.PI) / 180);
+        this.trailFrame++;
+        // 周期性轻微擦除，让旧轨迹慢慢消失
+        if (this.trailFrame > 90 && this.trailFrame % 5 === 0) {
+          state.ctx.globalCompositeOperation = 'destination-out';
+          state.ctx.fillStyle = 'rgba(0,0,0,0.08)';
+          state.ctx.fillRect(-3 * state.n, -3 * state.n, 6 * state.n, 6 * state.n);
+          state.ctx.globalCompositeOperation = 'source-over';
+        }
+      };
+
+      this.trailState = { ctx, off, os, n };
+      this.trailRaf = requestAnimationFrame(step);
+    },
+    stopStarTrails() {
+      if (this.trailRaf) {
+        cancelAnimationFrame(this.trailRaf);
+        this.trailRaf = null;
+      }
+      this.trailState = null;
+      const canvas = this.$refs.trailCanvas;
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+      }
+    },
+    teardownStarTrails() {
+      this.stopStarTrails();
+      if (this.themeObserver) {
+        this.themeObserver.disconnect();
+        this.themeObserver = null;
+      }
+    },
+    handleTrailResize() {
+      if (this.isDarkTheme()) {
+        this.stopStarTrails();
+        this.startStarTrails();
+      }
+    },
+
+    // ---------- 星座动效参数（错峰淡入淡出 + 缓慢漂浮，确定性伪随机） ----------
+    constellationMotion(c, index) {
+      const cycle = 30 + ((index * 13) % 18);          // 30-47s 一个周期
+      const delay = -((index * 17) % 32);              // 负延迟错开相位
+      const floatDur = 13 + ((index * 7) % 9);         // 13-21s 漂浮
+      const floatDelay = -((index * 5) % 11);
+      return {
+        animation: `constellation-cycle ${cycle}s ease-in-out ${delay}s infinite, constellation-float ${floatDur}s ease-in-out ${floatDelay}s infinite alternate`
+      };
+    },
+
     // ---------- 头像翻面 ----------
     flipToBack() {
       if (this.avatarFlipped) return;
@@ -389,7 +513,7 @@ export default {
             const info = data.ipinfo;
             const prov = info.province || '';
             const city = info.city || '';
-            region = [prov, city].filter(Boolean).join(' ');
+            region = [prov, city !== prov ? city : ''].filter(Boolean).join(' ');
             lat = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][0] : null;
             lon = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][1] : null;
           }
@@ -401,7 +525,9 @@ export default {
           const resp = await fetch('https://ipwho.is/', { signal: controller.signal });
           const data = await resp.json();
           if (data && data.success !== false) {
-            region = [data.region, data.city].filter(Boolean).join(', ');
+            const parts = [data.region || '', data.city || ''].filter(Boolean);
+            // 归属地与城市同名时（如 Hong Kong, Hong Kong）只保留一个
+            region = parts.filter((p, i) => i === 0 || p !== parts[0]).join(', ');
             lat = Number(data.latitude);
             lon = Number(data.longitude);
           }
@@ -576,6 +702,7 @@ export default {
       this.resizeTimer = setTimeout(() => {
         this.revealedRowKeys = [];
         this.setupHomeRowReveal();
+        this.handleTrailResize();
       }, 140);
     },
     getPostColumns() {
@@ -698,28 +825,22 @@ export default {
   50% { opacity: 0.25; }
 }
 
-/* ---- 星轨（仅深色模式） ---- */
-.star-trails {
+/* ---- canvas 星轨（仅深色模式，JS 驱动；浅色由 JS 暂停 + CSS 双保险） ---- */
+.star-trail-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
   opacity: 0.55;
 }
 
-:root[data-theme='light'] .star-trails {
+:root[data-theme='light'] .star-trail-canvas {
   display: none;
 }
 
-.trail {
-  fill: none;
-  stroke: var(--star-trail);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-
-.trail--1 { stroke-width: 1.2; opacity: 0.75; }
-.trail--2 { opacity: 0.9; }
-.trail--3 { stroke-width: 1.4; opacity: 0.7; }
-.trail--4 { stroke-width: 1.2; opacity: 0.5; }
-
-/* ---- 真实星座 ---- */
+/* ---- 真实星座（错峰淡入淡出 + 漂浮） ---- */
 .constellation-line {
   stroke: var(--constellation-real);
   stroke-width: 1.4;
@@ -737,6 +858,19 @@ export default {
   font-family: 'Bebas Neue', 'Segoe UI', Arial, sans-serif;
 }
 
+@keyframes constellation-cycle {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  46% { opacity: 1; }
+  58% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes constellation-float {
+  from { transform: translateY(-6px); }
+  to { transform: translateY(6px); }
+}
+
 /* 四芒星（十字光芒） */
 .star-flare {
   fill: var(--star-color);
@@ -747,11 +881,13 @@ export default {
   opacity: 0.85;
 }
 
-/* 书法水印「寜」 */
+/* 书法水印「寜」：桌面端贴最右侧、垂直居中 */
 .calligraphy-watermark {
   position: absolute;
-  right: 16%;
-  bottom: -18%;
+  right: -3%;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
   font-size: clamp(280px, 34vw, 520px);
   line-height: 1;
@@ -917,6 +1053,8 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  /* 头像及欢迎卡整体往左挪一点，给最右侧的水印留出位置 */
+  margin-right: 48px;
 }
 
 .avatar-scene {
@@ -1316,10 +1454,13 @@ export default {
   }
 
   .calligraphy-watermark {
-    font-size: 240px;
-    right: 6%;
-    bottom: 4%;
-    opacity: 0.06;
+    font-size: 330px;
+    right: auto;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
   }
 
   .welcome-card {
@@ -1368,13 +1509,14 @@ export default {
   .star--t3,
   .avatar-glow,
   .arrow-container,
-  .star-trails {
+  .star-trail-canvas {
     animation: none;
   }
 
-  /* SMIL 星轨旋转无法用 CSS 暂停，直接隐藏 */
-  .star-trails {
-    display: none;
+  /* canvas 星轨由 JS 停用；星座动画关闭并保持可见 */
+  .constellation {
+    animation: none !important;
+    opacity: 0.75;
   }
 
   .line2 {

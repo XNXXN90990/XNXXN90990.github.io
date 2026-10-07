@@ -22,13 +22,19 @@ const VIEW_H = 700;
 
 /**
  * 每个星座：id（IAU 缩写）、name（拉丁名标签）、zh（中文名）、
- * box 在 hero viewBox 里的摆放区域 [x0, y0, x1, y1]（保纵横比缩放）
+ * box 在 hero viewBox 里的摆放区域 [x0, y0, x1, y1]（保纵横比缩放）。
+ * 9 个星座错峰淡入淡出 + 缓慢漂浮，允许重叠（见 Home.vue 动画）。
  */
 const CONSTELLATIONS = [
   { id: 'UMa', name: 'URSA MAJOR', zh: '大熊座 · 北斗七星', box: [36, 46, 400, 205] },
   { id: 'Ori', name: 'ORION', zh: '猎户座', box: [805, 55, 1000, 330] },
   { id: 'Cas', name: 'CASSIOPEIA', zh: '仙后座', box: [66, 470, 320, 565] },
-  { id: 'CrB', name: 'CORONA BOREALIS', zh: '北冕座', box: [598, 418, 752, 512] }
+  { id: 'CrB', name: 'CORONA BOREALIS', zh: '北冕座', box: [598, 418, 752, 512] },
+  { id: 'Cyg', name: 'CYGNUS', zh: '天鹅座', box: [430, 60, 640, 290] },
+  { id: 'Lyr', name: 'LYRA', zh: '天琴座', box: [1030, 400, 1160, 520] },
+  { id: 'Del', name: 'DELPHINUS', zh: '海豚座', box: [1250, 540, 1390, 650] },
+  { id: 'Aql', name: 'AQUILA', zh: '天鹰座', box: [180, 260, 430, 430] },
+  { id: 'Leo', name: 'LEO', zh: '狮子座', box: [1050, 60, 1330, 280] }
 ];
 
 async function loadData() {

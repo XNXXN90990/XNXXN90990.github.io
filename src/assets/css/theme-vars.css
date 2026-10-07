@@ -10,15 +10,16 @@
 :root {
   color-scheme: dark;
 
-  /* ---------- 背景 ---------- */
+  /* ---------- 背景（银河照片压暗打底，无网格） ---------- */
   --bg-base: #0d1120;
   --bg-image:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    radial-gradient(1100px 700px at 85% -10%, rgba(124, 92, 214, 0.2), transparent 60%),
-    radial-gradient(900px 600px at -10% 30%, rgba(64, 90, 200, 0.16), transparent 55%),
-    radial-gradient(1000px 800px at 50% 110%, rgba(40, 50, 110, 0.25), transparent 60%),
+    radial-gradient(1100px 700px at 85% -10%, rgba(124, 92, 214, 0.18), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(64, 90, 200, 0.14), transparent 55%),
+    linear-gradient(180deg, rgba(27, 33, 64, 0.62) 0%, rgba(15, 20, 44, 0.68) 55%, rgba(11, 15, 34, 0.74) 100%),
+    url('../imgs/bg-milkyway.jpg'),
     linear-gradient(180deg, #1b2140 0%, #121735 45%, #0b0f22 100%);
+  --bg-size: cover, cover, cover, cover, cover;
+  --bg-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
 
   /* ---------- 文字 ---------- */
   --text-primary: #f2f7f2;
@@ -74,13 +75,12 @@
   --scrollbar-thumb: #1e211e;
   --scrollbar-thumb-hover: #5c665c;
 
-  /* ---------- 星空元素（夜空亮星 + 星白色真实星座 + 星轨） ---------- */
+  /* ---------- 星空元素（夜空亮星 + 星白色真实星座；星轨颜色由 canvas 内置） ---------- */
   --star-color: var(--accent-bright);
   --star-color-dim: var(--accent-glow-mid);
   --constellation-real: rgba(232, 238, 255, 0.42);
   --constellation-star: rgba(242, 246, 255, 0.85);
   --constellation-label: rgba(228, 234, 255, 0.4);
-  --star-trail: rgba(215, 226, 255, 0.5);
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(0, 0, 0, 0.6);
@@ -241,7 +241,7 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  /* ---------- 背景（淡白微黄，有渐变） ---------- */
+  /* ---------- 背景（淡白微黄，有渐变；网格只保留在浅色） ---------- */
   --bg-base: #fbfbf6;
   --bg-image:
     linear-gradient(rgba(60, 60, 70, 0.018) 1px, transparent 1px),
@@ -249,6 +249,8 @@
     radial-gradient(1100px 700px at 85% -10%, rgba(214, 186, 110, 0.12), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(124, 92, 214, 0.07), transparent 55%),
     linear-gradient(180deg, #fdfdfb 0%, #f8f7ee 55%, #f3f2e6 100%);
+  --bg-size: 48px 48px, 48px 48px, cover, cover, cover;
+  --bg-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
 
   /* ---------- 文字 ---------- */
   --text-primary: #23252b;
@@ -305,13 +307,12 @@
   --scrollbar-thumb: #c8c8c0;
   --scrollbar-thumb-hover: #a8a8a0;
 
-  /* ---------- 星空元素（淡色底上的暗金星图；星轨不显示） ---------- */
+  /* ---------- 星空元素（淡色底上的暗金星图） ---------- */
   --star-color: var(--accent);
   --star-color-dim: var(--accent-glow-mid);
   --constellation-real: rgba(150, 118, 62, 0.45);
   --constellation-star: rgba(122, 96, 52, 0.6);
   --constellation-label: rgba(150, 118, 62, 0.5);
-  --star-trail: transparent;
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(30, 30, 40, 0.45);
