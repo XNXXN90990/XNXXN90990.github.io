@@ -14,3 +14,6 @@ content/private/
 
 # 脚本本地缓存（星座原始数据等）
 scripts/.cache/
+
+# 本地使用手册（不发布到 GitHub）
+README.md
