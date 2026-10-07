@@ -512,7 +512,8 @@ export default {
             const info = data.ipinfo;
             const prov = info.province || '';
             const city = info.city || '';
-            region = [prov, city !== prov ? city : ''].filter(Boolean).join(' ');
+            // 只显示市级：国内来源是中文名（如「杭州市」）
+            region = city || prov;
             lat = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][0] : null;
             lon = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][1] : null;
           }
@@ -524,9 +525,8 @@ export default {
           const resp = await fetch('https://ipwho.is/', { signal: controller.signal });
           const data = await resp.json();
           if (data && data.success !== false) {
-            const parts = [data.region || '', data.city || ''].filter(Boolean);
-            // 归属地与城市同名时（如 Hong Kong, Hong Kong）只保留一个
-            region = parts.filter((p, i) => i === 0 || p !== parts[0]).join(', ');
+            // 备用源（海外/兜底）：只显示城市，英文名
+            region = data.city || data.region || '';
             lat = Number(data.latitude);
             lon = Number(data.longitude);
           }

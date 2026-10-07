@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 // ==================== 配置区 ====================
-const siteCreatedAt = new Date('2026-10-06T00:00:00');
+const siteCreatedAt = new Date('2026-06-14T01:06:14');
 const PV_OFFSET = 0;
 const UV_OFFSET = 0;
 // 换回原来的不蒜子地址
