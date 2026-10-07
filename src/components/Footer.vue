@@ -1,11 +1,15 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-// 站点创建时间（本地时间）—— 换成你自己的建站时间即可
+// ==================== 配置区 ====================
 const siteCreatedAt = new Date('2026-10-06T00:00:00');
+const PV_OFFSET = 0;
+const UV_OFFSET = 0;
+const BUSUANZI_SCRIPT_URL = 'https://busuanzi.icodeq.com/busuanzi.pure.mini.js';
+// ==================== 配置区结束 ====================
 
 const runningTimeText = ref('');
-const statsVisible = ref(false); // 不蒜子加载成功才显示统计行
+const statsVisible = ref(false);
 let timerId = null;
 let busuanziTimer = null;
 
@@ -13,30 +17,29 @@ const updateRunningTime = () => {
   const now = new Date();
   let diffSeconds = Math.floor((now.getTime() - siteCreatedAt.getTime()) / 1000);
   if (diffSeconds < 0) diffSeconds = 0;
-
   const days = Math.floor(diffSeconds / (24 * 60 * 60));
   diffSeconds %= 24 * 60 * 60;
   const hours = Math.floor(diffSeconds / (60 * 60));
   diffSeconds %= 60 * 60;
   const minutes = Math.floor(diffSeconds / 60);
   const seconds = diffSeconds % 60;
-
   const pad = (n) => String(n).padStart(2, '0');
-
   runningTimeText.value = `本站已经运行 ${days} 天 ${pad(hours)} 时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
 };
 
-/** 加载不蒜子访问统计；服务不可用时静默隐藏统计行 */
 const loadBusuanzi = () => {
   const script = document.createElement('script');
-  script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+  script.src = BUSUANZI_SCRIPT_URL;
   script.async = true;
   script.onload = () => {
-    // 不蒜子异步拉取数值，稍等再检查是否渲染出来
     busuanziTimer = setTimeout(() => {
-      const pv = document.getElementById('busuanzi_value_site_pv');
-      const uv = document.getElementById('busuanzi_value_site_uv');
-      if (pv && pv.textContent && uv && uv.textContent) {
+      const pvEl = document.getElementById('busuanzi_value_site_pv');
+      const uvEl = document.getElementById('busuanzi_value_site_uv');
+      if (pvEl && pvEl.textContent && uvEl && uvEl.textContent) {
+        const pv = Number(pvEl.textContent) || 0;
+        const uv = Number(uvEl.textContent) || 0;
+        pvEl.textContent = pv + PV_OFFSET;
+        uvEl.textContent = uv + UV_OFFSET;
         statsVisible.value = true;
       }
     }, 1200);
@@ -62,12 +65,38 @@ onUnmounted(() => {
 <template>
   <footer class="site-footer">
     <div class="footer-content">
-      <span class="footer-line">{{ runningTimeText }}</span>
-      <span v-show="statsVisible" class="footer-line">
-        总访问量（PV）：<span id="busuanzi_value_site_pv">...</span>
-        ｜ 总访客数（UV）：<span id="busuanzi_value_site_uv">...</span>
+      <!-- 运行时间 -->
+      <span class="footer-line runtime-line">{{ runningTimeText }}</span>
+
+      <!-- 分隔线 -->
+      <div class="footer-divider"></div>
+
+      <!-- 访问量统计 -->
+      <span v-show="statsVisible" class="footer-line stats-line">
+        <span class="stat-item">
+          <span class="stat-label">总访问量（PV）：</span>
+          <span class="stat-value" id="busuanzi_value_site_pv">...</span>
+        </span>
+        <span class="stat-separator">|</span>
+        <span class="stat-item">
+          <span class="stat-label">总访客数（UV）：</span>
+          <span class="stat-value" id="busuanzi_value_site_uv">...</span>
+        </span>
       </span>
-      <span class="footer-line">2026-2026 by 寜</span>
+
+      <!-- 版权 + 隐私政策 + 框架说明 -->
+      <span class="footer-line copyright-line">
+        <span class="copyright-symbol">©</span>
+        <span class="copyright-year">2026 - {{ new Date().getFullYear() }}</span>
+        <span class="copyright-separator">·</span>
+        <span class="copyright-author">寜</span>
+        <span class="copyright-separator">·</span>
+        <a href="/privacy" class="link-hover">隐私政策</a>
+        <span class="copyright-separator">·</span>
+        <span class="copyright-tech">
+          Built with <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="link-hover">Vue 3</a> + <a href="https://vite.dev" target="_blank" rel="noopener noreferrer" class="link-hover">Vite</a>
+        </span>
+      </span>
     </div>
   </footer>
 </template>
@@ -97,10 +126,107 @@ onUnmounted(() => {
   text-align: center;
 }
 
+.footer-line {
+  line-height: 1.6;
+}
+
+.runtime-line {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--footer-border);
+  opacity: 0.5;
+}
+
+.stats-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-label {
+  opacity: 0.7;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-separator {
+  margin: 0 6px;
+  opacity: 0.4;
+}
+
+.copyright-line {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.copyright-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--footer-text);
+  border-radius: 50%;
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.75;
+  margin-right: 2px;
+}
+
+.copyright-separator {
+  margin: 0 4px;
+  opacity: 0.5;
+}
+
+.copyright-tech {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--footer-border);
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent, #409eff);
+  border-bottom-color: var(--accent, #409eff);
+}
+
 @media (max-width: 768px) {
   .site-footer {
     padding: 20px 10px 16px;
     font-size: 12px;
+  }
+
+  .footer-content {
+    gap: 4px;
+  }
+
+  .stats-line {
+    flex-wrap: wrap;
+  }
+
+  .copyright-line {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>
