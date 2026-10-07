@@ -5,7 +5,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const siteCreatedAt = new Date('2026-10-06T00:00:00');
 const PV_OFFSET = 0;
 const UV_OFFSET = 0;
-const BUSUANZI_SCRIPT_URL = 'https://busuanzi.icodeq.com/busuanzi.pure.mini.js';
+// 换回原来的不蒜子地址
+const BUSUANZI_SCRIPT_URL = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
 // ==================== 配置区结束 ====================
 
 const runningTimeText = ref('');
@@ -68,9 +69,6 @@ onUnmounted(() => {
       <!-- 运行时间 -->
       <span class="footer-line runtime-line">{{ runningTimeText }}</span>
 
-      <!-- 分隔线 -->
-      <div class="footer-divider"></div>
-
       <!-- 访问量统计 -->
       <span v-show="statsVisible" class="footer-line stats-line">
         <span class="stat-item">
@@ -86,7 +84,8 @@ onUnmounted(() => {
 
       <!-- 版权 + 隐私政策 + 框架说明 -->
       <span class="footer-line copyright-line">
-        <span class="copyright-symbol">©</span>
+        <!-- © 直接当普通文字，不要圆圈边框了 -->
+        <span>©</span>
         <span class="copyright-year">2026 - {{ new Date().getFullYear() }}</span>
         <span class="copyright-separator">·</span>
         <span class="copyright-author">寜</span>
@@ -122,7 +121,7 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 12px; /* 三行统一等距间隔，不需要分隔线了 */
   text-align: center;
 }
 
@@ -133,13 +132,6 @@ onUnmounted(() => {
 .runtime-line {
   font-size: 12px;
   opacity: 0.85;
-}
-
-.footer-divider {
-  width: 40px;
-  height: 1px;
-  background-color: var(--footer-border);
-  opacity: 0.5;
 }
 
 .stats-line {
@@ -174,20 +166,6 @@ onUnmounted(() => {
   opacity: 0.75;
 }
 
-.copyright-symbol {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--footer-text);
-  border-radius: 50%;
-  font-size: 11px;
-  line-height: 1;
-  opacity: 0.75;
-  margin-right: 2px;
-}
-
 .copyright-separator {
   margin: 0 4px;
   opacity: 0.5;
@@ -217,7 +195,7 @@ a:hover {
   }
 
   .footer-content {
-    gap: 4px;
+    gap: 10px;
   }
 
   .stats-line {
