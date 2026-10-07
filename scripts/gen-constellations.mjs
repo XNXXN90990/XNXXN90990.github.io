@@ -34,7 +34,13 @@ const CONSTELLATIONS = [
   { id: 'Lyr', name: 'LYRA', zh: '天琴座', box: [1030, 400, 1160, 520] },
   { id: 'Del', name: 'DELPHINUS', zh: '海豚座', box: [1250, 540, 1390, 650] },
   { id: 'Aql', name: 'AQUILA', zh: '天鹰座', box: [180, 260, 430, 430] },
-  { id: 'Leo', name: 'LEO', zh: '狮子座', box: [1050, 60, 1330, 280] }
+  { id: 'Leo', name: 'LEO', zh: '狮子座', box: [1050, 60, 1330, 280] },
+  { id: 'Sco', name: 'SCORPIUS', zh: '天蝎座', box: [430, 440, 780, 665] },
+  { id: 'Gem', name: 'GEMINI', zh: '双子座', box: [640, 70, 880, 300] },
+  { id: 'Aur', name: 'AURIGA', zh: '御夫座', box: [1170, 55, 1390, 320] },
+  { id: 'And', name: 'ANDROMEDA', zh: '仙女座', box: [30, 240, 260, 445] },
+  { id: 'Ari', name: 'ARIES', zh: '白羊座', box: [460, 320, 600, 425] },
+  { id: 'Sge', name: 'SAGITTA', zh: '天箭座', box: [880, 380, 985, 465] }
 ];
 
 async function loadData() {

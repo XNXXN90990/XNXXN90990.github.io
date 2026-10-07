@@ -395,12 +395,11 @@ export default {
         const x = Math.random() * os;
         const y = Math.random() * os;
         const r = 0.35 + Math.random() * 0.5;
-        const tint = Math.random();
-        // 大多数偏冷白，少数带紫/蓝，呼应夜空
-        const cr = tint < 0.75 ? 210 + Math.round(Math.random() * 45) : 170 + Math.round(Math.random() * 60);
-        const cg = tint < 0.75 ? 215 + Math.round(Math.random() * 40) : 180 + Math.round(Math.random() * 50);
-        const cb = 230 + Math.round(Math.random() * 25);
-        const alpha = 0.1 + Math.random() * 0.28;
+        // 彩色星轨：三通道随机取值，像参考站的彩虹星迹
+        const cr = 120 + Math.round(Math.random() * 135);
+        const cg = 120 + Math.round(Math.random() * 135);
+        const cb = 120 + Math.round(Math.random() * 135);
+        const alpha = 0.1 + Math.random() * 0.3;
         octx.beginPath();
         octx.arc(x, y, r, 0, Math.PI * 2, true);
         octx.fillStyle = `rgba(${cr},${cg},${cb},${alpha})`;
@@ -468,9 +467,9 @@ export default {
 
     // ---------- 星座动效参数（错峰淡入淡出 + 缓慢漂浮，确定性伪随机） ----------
     constellationMotion(c, index) {
-      const cycle = 30 + ((index * 13) % 18);          // 30-47s 一个周期
-      const delay = -((index * 17) % 32);              // 负延迟错开相位
-      const floatDur = 13 + ((index * 7) % 9);         // 13-21s 漂浮
+      const cycle = 16 + ((index * 7) % 10);           // 16-25s 一个周期
+      const delay = -((index * 11) % 24);              // 负延迟错开相位
+      const floatDur = 11 + ((index * 5) % 8);         // 11-18s 漂浮
       const floatDelay = -((index * 5) % 11);
       return {
         animation: `constellation-cycle ${cycle}s ease-in-out ${delay}s infinite, constellation-float ${floatDur}s ease-in-out ${floatDelay}s infinite alternate`
@@ -881,7 +880,7 @@ export default {
   opacity: 0.85;
 }
 
-/* 书法水印「寜」：桌面端贴最右侧、垂直居中 */
+/* 书法水印「寜」：桌面端贴最右侧、垂直居中，字号顶天立地铺满 hero 高度 */
 .calligraphy-watermark {
   position: absolute;
   right: -3%;
@@ -889,11 +888,11 @@ export default {
   bottom: auto;
   transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
-  font-size: clamp(280px, 34vw, 520px);
+  font-size: 96vh;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 2px var(--text-primary);
-  opacity: 0.07;
+  -webkit-text-stroke: 2.5px var(--text-primary);
+  opacity: 0.09;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -1053,8 +1052,8 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  /* 头像及欢迎卡整体往左挪一点，给最右侧的水印留出位置 */
-  margin-right: 48px;
+  /* 头像及欢迎卡往左移：与标题右端间距减半（手机端恢复居中） */
+  margin-right: 156px;
 }
 
 .avatar-scene {
@@ -1424,6 +1423,10 @@ export default {
     text-align: center;
   }
 
+  .hero-avatar {
+    margin-right: 0; /* 手机端头像保持居中 */
+  }
+
   .hero-text {
     width: 100%;
     display: flex;
@@ -1454,13 +1457,13 @@ export default {
   }
 
   .calligraphy-watermark {
-    font-size: 330px;
+    font-size: 88vh;
     right: auto;
     left: 50%;
     top: 50%;
     bottom: auto;
     transform: translate(-50%, -50%);
-    opacity: 0.07;
+    opacity: 0.06;
   }
 
   .welcome-card {

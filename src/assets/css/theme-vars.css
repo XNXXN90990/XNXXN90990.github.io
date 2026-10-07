@@ -78,9 +78,9 @@
   /* ---------- 星空元素（夜空亮星 + 星白色真实星座；星轨颜色由 canvas 内置） ---------- */
   --star-color: var(--accent-bright);
   --star-color-dim: var(--accent-glow-mid);
-  --constellation-real: rgba(232, 238, 255, 0.42);
-  --constellation-star: rgba(242, 246, 255, 0.85);
-  --constellation-label: rgba(228, 234, 255, 0.4);
+  --constellation-real: rgba(232, 238, 255, 0.28);
+  --constellation-star: rgba(242, 246, 255, 0.55);
+  --constellation-label: rgba(228, 234, 255, 0.28);
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(0, 0, 0, 0.6);
@@ -310,9 +310,9 @@
   /* ---------- 星空元素（淡色底上的暗金星图） ---------- */
   --star-color: var(--accent);
   --star-color-dim: var(--accent-glow-mid);
-  --constellation-real: rgba(150, 118, 62, 0.45);
-  --constellation-star: rgba(122, 96, 52, 0.6);
-  --constellation-label: rgba(150, 118, 62, 0.5);
+  --constellation-real: rgba(150, 118, 62, 0.3);
+  --constellation-star: rgba(122, 96, 52, 0.42);
+  --constellation-label: rgba(150, 118, 62, 0.32);
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(30, 30, 40, 0.45);
