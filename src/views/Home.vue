@@ -883,16 +883,16 @@ export default {
 /* 书法水印「寜」：桌面端贴最右侧、垂直居中，字号顶天立地铺满 hero 高度 */
 .calligraphy-watermark {
   position: absolute;
-  right: -3%;
-  top: 50%;
+  right: -6%;
+  top: 47%;
   bottom: auto;
   transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
   font-size: 96vh;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 2.5px var(--text-primary);
-  opacity: 0.09;
+  -webkit-text-stroke: 2.5px var(--watermark-stroke);
+  opacity: var(--watermark-opacity);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -1463,7 +1463,7 @@ export default {
     top: 50%;
     bottom: auto;
     transform: translate(-50%, -50%);
-    opacity: 0.06;
+    opacity: var(--watermark-opacity);
   }
 
   .welcome-card {

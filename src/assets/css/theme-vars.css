@@ -81,6 +81,8 @@
   --constellation-real: rgba(232, 238, 255, 0.28);
   --constellation-star: rgba(242, 246, 255, 0.55);
   --constellation-label: rgba(228, 234, 255, 0.28);
+  --watermark-stroke: #ffffff;
+  --watermark-opacity: 0.12;
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(0, 0, 0, 0.6);
@@ -313,6 +315,8 @@
   --constellation-real: rgba(150, 118, 62, 0.3);
   --constellation-star: rgba(122, 96, 52, 0.42);
   --constellation-label: rgba(150, 118, 62, 0.32);
+  --watermark-stroke: var(--text-primary);
+  --watermark-opacity: 0.09;
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(30, 30, 40, 0.45);
