@@ -4,42 +4,34 @@
     <section class="hero">
       <!-- 星空/星座层 -->
       <svg class="star-layer" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- 星座连线 -->
-        <path
-          class="constellation-line" 
-          d="M 160 120 L 320 190 L 470 110 L 620 220 L 760 140"
-          fill="none"
-        />
-        <path
-          class="constellation-line constellation-line--2"
-          d="M 960 100 L 1100 180 L 1250 85 L 1370 160"
-          fill="none"
-        />
-        <path
-          class="constellation-line constellation-line--2"
-          d="M 220 480 L 380 560 L 540 470"
-          fill="none"
-        />
-        <!-- 星座节点（亮星） -->
-        <circle class="star star--big" cx="160" cy="120" r="3.4" />
-        <circle class="star star--big star--t2" cx="320" cy="190" r="2.8" />
-        <circle class="star star--big star--t3" cx="470" cy="110" r="3.6" />
-        <circle class="star star--big" cx="620" cy="220" r="2.6" />
-        <circle class="star star--big star--t2" cx="760" cy="140" r="3.2" />
-        <circle class="star star--big star--t3" cx="960" cy="100" r="3" />
-        <circle class="star star--big" cx="1100" cy="180" r="2.6" />
-        <circle class="star star--big star--t2" cx="1250" cy="85" r="3.4" />
-        <circle class="star star--big" cx="220" cy="480" r="2.4" />
-        <circle class="star star--big star--t3" cx="380" cy="560" r="2.6" />
-        <circle class="star star--big star--t2" cx="540" cy="470" r="2.2" />
-        <!-- 四芒星（最亮，带十字光芒） -->
-        <g class="star-flare star--t2" transform="translate(760, 140)">
+        <!-- 星轨（仅深色模式）：以右上方天极为中心的慢速旋转弧线 -->
+        <g class="star-trails">
+          <g class="trail-rotor">
+            <circle class="trail trail--1" cx="1240" cy="-70" r="190" pathLength="360" stroke-dasharray="16 74" />
+            <circle class="trail trail--1" cx="1240" cy="-70" r="190" pathLength="360" stroke-dasharray="10 350" stroke-dashoffset="150" />
+            <circle class="trail trail--2" cx="1240" cy="-70" r="310" pathLength="360" stroke-dasharray="26 94" />
+            <circle class="trail trail--2" cx="1240" cy="-70" r="310" pathLength="360" stroke-dasharray="12 348" stroke-dashoffset="210" />
+            <circle class="trail trail--3" cx="1240" cy="-70" r="450" pathLength="360" stroke-dasharray="34 116" />
+            <circle class="trail trail--4" cx="1240" cy="-70" r="600" pathLength="360" stroke-dasharray="44 136" />
+            <animateTransform attributeName="transform" type="rotate" from="0 1240 -70" to="360 1240 -70" dur="180s" repeatCount="indefinite" />
+          </g>
+        </g>
+
+        <!-- 真实星座（d3-celestial 数据，scripts/gen-constellations.mjs 生成） -->
+        <g v-for="c in constellationItems" :key="c.id" class="constellation">
+          <path v-for="(seg, i) in c.paths" :key="'p' + i" class="constellation-line" :d="seg" fill="none" />
+          <circle v-for="(s, i) in c.stars" :key="'s' + i" class="constellation-star" :cx="s[0]" :cy="s[1]" r="2.1" />
+          <text class="constellation-label" :x="c.label[0]" :y="c.label[1]" text-anchor="middle">{{ c.name }}</text>
+        </g>
+
+        <!-- 四芒星（点在真实亮星上，带十字光芒） -->
+        <g class="star-flare star--t2" transform="translate(342.4, 115.3)">
           <path d="M 0 -14 L 2.2 -2.2 L 14 0 L 2.2 2.2 L 0 14 L -2.2 2.2 L -14 0 L -2.2 -2.2 Z" />
         </g>
-        <g class="star-flare star-flare--sm" transform="translate(470, 110)">
+        <g class="star-flare star-flare--sm" transform="translate(957.9, 173.2)">
           <path d="M 0 -10 L 1.8 -1.8 L 10 0 L 1.8 1.8 L 0 10 L -1.8 1.8 L -10 0 L -1.8 -1.8 Z" />
         </g>
-        <g class="star-flare star--t3" transform="translate(1250, 85)">
+        <g class="star-flare star--t3" transform="translate(184.6, 509.3)">
           <path d="M 0 -11 L 2 -2 L 11 0 L 2 2 L 0 11 L -2 2 L -11 0 L -2 -2 Z" />
         </g>
         <!-- 散星 -->
@@ -84,10 +76,10 @@
           <p class="hero-intro">很高兴与你相遇！这里会分享教程、学习路线、随笔与杂谈~</p>
 
           <div class="hero-actions">
-            <a :href="githubUrl" target="_blank" rel="noopener noreferrer" class="hero-btn">
-              <i class="fab fa-github"></i>
-              <span>GitHub</span>
-            </a>
+            <router-link to="/about" class="hero-btn">
+              <i class="fa-solid fa-address-card"></i>
+              <span>关于我</span>
+            </router-link>
             <button type="button" class="hero-btn hero-btn--ghost" @click="scrollToPosts">
               <span>看文章</span>
               <i class="fas fa-arrow-down"></i>
@@ -106,14 +98,16 @@
               role="button"
               tabindex="0"
               aria-label="头像，悬停或点击翻面"
-              @click="avatarFlipped = !avatarFlipped"
-              @keydown.enter.prevent="avatarFlipped = !avatarFlipped"
+              @mouseenter="flipToBack"
+              @mouseleave="flipToFront"
+              @click="onAvatarClick"
+              @keydown.enter.prevent="toggleFlip"
             >
               <div class="avatar-face avatar-front">
                 <img :src="avatarUrl" alt="寜的头像" draggable="false" />
               </div>
               <div class="avatar-face avatar-back">
-                <img :src="avatarBackUrl" alt="头像背面" draggable="false" />
+                <img :src="avatarBackCurrent" alt="头像背面" draggable="false" />
               </div>
             </div>
           </div>
@@ -206,6 +200,8 @@ import { fetchPosts } from '@/api';
 import { getPostCardBadges } from '@/utils/postCardBadges';
 import avatarUrl from '@/assets/imgs/avatar.jpg';
 import avatarBackUrl from '@/assets/imgs/avatar-back.jpg';
+import avatarBack2Url from '@/assets/imgs/avatar-back2.jpg';
+import constellationData from '@/content/constellations.json';
 
 const TYPE_PHRASES = [
   '寜的小站·Ning\'s Blog',
@@ -264,9 +260,7 @@ export default {
       // 素材
       avatarUrl,
       avatarBackUrl,
-      githubUrl:
-        (import.meta.env.VITE_GITHUB_URL && String(import.meta.env.VITE_GITHUB_URL).trim()) ||
-        'https://github.com/XNXXN90990',
+      avatarBack2Url,
       defaultCover: '/covers/git.svg',
 
       // 文章数据
@@ -275,8 +269,10 @@ export default {
       pageSize: 12,
       total: 0,
 
-      // 头像翻转（触屏点击用；桌面端走 CSS hover）
+      // 头像翻转（触屏点击用；桌面端走 hover）
       avatarFlipped: false,
+      // 翻到背面的次数：奇数次显示头像背面，偶数次显示头像背面2
+      flipCount: 0,
 
       // 访客欢迎卡
       welcome: { show: false, region: '', greeting: timeGreeting(), distance: '' },
@@ -304,6 +300,33 @@ export default {
   computed: {
     totalPages() {
       return Math.max(1, Math.ceil(this.total / this.pageSize));
+    },
+    /** 当前背面图：第 1、3、5…次翻面显示头像背面，第 2、4…次显示头像背面2 */
+    avatarBackCurrent() {
+      return this.flipCount % 2 === 1 ? this.avatarBackUrl : this.avatarBack2Url;
+    },
+    /** 真实星座渲染数据：连线 path、去重后的星点、拉丁名标签位置 */
+    constellationItems() {
+      return constellationData.items.map((item) => {
+        const pts = item.stars;
+        const minX = Math.min(...pts.map((p) => p[0]));
+        const maxX = Math.max(...pts.map((p) => p[0]));
+        const maxY = Math.max(...pts.map((p) => p[1]));
+        const seen = new Set();
+        const stars = pts.filter((p) => {
+          const key = p[0] + ',' + p[1];
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        return {
+          id: item.id,
+          name: item.name,
+          paths: item.lines.map((seg) => 'M ' + seg.map((p) => p[0] + ' ' + p[1]).join(' L ')),
+          stars,
+          label: [Math.round((minX + maxX) / 2), maxY + 20]
+        };
+      });
     }
   },
   mounted() {
@@ -330,6 +353,26 @@ export default {
     }
   },
   methods: {
+    // ---------- 头像翻面 ----------
+    flipToBack() {
+      if (this.avatarFlipped) return;
+      this.flipCount++;
+      this.avatarFlipped = true;
+    },
+    flipToFront() {
+      this.avatarFlipped = false;
+    },
+    toggleFlip() {
+      if (this.avatarFlipped) this.flipToFront();
+      else this.flipToBack();
+    },
+    // 触屏/无悬停设备用点击翻转；桌面端 hover 已接管，点击不动作
+    onAvatarClick() {
+      if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+        this.toggleFlip();
+      }
+    },
+
     // ---------- 访客欢迎卡 ----------
     async loadWelcome() {
       const controller = new AbortController();
@@ -625,6 +668,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  /* 首屏占满一屏：文章卡片下滑再出现 */
+  min-height: calc(100vh - 68px);
 }
 
 /* 星空/星座层 */
@@ -653,14 +698,43 @@ export default {
   50% { opacity: 0.25; }
 }
 
-.constellation-line {
-  stroke: var(--constellation-line);
-  stroke-width: 1.5;
-  stroke-dasharray: 7 7;
+/* ---- 星轨（仅深色模式） ---- */
+.star-trails {
+  opacity: 0.55;
 }
 
-.constellation-line--2 {
-  opacity: 0.75;
+:root[data-theme='light'] .star-trails {
+  display: none;
+}
+
+.trail {
+  fill: none;
+  stroke: var(--star-trail);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.trail--1 { stroke-width: 1.2; opacity: 0.75; }
+.trail--2 { opacity: 0.9; }
+.trail--3 { stroke-width: 1.4; opacity: 0.7; }
+.trail--4 { stroke-width: 1.2; opacity: 0.5; }
+
+/* ---- 真实星座 ---- */
+.constellation-line {
+  stroke: var(--constellation-real);
+  stroke-width: 1.4;
+  stroke-dasharray: 6 6;
+}
+
+.constellation-star {
+  fill: var(--constellation-star);
+}
+
+.constellation-label {
+  fill: var(--constellation-label);
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  font-family: 'Bebas Neue', 'Segoe UI', Arial, sans-serif;
 }
 
 /* 四芒星（十字光芒） */
@@ -676,7 +750,7 @@ export default {
 /* 书法水印「寜」 */
 .calligraphy-watermark {
   position: absolute;
-  right: -2%;
+  right: 16%;
   bottom: -18%;
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
   font-size: clamp(280px, 34vw, 520px);
@@ -887,7 +961,7 @@ export default {
   cursor: pointer;
 }
 
-.avatar-scene:hover .avatar-flip,
+/* 翻转统一由 JS 驱动（桌面 hover / 手机点击），背面图轮流显示 */
 .avatar-flip.flipped {
   transform: rotateY(180deg);
 }
@@ -1243,6 +1317,7 @@ export default {
 
   .calligraphy-watermark {
     font-size: 240px;
+    right: 6%;
     bottom: 4%;
     opacity: 0.06;
   }
@@ -1292,8 +1367,14 @@ export default {
   .star--t2,
   .star--t3,
   .avatar-glow,
-  .arrow-container {
+  .arrow-container,
+  .star-trails {
     animation: none;
+  }
+
+  /* SMIL 星轨旋转无法用 CSS 暂停，直接隐藏 */
+  .star-trails {
+    display: none;
   }
 
   .line2 {

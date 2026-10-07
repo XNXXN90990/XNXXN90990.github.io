@@ -11,3 +11,6 @@ content/private/
 .vscode/
 *.log
 .DS_Store
+
+# 脚本本地缓存（星座原始数据等）
+scripts/.cache/

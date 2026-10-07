@@ -13,8 +13,8 @@
   /* ---------- 背景 ---------- */
   --bg-base: #0d1120;
   --bg-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
     radial-gradient(1100px 700px at 85% -10%, rgba(124, 92, 214, 0.2), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(64, 90, 200, 0.16), transparent 55%),
     radial-gradient(1000px 800px at 50% 110%, rgba(40, 50, 110, 0.25), transparent 60%),
@@ -74,10 +74,13 @@
   --scrollbar-thumb: #1e211e;
   --scrollbar-thumb-hover: #5c665c;
 
-  /* ---------- 星空元素（夜空亮星） ---------- */
+  /* ---------- 星空元素（夜空亮星 + 星白色真实星座 + 星轨） ---------- */
   --star-color: var(--accent-bright);
   --star-color-dim: var(--accent-glow-mid);
-  --constellation-line: var(--accent-border);
+  --constellation-real: rgba(232, 238, 255, 0.42);
+  --constellation-star: rgba(242, 246, 255, 0.85);
+  --constellation-label: rgba(228, 234, 255, 0.4);
+  --star-trail: rgba(215, 226, 255, 0.5);
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(0, 0, 0, 0.6);
@@ -241,8 +244,8 @@
   /* ---------- 背景（淡白微黄，有渐变） ---------- */
   --bg-base: #fbfbf6;
   --bg-image:
-    linear-gradient(rgba(60, 60, 70, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(60, 60, 70, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(60, 60, 70, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 60, 70, 0.018) 1px, transparent 1px),
     radial-gradient(1100px 700px at 85% -10%, rgba(214, 186, 110, 0.12), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(124, 92, 214, 0.07), transparent 55%),
     linear-gradient(180deg, #fdfdfb 0%, #f8f7ee 55%, #f3f2e6 100%);
@@ -302,10 +305,13 @@
   --scrollbar-thumb: #c8c8c0;
   --scrollbar-thumb-hover: #a8a8a0;
 
-  /* ---------- 星空元素（淡色底上的主题色星图） ---------- */
+  /* ---------- 星空元素（淡色底上的暗金星图；星轨不显示） ---------- */
   --star-color: var(--accent);
   --star-color-dim: var(--accent-glow-mid);
-  --constellation-line: var(--accent-border);
+  --constellation-real: rgba(150, 118, 62, 0.45);
+  --constellation-star: rgba(122, 96, 52, 0.6);
+  --constellation-label: rgba(150, 118, 62, 0.5);
+  --star-trail: transparent;
 
   /* ---------- 其他 ---------- */
   --overlay-mask: rgba(30, 30, 40, 0.45);
