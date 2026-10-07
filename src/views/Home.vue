@@ -889,7 +889,7 @@ export default {
   bottom: auto;
   transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
-  font-size: 96vh;
+  font-size: min(96vh, 54vw);
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 2.5px var(--watermark-stroke);
