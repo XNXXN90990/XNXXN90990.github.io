@@ -85,16 +85,16 @@ onUnmounted(() => {
       <!-- 版权 + 隐私政策 + 框架说明 -->
       <span class="footer-line copyright-line">
         <!-- © 直接当普通文字，不要圆圈边框了 -->
-        <span>©</span>
-        <span class="copyright-year">2026 - {{ new Date().getFullYear() }}</span>
-        <span class="copyright-separator">·</span>
+        <span class="copyright-power">Copyright</span>
+        <span> © </span>
+        <span class="copyright-year">2026—{{ new Date().getFullYear() }}</span>
         <span class="copyright-author">寜</span>
-        <span class="copyright-separator">·</span>
-        <a href="/privacy" class="link-hover">隐私政策</a>
-        <span class="copyright-separator">·</span>
+        <span class="copyright-separator"> | </span>
         <span class="copyright-tech">
-          Built with <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="link-hover">Vue 3</a> + <a href="https://vite.dev" target="_blank" rel="noopener noreferrer" class="link-hover">Vite</a>
-        </span>
+          Made with <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="link-hover">Vue 3</a> + <a href="https://vite.dev" target="_blank" rel="noopener noreferrer" class="link-hover">Vite</a>
+        </span>   
+        <span class="copyright-separator"> | </span>             
+        <a href="/privacy" class="link-hover">隐私政策</a>
       </span>
     </div>
   </footer>
