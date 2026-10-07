@@ -885,7 +885,7 @@ export default {
 .calligraphy-watermark {
   position: fixed;
   right: -6%;
-  top: 47%;
+  top: 48.5%;
   bottom: auto;
   transform: translateY(-50%);
   font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
