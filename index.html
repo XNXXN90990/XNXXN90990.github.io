@@ -4,20 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="寜的小站 · Ning's Blog —— 宁静致远，记录学习、生活与思考。教程 / 学习路线 / 随笔 / 杂谈。" />
+    <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#050a06" />
-    <title>寜的小站 · Ning's Blog</title>
-    <!-- 书法字体（马善政毛笔楷书，OFL 开源）：水印与点缀用，加载失败回退系统楷体 -->
+    <title>寜的小站 · 打盹中</title>
     <link rel="preconnect" href="https://fonts.loli.net" />
     <link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.loli.net/css2?family=Ma+Shan+Zheng&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ma+Shan+Zheng&display=swap" media="print" onload="this.media='all'" />
     <script>
-      // 主题：在 Vue 挂载前设置好，避免刷新时闪错色（与 src/utils/theme.js 逻辑一致）
       (function () {
         try {
           var t = localStorage.getItem('ning-theme');
@@ -25,29 +18,78 @@
             t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
           }
           document.documentElement.dataset.theme = t;
-          // 主题色（accent）
           var a = localStorage.getItem('ning-accent');
-          if (['green', 'blue', 'purple', 'orange', 'pink', 'red'].indexOf(a) === -1) a = 'purple';
+          if (['green','blue','purple','orange','pink','red'].indexOf(a) === -1) a = 'purple';
           document.documentElement.dataset.accent = a;
         } catch (e) {
           document.documentElement.dataset.theme = 'dark';
           document.documentElement.dataset.accent = 'purple';
         }
       })();
-      // GitHub Pages SPA 回退：直接访问 /posts/xxx 等深链时由 404.html 转到 /?/posts/xxx，再在这里还原地址
-      (function (l) {
-        if (l.search.indexOf('?/') === 0) {
-          var redirect = sessionStorage.getItem('ning-gh-redirect');
-          if (redirect) {
-            sessionStorage.removeItem('ning-gh-redirect');
-            history.replaceState(null, '', redirect);
-          }
-        }
-      })(window.location);
     </script>
+    <style>
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+        color: var(--text-primary);
+        background-color: var(--bg-base);
+        background-image: var(--bg-image);
+        background-size: var(--bg-size);
+        background-repeat: var(--bg-repeat);
+        background-position: center;
+        background-attachment: fixed;
+      }
+      /* 与首页同款书法水印，直接照搬 Home.vue 的参数 */
+      .wm {
+        position: fixed; right: -6%; top: 40%; bottom: auto; transform: translateY(-50%);
+        font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
+        font-size: min(96vh, 54vw); line-height: 1; color: transparent;
+        -webkit-text-stroke: 2.5px var(--watermark-stroke);
+        opacity: var(--watermark-opacity);
+        pointer-events: none; user-select: none; z-index: 0; white-space: nowrap;
+      }
+      .wrap {
+        position: relative; z-index: 1; min-height: 100vh;
+        display: flex; align-items: center; justify-content: center; padding: 24px;
+      }
+      .card {
+        max-width: 520px; text-align: center; padding: 40px 36px; border-radius: 18px;
+        background: color-mix(in srgb, var(--bg-base) 62%, transparent);
+        border: 1px solid var(--accent-border);
+        box-shadow: var(--glow-shadow);
+        backdrop-filter: blur(10px);
+      }
+      .emoji { font-size: 42px; line-height: 1; }
+      h1 {
+        margin: 16px 0 10px; font-size: 26px; font-weight: 600; letter-spacing: .5px;
+        background-image: var(--title-gradient);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      p { 
+margin: 0; 
+line-height: 2; 
+  font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', serif;
+color: var(--text-secondary);
+ font-size: 26px; }
+      .sub { margin-top: 18px; font-size: 12.5px; color: var(--text-muted); }
+      .dots i {
+        display: inline-block; width: 5px; height: 5px; margin: 0 2px; border-radius: 50%;
+        background: var(--accent-strong); animation: blink 1.4s infinite both;
+      }
+      .dots i:nth-child(2) { animation-delay: .2s; }
+      .dots i:nth-child(3) { animation-delay: .4s; }
+      @keyframes blink { 0%,80%,100% { opacity: .25 } 40% { opacity: 1 } }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div class="wm">寜</div>
+    <div class="wrap">
+      <div class="card">
+        <h1>小站正在打盹，马上回来</h1>
+        <p>DBD跑去后台搬砖了，瓦片正在重新码放。<br />泡杯茶等一下，或者去别处逛逛。<br />稍等，正在把星星擦亮 ✨</p>
+        <div class="sub"><span class="dots"></span> </div>
+      </div>
+    </div>
   </body>
 </html>
