@@ -121,7 +121,78 @@ function genPublicManifest() {
   fs.writeFileSync(path.join(OUT_DIR, 'manifest.json'), JSON.stringify(posts, null, 2), 'utf-8');
   fs.writeFileSync(path.join(OUT_DIR, 'thoughts-manifest.json'), JSON.stringify(thoughts, null, 2), 'utf-8');
   console.log(`[gen-content] 清单 → src/content/manifest.json + thoughts-manifest.json`);
+  genFeedSitemap(posts, thoughts);
   return posts;
+}
+
+// ---------- 1b. RSS / sitemap / robots（输出到 public/，随构建直通） ----------
+
+const SITE_URL = 'https://xnxxn90990.github.io';
+const SITE_NAME = '寜的小站 · Ning\'s Blog';
+
+function xmlEscape(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function genFeedSitemap(posts, thoughts) {
+  const PUBLIC_DIR = path.join(ROOT, 'public');
+
+  // RSS：文章 + 杂想，各取前 20 条
+  const feedItems = [
+    ...posts.slice(0, 20).map((p) => ({
+      title: p.title, link: `${SITE_URL}/posts/${p.id}`, date: p.updateTime || p.date,
+      desc: p.description || ''
+    })),
+    ...thoughts.slice(0, 20).map((t) => ({
+      title: `杂想 · ${t.title}`, link: `${SITE_URL}/thoughts/${t.id}`, date: t.updateTime || t.date,
+      desc: t.description || ''
+    }))
+  ].sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
+
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${xmlEscape(SITE_NAME)}</title>
+    <link>${SITE_URL}/</link>
+    <description>宁静致远，记录学习、生活与思考。密码学与 AI 系列 / 教程 / 杂想 / 说说。</description>
+    <language>zh-CN</language>
+    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+${feedItems.map((it) => `    <item>
+      <title>${xmlEscape(it.title)}</title>
+      <link>${it.link}</link>
+      <guid isPermaLink="true">${it.link}</guid>
+      <pubDate>${new Date(it.date).toUTCString()}</pubDate>
+      <description>${xmlEscape(it.desc)}</description>
+    </item>`).join('\n')}
+  </channel>
+</rss>
+`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'feed.xml'), rss, 'utf-8');
+
+  // sitemap：固定页 + 文章 + 杂想
+  const fixed = ['', '/about', '/archive', '/albums', '/links', '/talks', '/thoughts', '/guide'];
+  const urls = [
+    ...fixed.map((u) => ({ loc: `${SITE_URL}/${u.replace(/^\//, u === '' ? '' : '')}`.replace(/\/+$/, u === '' ? '/' : ''), date: null })),
+    ...posts.map((p) => ({ loc: `${SITE_URL}/posts/${p.id}`, date: p.updateTime || p.date })),
+    ...thoughts.map((t) => ({ loc: `${SITE_URL}/thoughts/${t.id}`, date: t.updateTime || t.date }))
+  ];
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((u) => `  <url>
+    <loc>${u.loc}</loc>${u.date ? `
+    <lastmod>${String(u.date).slice(0, 10)}</lastmod>` : ''}
+  </url>`).join('\n')}
+</urlset>
+`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'sitemap.xml'), sitemap, 'utf-8');
+
+  const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), robots, 'utf-8');
+  console.log(`[gen-content] RSS ${feedItems.length} 条 + sitemap ${urls.length} URL + robots → public/`);
 }
 
 // ---------- 2. 私人文章加密 ----------

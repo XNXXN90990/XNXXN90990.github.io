@@ -4,10 +4,22 @@
     "class_desc": "平时经常逛的博客与小站，欢迎交换友链。",
     "link_list": [
       {
-        "name": "示例博客（替换或删除我）",
-        "avatar": "https://github.com/github.png",
-        "link": "https://example.com",
-        "descr": "编辑 content/links.json 就能增删友链，格式照抄这一条。"
+        "name": "阿叶Ayeez的博客",
+        "avatar": "https://qiniu.ayeez.cn/avatar.jpg",
+        "link": "https://blog.ayeez.cn/",
+        "descr": "AyeezBlog 开源项目的作者，本站正是基于他的项目构建，感谢开源。"
+      },
+      {
+        "name": "Wcowin's Blog",
+        "avatar": "https://i.stardots.io/wcowin/1750090373988.png",
+        "link": "https://wcowin.work/",
+        "descr": "知足且上进，温柔且坚定——密码学与 AI 系列文章的来源，宝藏博客。"
+      },
+      {
+        "name": "善小逸",
+        "avatar": "https://img.donghao.ltd/img/touxiang.jpg",
+        "link": "https://blog.donghao.ltd/",
+        "descr": "善小逸的个人博客，坚持记录与分享。"
       }
     ]
   },
