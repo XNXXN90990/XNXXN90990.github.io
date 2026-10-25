@@ -1,13 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0.65" y2="1">
-      <stop offset="0" stop-color="#0e1118"/>
-      <stop offset="1" stop-color="#181d29"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#0a1428"/>
+      <stop offset="1" stop-color="#10233d"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.22" cy="0.22" r="0.72">
-      <stop offset="0" stop-color="#8b7bff" stop-opacity="0.27"/>
-      <stop offset="0.55" stop-color="#8b7bff" stop-opacity="0.08"/>
-      <stop offset="1" stop-color="#8b7bff" stop-opacity="0"/>
+    <radialGradient id="glowA" cx="0.78" cy="0.16" r="0.7">
+      <stop offset="0" stop-color="#2e5fa3" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#2e5fa3" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.15" cy="0.85" r="0.6">
+      <stop offset="0" stop-color="#2e5fa3" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#2e5fa3" stop-opacity="0"/>
     </radialGradient>
     <filter id="grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
@@ -17,34 +20,9 @@
     </filter>
   </defs>
   <rect width="800" height="450" fill="url(#bg)"/>
-  <rect width="800" height="450" fill="url(#glow)"/>
-  <g fill="none" stroke="#ffffff" stroke-opacity="0.06">
-    <circle cx="210" cy="112" r="128"/>
-    <circle cx="210" cy="112" r="82"/>
-    <circle cx="210" cy="112" r="40"/>
-  </g>
-  <path d="M -85.0 302.0 C 175.0 255.8, 355.0 378.0, 535.0 302.0 S 795.0 246.0, 855.0 282.0" fill="none" stroke="#8b7bff" stroke-opacity="0.4" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M -85.0 342.0 C 205.0 309.0, 385.0 399.6, 575.0 336.0 S 815.0 286.0, 855.0 318.0" fill="none" stroke="#8b7bff" stroke-opacity="0.24" stroke-width="1.7" stroke-dasharray="7 9" stroke-linecap="round"/>
-  <path d="M -85.0 378.0 C 185.0 353.8, 405.0 421.2, 595.0 372.0 S 825.0 336.0, 855.0 356.0" fill="none" stroke="#8b7bff" stroke-opacity="0.13" stroke-width="1.1" stroke-linecap="round"/>
-  <circle cx="72" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#8b7bff" stroke-opacity="0.92" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+  
+  <circle cx="297" cy="51" r="2.2" fill="#7db4ff" fill-opacity="0.75"/><circle cx="303" cy="415" r="1.9" fill="#ffffff" fill-opacity="0.48"/><circle cx="298" cy="37" r="3.4" fill="#ffffff" fill-opacity="0.27"/><circle cx="108" cy="336" r="3.3" fill="#ffffff" fill-opacity="0.49"/><circle cx="301" cy="324" r="3.2" fill="#7db4ff" fill-opacity="0.26"/><circle cx="425" cy="416" r="1.7" fill="#ffffff" fill-opacity="0.55"/><circle cx="161" cy="378" r="2.7" fill="#ffffff" fill-opacity="0.41"/><circle cx="460" cy="310" r="2.1" fill="#ffffff" fill-opacity="0.65"/><circle cx="46" cy="165" r="1.8" fill="#7db4ff" fill-opacity="0.28"/><circle cx="711" cy="321" r="2.6" fill="#ffffff" fill-opacity="0.34"/><circle cx="523" cy="211" r="3.0" fill="#ffffff" fill-opacity="0.44"/><circle cx="683" cy="220" r="3.0" fill="#ffffff" fill-opacity="0.70"/><circle cx="633" cy="132" r="3.3" fill="#7db4ff" fill-opacity="0.51"/><circle cx="419" cy="242" r="1.8" fill="#ffffff" fill-opacity="0.40"/><circle cx="285" cy="282" r="2.2" fill="#ffffff" fill-opacity="0.29"/><line x1="419" y1="242" x2="285" y2="282" stroke="#2e5fa3" stroke-opacity="0.3" stroke-width="1"/><line x1="108" y1="336" x2="683" y2="220" stroke="#2e5fa3" stroke-opacity="0.3" stroke-width="1"/><line x1="297" y1="51" x2="108" y2="336" stroke="#2e5fa3" stroke-opacity="0.3" stroke-width="1"/><line x1="683" y1="220" x2="633" y2="132" stroke="#2e5fa3" stroke-opacity="0.3" stroke-width="1"/><line x1="460" y1="310" x2="523" y2="211" stroke="#2e5fa3" stroke-opacity="0.3" stroke-width="1"/>
+  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#7db4ff" stroke-opacity="0.95" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M34 26 L25 74 M47 26 L38 74 M60 26 L51 74 M73 26 L64 74"/><path d="M20 42 H80 M17 58 H77"/>
   </g>
   <rect width="800" height="450" filter="url(#grain)" fill="transparent"/>

@@ -1,13 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0.65" y2="1">
-      <stop offset="0" stop-color="#0e1118"/>
-      <stop offset="1" stop-color="#181d29"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#190d17"/>
+      <stop offset="1" stop-color="#2f1a29"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.22" cy="0.16" r="0.72">
-      <stop offset="0" stop-color="#66d6c0" stop-opacity="0.27"/>
-      <stop offset="0.55" stop-color="#66d6c0" stop-opacity="0.08"/>
-      <stop offset="1" stop-color="#66d6c0" stop-opacity="0"/>
+    <radialGradient id="glowA" cx="0.78" cy="0.16" r="0.7">
+      <stop offset="0" stop-color="#7c3d63" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#7c3d63" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.15" cy="0.85" r="0.6">
+      <stop offset="0" stop-color="#7c3d63" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#7c3d63" stop-opacity="0"/>
     </radialGradient>
     <filter id="grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
@@ -17,34 +20,17 @@
     </filter>
   </defs>
   <rect width="800" height="450" fill="url(#bg)"/>
-  <rect width="800" height="450" fill="url(#glow)"/>
-  <g fill="none" stroke="#ffffff" stroke-opacity="0.06">
-    <circle cx="390" cy="112" r="128"/>
-    <circle cx="390" cy="112" r="82"/>
-    <circle cx="390" cy="112" r="40"/>
-  </g>
-  <path d="M 5.0 302.0 C 265.0 260.0, 445.0 376.0, 625.0 302.0 S 885.0 246.0, 945.0 282.0" fill="none" stroke="#66d6c0" stroke-opacity="0.4" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M 5.0 342.0 C 295.0 312.0, 475.0 398.0, 665.0 336.0 S 905.0 286.0, 945.0 318.0" fill="none" stroke="#66d6c0" stroke-opacity="0.24" stroke-width="1.7" stroke-dasharray="7 9" stroke-linecap="round"/>
-  <path d="M 5.0 378.0 C 275.0 356.0, 495.0 420.0, 685.0 372.0 S 915.0 336.0, 945.0 356.0" fill="none" stroke="#66d6c0" stroke-opacity="0.13" stroke-width="1.1" stroke-linecap="round"/>
-  <circle cx="72" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#66d6c0" stroke-opacity="0.92" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+  
+  
+  <path d="M -20 146.82592349126935 C 470.50512632355094 110.82592349126935, 690.5051263235509 182.82592349126935, 600 132.42592349126934 S 509.49487367644906 172.02592349126934, 830 146.82592349126935" fill="none" stroke="#7c3d63" stroke-opacity="0.3" stroke-width="1.6"/>
+  
+  <path d="M -20 250.4595711734146 C 470.50512632355094 206.4595711734146, 690.5051263235509 294.4595711734146, 600 232.8595711734146 S 509.49487367644906 281.2595711734146, 830 250.4595711734146" fill="none" stroke="#7c3d63" stroke-opacity="0.22" stroke-width="1.6" stroke-dasharray="6 8"/>
+  
+  <path d="M -20 324.1792666632682 C 470.50512632355094 286.1792666632682, 690.5051263235509 362.1792666632682, 600 308.9792666632682 S 509.49487367644906 350.77926666326823, 830 324.1792666632682" fill="none" stroke="#7c3d63" stroke-opacity="0.3" stroke-width="1.6"/>
+  
+  <path d="M -20 402.62787506217137 C 470.50512632355094 372.62787506217137, 690.5051263235509 432.62787506217137, 600 390.62787506217137 S 509.49487367644906 423.62787506217137, 830 402.62787506217137" fill="none" stroke="#7c3d63" stroke-opacity="0.18" stroke-width="1.6" stroke-dasharray="6 8"/>
+  <path d="M -20 430 C 200 400, 400 450, 820 415 L 820 470 L -20 470 Z" fill="#7c3d63" fill-opacity="0.1"/>
+  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#ff9dc9" stroke-opacity="0.95" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M20 48 C33 37 51 35 66 42 L80 34 C76 46 65 55 50 58 C39 60 27 56 20 48 Z"/><path d="M27 61 C42 66 57 63 68 55"/><path d="M35 44 C45 40 57 40 64 44"/>
   </g>
   <rect width="800" height="450" filter="url(#grain)" fill="transparent"/>

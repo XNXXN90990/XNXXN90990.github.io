@@ -1,13 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0.65" y2="1">
-      <stop offset="0" stop-color="#0e1118"/>
-      <stop offset="1" stop-color="#181d29"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#10151c"/>
+      <stop offset="1" stop-color="#1f2833"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.78" cy="0.22" r="0.72">
-      <stop offset="0" stop-color="#5ad0ff" stop-opacity="0.27"/>
-      <stop offset="0.55" stop-color="#5ad0ff" stop-opacity="0.08"/>
-      <stop offset="1" stop-color="#5ad0ff" stop-opacity="0"/>
+    <radialGradient id="glowA" cx="0.78" cy="0.16" r="0.7">
+      <stop offset="0" stop-color="#45586e" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#45586e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.15" cy="0.85" r="0.6">
+      <stop offset="0" stop-color="#45586e" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#45586e" stop-opacity="0"/>
     </radialGradient>
     <filter id="grain">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
@@ -17,34 +20,15 @@
     </filter>
   </defs>
   <rect width="800" height="450" fill="url(#bg)"/>
-  <rect width="800" height="450" fill="url(#glow)"/>
-  <g fill="none" stroke="#ffffff" stroke-opacity="0.06">
-    <circle cx="480" cy="112" r="128"/>
-    <circle cx="480" cy="112" r="82"/>
-    <circle cx="480" cy="112" r="40"/>
+  
+  <g transform="rotate(22.2 400 225)">
+  <polygon points="125.21489173173904,-40 213.27830873522907,-40 -46.721691264770925,490 -134.78510826826096,490" fill="#45586e" fill-opacity="0.109"/>
+  <polygon points="335.21489173173904,-40 438.38521904405206,-40 178.38521904405206,490 75.21489173173904,490" fill="#45586e" fill-opacity="0.085"/>
+  <polygon points="545.214891731739,-40 654.2140325494111,-40 394.21403254941106,490 285.21489173173904,490" fill="#45586e" fill-opacity="0.081"/>
+  <polygon points="755.214891731739,-40 838.2767105484381,-40 578.2767105484381,490 495.21489173173904,490" fill="#45586e" fill-opacity="0.105"/>
   </g>
-  <path d="M -130.0 332.0 C 130.0 285.8, 310.0 408.0, 490.0 332.0 S 750.0 276.0, 810.0 312.0" fill="none" stroke="#5ad0ff" stroke-opacity="0.4" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M -130.0 372.0 C 160.0 339.0, 340.0 429.6, 530.0 366.0 S 770.0 316.0, 810.0 348.0" fill="none" stroke="#5ad0ff" stroke-opacity="0.24" stroke-width="1.7" stroke-dasharray="7 9" stroke-linecap="round"/>
-  <path d="M -130.0 408.0 C 140.0 383.8, 360.0 451.2, 550.0 402.0 S 780.0 366.0, 810.0 386.0" fill="none" stroke="#5ad0ff" stroke-opacity="0.13" stroke-width="1.1" stroke-linecap="round"/>
-  <circle cx="72" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="72" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="94" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="116" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <circle cx="138" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="160" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
-  <circle cx="182" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
-  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#5ad0ff" stroke-opacity="0.92" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="647" cy="69" r="4" fill="#9fb4d0" fill-opacity="0.5"/>
+  <g transform="translate(520 155) scale(1.9)" fill="none" stroke="#9fb4d0" stroke-opacity="0.95" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
     <rect x="31" y="35" width="38" height="31" rx="9"/><circle cx="43" cy="50" r="3"/><circle cx="57" cy="50" r="3"/><path d="M50 35 V22"/><circle cx="50" cy="18" r="3.5"/>
   </g>
   <rect width="800" height="450" filter="url(#grain)" fill="transparent"/>
