@@ -42,6 +42,18 @@ body {
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
+/* 浅色模式全站颗粒噪点（胶片质感），深色不加 */
+:root[data-theme='light'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+}
+
 a,
 a:visited {
   color: var(--blog-link-color);

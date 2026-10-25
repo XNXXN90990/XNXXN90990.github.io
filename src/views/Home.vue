@@ -55,6 +55,39 @@
       <!-- 书法水印 -->
       <div v-if="watermarkEnabled" class="calligraphy-watermark" aria-hidden="true">{{ watermarkText }}</div>
 
+      <!-- 浅色专属装饰：生命之花奥义几何 + 竖排题字（深色模式不显示） -->
+      <svg class="flower-art" viewBox="0 0 600 600" aria-hidden="true">
+        <g fill="none" stroke="#2b2b31" stroke-width="0.8" opacity="0.16">
+          <circle cx="300" cy="300" r="290"/>
+          <circle cx="300" cy="300" r="240"/>
+          <circle cx="300" cy="300" r="100"/>
+          <circle cx="300" cy="200" r="100"/>
+          <circle cx="300" cy="400" r="100"/>
+          <circle cx="386.6" cy="250" r="100"/>
+          <circle cx="386.6" cy="350" r="100"/>
+          <circle cx="213.4" cy="250" r="100"/>
+          <circle cx="213.4" cy="350" r="100"/>
+          <circle cx="300" cy="100" r="100"/>
+          <circle cx="300" cy="500" r="100"/>
+          <circle cx="473.2" cy="200" r="100"/>
+          <circle cx="473.2" cy="400" r="100"/>
+          <circle cx="126.8" cy="200" r="100"/>
+          <circle cx="126.8" cy="400" r="100"/>
+          <circle cx="473.2" cy="500" r="100"/>
+          <circle cx="126.8" cy="500" r="100"/>
+          <circle cx="300" cy="300" r="50"/>
+          <polygon points="300,220 369.3,260 369.3,340 300,380 230.7,340 230.7,260"/>
+        </g>
+        <g>
+          <rect x="286" y="286" width="28" height="28" rx="4" fill="#a83226"/>
+          <text x="300" y="306" text-anchor="middle" font-size="18" fill="#f6f1e7" font-family="KaiTi, serif">寜</text>
+        </g>
+      </svg>
+      <div class="vtext-ornament" aria-hidden="true">
+        <span class="vtext-chars">宁静致远</span>
+        <span class="vtext-seal">寜</span>
+      </div>
+
       <div class="hero-inner">
         <!-- 左侧文字区 -->
         <div class="hero-text">
@@ -921,6 +954,67 @@ export default {
   white-space: nowrap;
 }
 
+/* 浅色模式下不要水印 */
+:root[data-theme='light'] .calligraphy-watermark {
+  display: none;
+}
+
+/* ---- 浅色专属装饰：生命之花 + 竖排题字（深色模式隐藏） ---- */
+.flower-art,
+.vtext-ornament {
+  display: none;
+}
+
+:root[data-theme='light'] .flower-art {
+  display: block;
+  position: fixed;
+  right: -160px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 900px;
+  height: 900px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+:root[data-theme='light'] .vtext-ornament {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', serif;
+  color: rgba(35, 35, 39, 0.35);
+  letter-spacing: 12px;
+  font-size: 17px;
+  pointer-events: none;
+  user-select: none;
+}
+
+:root[data-theme='light'] .vtext-seal {
+  writing-mode: horizontal-tb;
+  text-orientation: initial;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 18px;
+  border-radius: 4px;
+  background: #a83226;
+  color: #f6f1e7;
+  font-size: 18px;
+  letter-spacing: 0;
+  box-shadow: 0 1px 4px rgba(120, 30, 20, 0.22);
+}
+
 .hero-inner {
   position: relative;
   z-index: 1;
@@ -1486,6 +1580,18 @@ export default {
     bottom: auto;
     transform: translate(-50%, -50%);
     opacity: var(--watermark-opacity);
+  }
+
+  /* 手机端浅色：装饰缩小藏到边缘，竖排题字隐藏 */
+  :root[data-theme='light'] .flower-art {
+    width: 560px;
+    height: 560px;
+    right: -240px;
+    opacity: 0.35;
+  }
+
+  :root[data-theme='light'] .vtext-ornament {
+    display: none;
   }
 
   .welcome-card {
