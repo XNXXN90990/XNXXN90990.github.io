@@ -3,8 +3,9 @@ title: 用Matlab画玫瑰百合花
 date: 2026-01-28
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/matlabrose.svg
 description: function roseBouquet
+
 ---
 # 用Matlab画玫瑰百合花
 ![image.png](https://s2.loli.net/2024/02/02/BXhu8zVaOxU4WLt.png)

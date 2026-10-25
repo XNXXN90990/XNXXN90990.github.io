@@ -84,6 +84,32 @@
         <span v-else-if="loadError" class="summary-error">加载失败：{{ loadError }}</span>
       </div>
 
+      <!-- 系列文章（按 series/seriesOrder 分组，学习路径顺序阅读） -->
+      <div v-if="!isLoading && !loadError && seriesGroups.length" class="series-block">
+        <div class="series-block__title">系 列 文 章</div>
+        <div v-for="sg in seriesGroups" :key="sg.name" class="series-card">
+          <div class="series-card__head">
+            <span class="series-card__name">{{ sg.name }}</span>
+            <span class="series-card__count">共 {{ sg.items.length }} 章</span>
+          </div>
+          <div class="series-card__list">
+            <div
+              v-for="p in sg.items"
+              :key="p.id"
+              class="series-row"
+              role="button"
+              tabindex="0"
+              @click="goToPost(p.id)"
+              @keydown.enter="goToPost(p.id)"
+            >
+              <span class="series-row__no">{{ pad2(p.seriesOrder) }}</span>
+              <span class="series-row__title" :title="p.title">{{ p.title }}</span>
+              <span class="series-row__date">{{ formatDate(p.updateTime) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 时间轴 -->
       <div v-if="!isLoading && !loadError" class="timeline">
         <div v-if="!timelineGroups.length" class="empty-state">
@@ -187,9 +213,31 @@ export default {
       });
       return Array.from(ms).sort((a, b) => b - a);
     },
+    seriesGroups() {
+      // 按 front-matter 的 series/seriesOrder 分组；搜索关键词同时作用于系列
+      const kw = this.normalizedKeyword;
+      const map = new Map();
+      (this.posts || []).forEach((p) => {
+        if (!p.series) return;
+        if (kw) {
+          const t = (p.title || '').toLowerCase();
+          const d = (p.description || '').toLowerCase();
+          if (!t.includes(kw) && !d.includes(kw)) return;
+        }
+        if (!map.has(p.series)) map.set(p.series, []);
+        map.get(p.series).push(p);
+      });
+      const groups = Array.from(map.entries()).map(([name, items]) => ({
+        name,
+        items: items.slice().sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0)),
+      }));
+      groups.sort((a, b) => a.name.localeCompare(b.name, 'zh'));
+      return groups;
+    },
     timelineGroups() {
       const groups = new Map();
-      const list = this.filteredPosts.slice();
+      // 系列文章在上方「系列文章」区块展示，时间轴只排单篇
+      const list = this.filteredPosts.filter((p) => !p.series);
 
       // 二次排序：保障在客户端也按 updateTime 排
       list.sort((a, b) => {
@@ -770,6 +818,95 @@ export default {
 
   .group-items::before {
     left: 7px;
+  }
+}
+
+/* ---------- 系列文章区块 ---------- */
+.series-block {
+  margin: 26px 0 8px;
+}
+
+.series-block__title {
+  font-family: 'Bebas Neue', 'Segoe UI', Arial, sans-serif;
+  font-size: 20px;
+  letter-spacing: 6px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.series-card {
+  background: var(--card-gradient);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: var(--card-inner-glow), var(--card-shadow);
+  padding: 16px 18px 8px;
+  margin-bottom: 18px;
+}
+
+.series-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--card-border);
+}
+
+.series-card__name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.series-card__count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.series-card__list {
+  padding: 6px 0 4px;
+}
+
+.series-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.series-row:hover {
+  background: var(--btn-hover-bg);
+}
+
+.series-row__no {
+  flex: 0 0 auto;
+  font-family: 'Bebas Neue', 'Segoe UI', Arial, sans-serif;
+  font-size: 17px;
+  min-width: 30px;
+  color: var(--accent);
+}
+
+.series-row__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14.5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.series-row__date {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .series-row__date {
+    display: none;
   }
 }
 </style>

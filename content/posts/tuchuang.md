@@ -3,8 +3,9 @@ title: 搭建个人图床
 date: 2026-03-28
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/tuchuang.svg
 description: 图片加载不出来挂梯子即可
+
 ---
 # 搭建个人图床
 

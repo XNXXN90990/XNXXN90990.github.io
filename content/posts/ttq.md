@@ -3,8 +3,9 @@ title: 甜甜圈代码🍩
 date: 2026-04-22
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/ttq.svg
 description: 甜甜圈会动的！！！
+
 ---
 # 甜甜圈🍩代码
 

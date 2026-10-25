@@ -3,8 +3,9 @@ title: Windows基础操作（快捷键）
 date: 2025-11-05
 category: 教程
 tags: [Windows, 教程, win]
-cover: /covers/windows.svg
+cover: /covers/winkjj.svg
 description: 1、Win+A：打开快速设置面板
+
 ---
 # Windows快捷键
 

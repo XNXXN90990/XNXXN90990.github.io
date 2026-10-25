@@ -4,7 +4,8 @@ date: 2026-03-10
 category: 教程
 tags: [Python, 教程]
 cover: /covers/python.svg
-description: -   { .lg .middle } 推荐的文章
+description: 点我～CSDN原创-如何将Python文件.py打包成.exe可执行程序{target=“blank”}
+
 ---
 # 将Python文件.py打包成.exe可执行程序
 
@@ -13,7 +14,7 @@ description: -   { .lg .middle } 推荐的文章
 
 <div class="grid cards" markdown>
 
--   { .lg .middle } __推荐的文章__
+-    __推荐的文章__
 
     ---
 

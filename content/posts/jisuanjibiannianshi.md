@@ -3,8 +3,9 @@ title: 计算机编年史
 date: 2026-06-01
 category: 技巧
 tags: [技巧]
-cover: /covers/tips.svg
+cover: /covers/jisuanjibiannianshi.svg
 description: 1623年|	威廉·契克卡德（Wilhelm Schickard）制作了一个通过转动齿轮来进行操作，能进行六位以内数…
+
 ---
 # 计算机编年史
 

@@ -11,6 +11,8 @@
     "category": [],
     "cover": "",
     "description": "收藏从未停止，学习从未开始——聊聊怎么治好「收藏 = 学会」的错觉。",
+    "series": "",
+    "seriesOrder": 0,
     "pinned": false,
     "featured": false
   },
@@ -26,6 +28,8 @@
     "category": [],
     "cover": "",
     "description": "睡前的一些不成熟的小想法，想到什么写什么。",
+    "series": "",
+    "seriesOrder": 0,
     "pinned": false,
     "featured": false
   }

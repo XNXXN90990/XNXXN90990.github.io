@@ -3,8 +3,11 @@ title: 密码学 07 · 密码协议与应用
 date: 2025-12-03
 category: 网络安全
 tags: [密码学, 系列]
-cover: /covers/crypto.svg
+cover: /covers/ProtocolAndApplication.svg
 description: 密码协议（Cryptographic Protocol）是在多方之间、按照预定步骤使用密码学原语完成某一安全目标的交…
+series: 密码学
+seriesOrder: 7
+
 ---
 # 密码协议与应用
 

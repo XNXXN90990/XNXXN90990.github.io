@@ -3,8 +3,11 @@ title: 密码学 05 · 非对称密码
 date: 2025-11-08
 category: 网络安全
 tags: [密码学, 系列]
-cover: /covers/crypto.svg
+cover: /covers/Asymmetriccryptography.svg
 description: 非对称密码学（Asymmetric Cryptography），也称为公钥密码学（Public Key Crypto…
+series: 密码学
+seriesOrder: 5
+
 ---
 # 第4章 非对称密码
 

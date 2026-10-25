@@ -3,8 +3,9 @@ title: oh-my-zsh 更新
 date: 2026-03-05
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/ohmuzsh.svg
 description: upgradeohmyzsh
+
 ---
 # oh-my-zsh 更新
 

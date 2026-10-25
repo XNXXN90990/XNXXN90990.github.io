@@ -3,8 +3,9 @@ title: 苹果手机去除开屏广告
 date: 2026-02-03
 category: 教程
 tags: [iPhone, 教程]
-cover: /covers/ios.svg
+cover: /covers/iphonequchukaiping.svg
 description: 2.找到「屏幕使用时间」并打开
+
 ---
 # 苹果手机如何去除开屏广告
 法一：

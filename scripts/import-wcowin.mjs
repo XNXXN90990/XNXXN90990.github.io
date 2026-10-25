@@ -18,14 +18,20 @@ import { join, resolve, dirname, basename, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SRC = resolve(HERE, '../../Wcowin的博客/docs/blog');
+const SRC_BLOG = resolve(HERE, '../../Wcowin的博客/docs/blog');
+const SRC_CACHE = resolve(HERE, '.cache/wcowin-src/docs'); // git 稀疏克隆的源仓库
 const DEST = resolve(HERE, '../content/posts');
 
-/** 白名单：要迁移的文件（相对 docs/blog/）。
- *  已按要求排除：Mac 全部与 macsoft（软件类）、数学竞赛（Math/13js、Math/14、math.md）、
- *  旧站系统文（websitebeauty/Mkdocs/Zensical）、kexue、update 系列/HelloWorld/sim-card。 */
+/** 路径前缀 cache:// 表示从 .cache/wcowin-src/docs/ 取（在线仓库新文章），否则从旧本地拷贝取 */
+function srcPath(rel) {
+  return rel.startsWith('cache://') ? join(SRC_CACHE, rel.slice(7)) : join(SRC_BLOG, rel);
+}
+
+/** 白名单：要迁移的文件（相对各自源根）。
+ *  cache:// 前缀 = .cache/wcowin-src/docs（在线仓库新文章），其余 = 旧本地拷贝。
+ *  已排除：Mac/数学竞赛、旧站系统文（websitebeauty/Mkdocs/Zensical）、kexue、update 系列/HelloWorld/sim-card、deepseek.md（644B 占位壳）。 */
 const WHITE_LIST = [
-  // 网络安全/密码学 系列（9 篇，顺序 = 学习路径，标题会加「密码学 NN ·」前缀）
+  // 网络安全/密码学 系列（9 篇，顺序 = 学习路径）
   ...['Numbertheory', 'Introduction', 'Symmetriccryptography', 'Groupcipher', 'Asymmetriccryptography',
     'HashAndMAC', 'ProtocolAndApplication', 'Bitcoin', 'ModernCryptography']
     .map((f) => `Cryptography/${f}.md`),
@@ -35,18 +41,38 @@ const WHITE_LIST = [
   ...['iphone/iphoneduozhanghao.md', 'iphone/iphonequchukaiping.md', 'iphone/iphonexianmian.md'],
   ...['Win/360.md', 'Win/edgexz.md', 'Win/winkjj.md'],
   ...['py/pip.md', 'py/python.md', 'py/uv.md'],
-  // 技巧分享（9 篇；comkdocs 是旧站系统文、kexue 不适合公开站，均不迁）
+  // 技巧分享（9 篇）
   ...['technique sharing/aixin.md', 'technique sharing/googletranslate.md', 'technique sharing/jiaoben.md',
     'technique sharing/jisuanjibiannianshi.md', 'technique sharing/matlabrose.md',
     'technique sharing/ohmuzsh.md', 'technique sharing/ttq.md', 'technique sharing/tuchuang.md',
     'technique sharing/win.md'],
+  // AI 系列（23 篇，来自在线仓库；顺序 = 原站 index 学习路径：基础概念→基础设施→进阶架构→实战工具）
+  ...['prompt', 'context-engineering', 'agent', 'agentic-ai', 'mcp', 'a2a', 'rag', 'skill',
+    'ai-coding-agent', 'multi-agent', 'deep-reasoning', 'ai-security', 'attention-residuals',
+    'jepa', 'embodied-ai', 'cc-switch', 'openclaw', 'hermes-agent', 'nanobot',
+    'deepseek-harness'].map((f) => `cache://develop/AI/${f}.md`),
+  'cache://develop/AItools.md',
+  'cache://develop/Claude-Code.md',
+  'cache://develop/ChatGPT.md',
 ];
 
-/** 密码学系列编号（按 wcowin.work 的学习路径顺序） */
-const SERIES_CRYPTO_ORDER = [
-  'Numbertheory', 'Introduction', 'Symmetriccryptography', 'Groupcipher', 'Asymmetriccryptography',
-  'HashAndMAC', 'ProtocolAndApplication', 'Bitcoin', 'ModernCryptography',
-];
+/** 系列定义：标题加编号前缀 + front-matter 写入 series/seriesOrder（归档页按此分组） */
+const SERIES = {
+  'Cryptography/': {
+    name: '密码学',
+    short: '密码学',
+    order: ['Numbertheory', 'Introduction', 'Symmetriccryptography', 'Groupcipher', 'Asymmetriccryptography',
+      'HashAndMAC', 'ProtocolAndApplication', 'Bitcoin', 'ModernCryptography'],
+  },
+  'cache://develop/AI/': {
+    name: 'AI 系列',
+    short: 'AI',
+    order: ['prompt', 'context-engineering', 'agent', 'agentic-ai', 'mcp', 'a2a', 'rag', 'skill',
+      'ai-coding-agent', 'multi-agent', 'deep-reasoning', 'ai-security', 'attention-residuals',
+      'jepa', 'embodied-ai', 'AItools', 'cc-switch', 'openclaw', 'hermes-agent', 'nanobot',
+      'deepseek-harness'],
+  },
+};
 
 /** 日期指定：旧站多数文章无日期，这里按系列学习路径/季节自然铺开（可随时手改） */
 const DATE_OVERRIDES = {
@@ -66,18 +92,30 @@ const DATE_OVERRIDES = {
   googletranslate: '2025-12-10', matlabrose: '2026-01-28', ohmuzsh: '2026-03-05',
   jiaoben: '2026-04-08', ttq: '2026-04-22', tuchuang: '2026-03-28',
   aixin: '2026-05-20', jisuanjibiannianshi: '2026-06-01', win: '2026-06-15',
+  // AI 系列：2026-05 起按学习路径推进
+  prompt: '2026-05-10', 'context-engineering': '2026-06-04', agent: '2026-06-12',
+  'agentic-ai': '2026-06-20', mcp: '2026-06-28', a2a: '2026-07-05', rag: '2026-07-12',
+  skill: '2026-07-18', 'ai-coding-agent': '2026-07-26', 'multi-agent': '2026-08-02',
+  'deep-reasoning': '2026-08-08', 'ai-security': '2026-08-15', 'attention-residuals': '2026-08-22',
+  jepa: '2026-08-28', 'embodied-ai': '2026-09-03', AItools: '2026-09-10', 'cc-switch': '2026-09-16',
+  openclaw: '2026-09-24', 'hermes-agent': '2026-10-01', nanobot: '2026-10-08',
+  'deepseek-harness': '2026-10-14', 'Claude-Code': '2026-10-18', ChatGPT: '2026-10-22',
 };
 
-/** 分类 / 标签 / 封面映射 */
+/** AI 分类与系列（与 CATEGORY_RULES 里的目录规则分开，cache:// 路径单独判断） */
+const AI_DIR = 'cache://develop/AI/';
+const AI_STANDALONE = ['cache://develop/Claude-Code.md', 'cache://develop/ChatGPT.md'];
+
+/** 分类 / 标签映射（封面统一逐篇生成：/covers/<slug>.svg） */
 const CATEGORY_RULES = [
-  { test: (p) => p.startsWith('Cryptography/'), category: '网络安全', tags: ['密码学', '系列'], cover: '/covers/crypto.svg' },
-  { test: (p) => p.startsWith('Academic/'), category: '学术', tags: ['学术', '笔记'], cover: '/covers/academic.svg' },
-  { test: (p) => p.startsWith('iphone/'), category: '教程', tags: ['iPhone', '教程'], cover: '/covers/ios.svg' },
-  { test: (p) => p.startsWith('Win/'), category: '教程', tags: ['Windows', '教程'], cover: '/covers/windows.svg' },
-  { test: (p) => p.startsWith('py/'), category: '教程', tags: ['Python', '教程'], cover: '/covers/python.svg' },
-  { test: (p) => p.startsWith('technique sharing/'), category: '技巧', tags: ['技巧'], cover: '/covers/tips.svg' },
+  { test: (p) => p.startsWith('Cryptography/'), category: '网络安全', tags: ['密码学', '系列'] },
+  { test: (p) => p.startsWith('Academic/'), category: '学术', tags: ['学术', '笔记'] },
+  { test: (p) => p.startsWith('iphone/'), category: '教程', tags: ['iPhone', '教程'] },
+  { test: (p) => p.startsWith('Win/'), category: '教程', tags: ['Windows', '教程'] },
+  { test: (p) => p.startsWith('py/'), category: '教程', tags: ['Python', '教程'] },
+  { test: (p) => p.startsWith('technique sharing/'), category: '技巧', tags: ['技巧'] },
+  { test: (p) => p.startsWith('cache://develop/AI') || AI_STANDALONE.includes(p), category: 'AI', tags: ['AI', '系列'] },
 ];
-const SPECIAL_COVER = {};
 
 /** !!! 类型 → 中文标题 */
 const ADMONITION_CN = {
@@ -179,7 +217,9 @@ function rewriteLinks(text, migratedSlugs) {
 }
 
 function stripIconTokens(text) {
-  return text.replace(/:(material|fontawesome|octicons|simple-icons)[\w-]*:/g, '');
+  return text
+    .replace(/:(material|fontawesome|octicons|simple-icons)[\w-]*:/g, '')
+    .replace(/\{\s*\.[\w. -]*\s*\}/g, ''); // mkdocs 属性列表（{.lg .middle}），要求点号开头不伤代码
 }
 
 function genDescription(body) {
@@ -189,6 +229,9 @@ function genDescription(body) {
     const plain = t
       .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
       .replace(/<[^>]+>/g, '')
+      .replace(/:(material|fontawesome|octicons|simple-icons)[\w-]*:/g, '')
+      .replace(/\{\s*\.[\w. -]*\s*\}/g, '') // mkdocs 属性列表残留
+      .replace(/^-\s+/, '')
       .replace(/[*_`~]/g, '')
       .trim();
     if (plain.length < 8) continue;
@@ -203,13 +246,13 @@ let ok = 0;
 const failures = [];
 
 for (const rel of WHITE_LIST) {
-  const srcPath = join(SRC, rel);
+  const file = srcPath(rel);
   const slug = basename(rel, '.md');
   try {
-    const raw = readFileSync(srcPath, 'utf8');
+    const raw = readFileSync(file, 'utf8');
     const { fm, body } = splitFrontMatter(raw);
     const rule = CATEGORY_RULES.find((r) => r.test(rel));
-    const stat = statSync(srcPath);
+    const stat = statSync(file);
 
     let date = DATE_OVERRIDES[slug] || String(fm.date || '').trim();
     if (!/^\d{4}-\d{2}-\d{2}/.test(date)) {
@@ -228,14 +271,22 @@ for (const rel of WHITE_LIST) {
     content = stripIconTokens(content);
     content = rewriteLinks(content, migratedSlugs).trim();
 
-    // 标题：front-matter 缺失时回退到正文首个 H1；密码学系列加「密码学 NN ·」编号
+    // 标题：front-matter 缺失时回退到正文首个 H1；系列文章加「系列名 NN ·」编号前缀
     const h1 = /^#\s+(.+?)\s*$/m.exec(body);
     let title = String(fm.title || (h1 ? h1[1] : '') || slug).trim();
-    const cryptoIdx = SERIES_CRYPTO_ORDER.indexOf(slug);
-    if (cryptoIdx >= 0) title = `密码学 ${String(cryptoIdx + 1).padStart(2, '0')} · ${title}`;
+    const seriesEntry = Object.entries(SERIES).find(([, cfg]) => cfg.order.includes(slug));
+    let seriesLine = '';
+    if (seriesEntry) {
+      const [prefix, cfg] = seriesEntry;
+      const idx = cfg.order.indexOf(slug);
+      if (idx >= 0) {
+        title = `${cfg.short} ${String(idx + 1).padStart(2, '0')} · ${title}`;
+        seriesLine = `series: ${cfg.name}\nseriesOrder: ${idx + 1}\n`;
+      }
+    }
 
     const description = String(fm.description || '').trim() || genDescription(content);
-    const cover = SPECIAL_COVER[rel] || rule?.cover || '';
+    const cover = `/covers/${slug}.svg`;
 
     const front = [
       '---',
@@ -245,6 +296,7 @@ for (const rel of WHITE_LIST) {
       `tags: [${tags.join(', ')}]`,
       `cover: ${cover}`,
       `description: ${description}`,
+      seriesLine,
       '---',
       '',
     ].join('\n');

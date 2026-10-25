@@ -3,8 +3,9 @@ title: 实用脚本分享
 date: 2026-04-08
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/jiaoben.svg
 description: 比较知名的脚本管理器有：Tampermonkey ，Violentmonkey ，Greasemonkey 。
+
 ---
 # 实用脚本分享
 ##  安装脚本管理器

@@ -3,8 +3,11 @@ title: 密码学 04 · 分组密码
 date: 2025-10-26
 category: 网络安全
 tags: [密码学, 系列]
-cover: /covers/crypto.svg
+cover: /covers/Groupcipher.svg
 description: 分组密码 (Block Cipher) 是对称密码体制中的一个重要类别。与流密码逐比特或逐字节处理明文不同，分组密码…
+series: 密码学
+seriesOrder: 4
+
 ---
 # 第3章 分组密码
 

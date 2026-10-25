@@ -96,9 +96,9 @@ async function main() {
     const categoryId = cats.length ? await getCategoryId(String(cats[0])) : null;
 
     await conn.execute(
-      `REPLACE INTO blog_post (id, title, content, cover, create_time, update_time, description, category_id, pinned, featured, editing, water)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?)`,
-      [slug, title, content, cover, date, date, description, categoryId, toBool(fm.pinned), toBool(fm.featured), toBool(fm.water)]
+      `REPLACE INTO blog_post (id, title, content, cover, create_time, update_time, description, category_id, pinned, featured, editing, water, series, series_order)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?)`,
+      [slug, title, content, cover, date, date, description, categoryId, toBool(fm.pinned), toBool(fm.featured), toBool(fm.water), fm.series || null, Number(fm.seriesOrder) || null]
     );
     await conn.execute('DELETE FROM blog_post_tag WHERE post_id = ?', [slug]);
     for (const t of tags) {

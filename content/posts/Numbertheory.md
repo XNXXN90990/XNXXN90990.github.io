@@ -3,8 +3,11 @@ title: 密码学 01 · 数论基础
 date: 2025-09-18
 category: 网络安全
 tags: [密码学, 系列]
-cover: /covers/crypto.svg
+cover: /covers/Numbertheory.svg
 description: 数论是密码学的基础学科之一，许多现代加密算法（如RSA、AES、ECC等）都依赖于数论中的基本概念和算法。作者总结了…
+series: 密码学
+seriesOrder: 1
+
 ---
 # 数论基础
 

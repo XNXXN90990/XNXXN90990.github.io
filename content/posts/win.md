@@ -3,8 +3,9 @@ title: Win11镜像下载/KMS激活
 date: 2026-06-15
 category: 技巧
 tags: [技巧, 技术分享, win]
-cover: /covers/tips.svg
+cover: /covers/win.svg
 description: 镜像下载、壁纸、KMS激活
+
 ---
 # Win11镜像下载/KMS激活
  镜像下载、壁纸、KMS激活

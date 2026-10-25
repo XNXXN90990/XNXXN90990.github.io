@@ -3,8 +3,9 @@ title: LaTeX常用符号整理
 date: 2026-01-12
 category: 学术
 tags: [学术, 笔记, Math]
-cover: /covers/academic.svg
+cover: /covers/LaTeX.svg
 description: 有代码的大写希腊字母，直接敲获得正体，使用\var前缀转化为斜体
+
 ---
 # LaTeX常用符号整理
 

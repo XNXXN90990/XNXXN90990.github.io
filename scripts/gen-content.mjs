@@ -97,6 +97,8 @@ function scanManifest(dir, label) {
       category: Array.isArray(attributes.category) ? attributes.category : attributes.category ? [attributes.category] : [],
       cover: attributes.cover || '',
       description: attributes.description || '',
+      series: attributes.series || '',
+      seriesOrder: Number(attributes.seriesOrder) || 0,
       pinned: String(attributes.pinned || '') === 'true',
       featured: String(attributes.featured || '') === 'true'
     });

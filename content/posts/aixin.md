@@ -3,8 +3,9 @@ title: 爱心代码
 date: 2026-05-20
 category: 技巧
 tags: [技巧, 技术分享]
-cover: /covers/tips.svg
+cover: /covers/aixin.svg
 description: 我用夸克网盘分享了「love.html」，点击链接即可保存。链接：
+
 ---
 # 爱心代码
 我用夸克网盘分享了「love.html」，点击链接即可保存。链接：<https://pan.quark.cn/s/4534e2134fb9>

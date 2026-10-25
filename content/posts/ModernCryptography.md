@@ -3,8 +3,11 @@ title: 密码学 09 · 现代密码学发展
 date: 2025-12-27
 category: 网络安全
 tags: [密码学, 系列]
-cover: /covers/crypto.svg
+cover: /covers/ModernCryptography.svg
 description: 现代密码学在经典对称/非对称密码与消息认证的基础上，正经历后量子安全、隐私计算与新型应用三大方向的深刻变化。本文基于…
+series: 密码学
+seriesOrder: 9
+
 ---
 # 现代密码学发展
 
