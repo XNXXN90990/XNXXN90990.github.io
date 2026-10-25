@@ -39,6 +39,8 @@ const loadBusuanzi = () => {
       if (pvEl && pvEl.textContent && uvEl && uvEl.textContent) {
         const pv = Number(pvEl.textContent) || 0;
         const uv = Number(uvEl.textContent) || 0;
+        // 不蒜子服务异常（502/数据清零）时会返回 0——保持隐藏，服务恢复自动显示
+        if (pv <= 0 && uv <= 0) return;
         pvEl.textContent = pv + PV_OFFSET;
         uvEl.textContent = uv + UV_OFFSET;
         statsVisible.value = true;
