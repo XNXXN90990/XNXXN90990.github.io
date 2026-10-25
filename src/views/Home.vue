@@ -520,42 +520,83 @@ export default {
     },
 
     // ---------- 访客欢迎卡 ----------
+    // 每个源独立超时（共用一个 AbortController 会导致前一源卡死时把备用源一并 abort）
     async loadWelcome() {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 6000);
+      const fetchWithTimeout = (url, ms = 4000) => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), ms);
+        return fetch(url, { signal: controller.signal })
+          .then((resp) => resp.json())
+          .finally(() => clearTimeout(timer));
+      };
+
       try {
-        // 主源：中文归属地（纯真库数据）；备用：ipwho.is（带经纬度，海外/兜底）
         let region = '';
         let lat = null;
         let lon = null;
+        const locate = (name) => {
+          if (PROVINCE_CENTERS[name]) {
+            lat = PROVINCE_CENTERS[name][0];
+            lon = PROVINCE_CENTERS[name][1];
+          }
+        };
+
+        // 主源：vore.top 中文归属地（纯真库数据）
         try {
-          const resp = await fetch('https://api.vore.top/api/IPdata', { signal: controller.signal });
-          const data = await resp.json();
+          const data = await fetchWithTimeout('https://api.vore.top/api/IPdata');
           if (data && data.code === 200 && data.ipinfo) {
             const info = data.ipinfo;
-            const prov = info.province || '';
-            const city = info.city || '';
             // 只显示市级：国内来源是中文名（如「杭州市」）
-            region = city || prov;
-            lat = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][0] : null;
-            lon = PROVINCE_CENTERS[prov] ? PROVINCE_CENTERS[prov][1] : null;
+            region = info.city || info.province || '';
+            locate(info.province || '');
           }
-        } catch (e) {
-          /* 尝试备用源 */
+        } catch (e) { /* 换下一源 */ }
+
+        // 二源：pconline 中文归属地 —— 无 CORS 头，走 JSONP（script 标签不受同源限制）
+        if (!region) {
+          try {
+            const data = await new Promise((resolve, reject) => {
+              const fn = `__welcomeIP_${Date.now()}`;
+              const script = document.createElement('script');
+              const cleanup = () => {
+                clearTimeout(timer);
+                delete window[fn];
+                script.remove();
+              };
+              const timer = setTimeout(() => {
+                cleanup();
+                reject(new Error('pconline timeout'));
+              }, 4000);
+              window[fn] = (json) => {
+                cleanup();
+                resolve(json);
+              };
+              script.src = `https://whois.pconline.com.cn/ipJson.jsp?callback=${fn}`;
+              script.charset = 'GBK';
+              script.onerror = () => {
+                cleanup();
+                reject(new Error('pconline error'));
+              };
+              document.head.appendChild(script);
+            });
+            if (data && (data.city || data.pro)) {
+              region = data.city || data.pro;
+              locate(data.pro || '');
+            }
+          } catch (e) { /* 换下一源 */ }
         }
 
+        // 兜底：ipwho.is（海外/双语环境，英文名，带经纬度）
         if (!region) {
-          const resp = await fetch('https://ipwho.is/', { signal: controller.signal });
-          const data = await resp.json();
+          const data = await fetchWithTimeout('https://ipwho.is/');
           if (data && data.success !== false) {
-            // 备用源（海外/兜底）：只显示城市，英文名
             region = data.city || data.region || '';
             lat = Number(data.latitude);
             lon = Number(data.longitude);
           }
         }
 
-        if (!region) return; // 两个源都失败：不显示卡片
+        if (!region) return; // 所有源都失败：不显示卡片
 
         let distance = '';
         if (Number.isFinite(lat) && Number.isFinite(lon)) {
@@ -564,8 +605,6 @@ export default {
         this.welcome = { show: true, region, greeting: timeGreeting(), distance };
       } catch (e) {
         // 网络/超时/被墙：静默隐藏，不影响页面
-      } finally {
-        clearTimeout(timer);
       }
     },
 
