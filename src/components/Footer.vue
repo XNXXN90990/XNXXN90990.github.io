@@ -1,18 +1,16 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { trackVisit, fetchVisitStats } from '@/api';
 
 // ==================== 配置区 ====================
 const siteCreatedAt = new Date('2026-06-14T01:06:14');
-const PV_OFFSET = 0;
-const UV_OFFSET = 0;
-// 换回原来的不蒜子地址
-const BUSUANZI_SCRIPT_URL = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
-// ==================== 配置区结束 ====================
+// ==================== 配置区结束 ==================
 
 const runningTimeText = ref('');
+const sitePv = ref('');
+const siteUv = ref('');
 const statsVisible = ref(false);
 let timerId = null;
-let busuanziTimer = null;
 
 const updateRunningTime = () => {
   const now = new Date();
@@ -28,40 +26,25 @@ const updateRunningTime = () => {
   runningTimeText.value = `本站已经运行 ${days} 天 ${pad(hours)} 时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
 };
 
-const loadBusuanzi = () => {
-  const script = document.createElement('script');
-  script.src = BUSUANZI_SCRIPT_URL;
-  script.async = true;
-  script.onload = () => {
-    busuanziTimer = setTimeout(() => {
-      const pvEl = document.getElementById('busuanzi_value_site_pv');
-      const uvEl = document.getElementById('busuanzi_value_site_uv');
-      if (pvEl && pvEl.textContent && uvEl && uvEl.textContent) {
-        const pv = Number(pvEl.textContent) || 0;
-        const uv = Number(uvEl.textContent) || 0;
-        // 不蒜子服务异常（502/数据清零）时会返回 0——保持隐藏，服务恢复自动显示
-        if (pv <= 0 && uv <= 0) return;
-        pvEl.textContent = pv + PV_OFFSET;
-        uvEl.textContent = uv + UV_OFFSET;
-        statsVisible.value = true;
-      }
-    }, 1200);
-  };
-  script.onerror = () => {
-    console.warn('不蒜子统计加载失败，已隐藏统计行');
-  };
-  document.head.appendChild(script);
+// 自托管访问计数：上报本次访问 + 拉统计；后端不在线（纯静态模式）就静默隐藏
+const loadVisitStats = async () => {
+  trackVisit(location.pathname);
+  const stats = await fetchVisitStats();
+  if (stats && Number(stats.totalPv) > 0) {
+    sitePv.value = String(stats.totalPv);
+    siteUv.value = String(stats.totalUv);
+    statsVisible.value = true;
+  }
 };
 
 onMounted(() => {
   updateRunningTime();
   timerId = setInterval(updateRunningTime, 1000);
-  loadBusuanzi();
+  loadVisitStats();
 });
 
 onUnmounted(() => {
   if (timerId) clearInterval(timerId);
-  if (busuanziTimer) clearTimeout(busuanziTimer);
 });
 </script>
 
@@ -71,16 +54,16 @@ onUnmounted(() => {
       <!-- 运行时间 -->
       <span class="footer-line runtime-line">{{ runningTimeText }}</span>
 
-      <!-- 访问量统计 -->
+      <!-- 访问量统计（自托管，数据在本站数据库） -->
       <span v-show="statsVisible" class="footer-line stats-line">
         <span class="stat-item">
           <span class="stat-label">总访问量（PV）：</span>
-          <span class="stat-value" id="busuanzi_value_site_pv">...</span>
+          <span class="stat-value">{{ sitePv }}</span>
         </span>
         <span class="stat-separator">|</span>
         <span class="stat-item">
           <span class="stat-label">总访客数（UV）：</span>
-          <span class="stat-value" id="busuanzi_value_site_uv">...</span>
+          <span class="stat-value">{{ siteUv }}</span>
         </span>
       </span>
 

@@ -279,3 +279,44 @@ export function flattenGuideChapters(chapters, out = []) {
 export function getPostCount() {
   return manifest.length;
 }
+
+// ============ 自托管访问计数（后端在线才生效；纯静态模式直接跳过） ============
+
+/** 取/生成访客标识（localStorage uuid，清浏览器数据即算新访客） */
+export function getVisitorUid() {
+  const KEY = 'ning-uid';
+  try {
+    let uid = localStorage.getItem(KEY);
+    if (!uid) {
+      uid = (crypto.randomUUID && crypto.randomUUID()) ||
+        'u-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+      localStorage.setItem(KEY, uid);
+    }
+    return uid;
+  } catch (e) {
+    return 'anonymous';
+  }
+}
+
+/** 上报一次访问（失败静默，不打扰页面） */
+export function trackVisit(path) {
+  if (!HYBRID_ENABLED) return Promise.resolve(null);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 3000);
+  return fetch(`${API_BASE}/visit/track`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ uid: getVisitorUid(), path: String(path || '/').slice(0, 200) }),
+    signal: controller.signal
+  }).catch(() => null).finally(() => clearTimeout(timer));
+}
+
+/** 拉取访问统计 { pv, uv, pvOffset, uvOffset, totalPv, totalUv }；后端不可用返回 null */
+export async function fetchVisitStats() {
+  if (!HYBRID_ENABLED) return null;
+  try {
+    return await tryRemote('/visit/stats', 3000);
+  } catch (e) {
+    return null;
+  }
+}
