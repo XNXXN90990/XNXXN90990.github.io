@@ -20,6 +20,6 @@
     <circle cx="120" cy="372" r="3"/><circle cx="152" cy="372" r="3"/><circle cx="184" cy="372" r="3"/>
   </g>
   <text x="64" y="218" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="62" font-weight="700" fill="#f2f3f7">技巧</text>
-  <text x="66" y="262" font-family="'Bebas Neue', 'Segoe UI', sans-serif" font-size="21" letter-spacing="6" fill="#ffffff" fill-opacity="0.42">TIPS & TRICKS</text>
+  <text x="66" y="262" font-family="'Bebas Neue', 'Segoe UI', sans-serif" font-size="21" letter-spacing="6" fill="#ffffff" fill-opacity="0.42">TIPS &amp; TRICKS</text>
   <rect x="66" y="288" width="56" height="4" rx="2" fill="#ffd08a" fill-opacity="0.9"/>
 </svg>
