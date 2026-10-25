@@ -7,12 +7,6 @@
 
       <!-- 星空/星座层 -->
       <svg class="star-layer" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- 日轨弧线（仅浅色）：与深色星轨同圆心的白昼镜像 -->
-        <g class="day-orbit" fill="none" stroke="#2a2a30" stroke-width="1.2">
-          <circle cx="1180" cy="14" r="500" opacity="0.1"/>
-          <circle cx="1180" cy="14" r="720" opacity="0.07"/>
-          <circle cx="1180" cy="14" r="950" opacity="0.05"/>
-        </g>
         <!-- 真实星座（d3-celestial 数据，scripts/gen-constellations.mjs 生成），错峰淡入淡出 + 缓慢漂浮 -->
         <g
           v-for="(c, ci) in constellationItems"
@@ -847,13 +841,13 @@ export default {
   display: none;
 }
 
-/* 日轨弧线：浅色专属，深色隐藏 */
-.day-orbit {
+/* 浅色 = 纯背景图方案：星座与描边水印一律不上，深色不受影响 */
+:root[data-theme='light'] .constellation {
   display: none;
 }
 
-:root[data-theme='light'] .day-orbit {
-  display: block;
+:root[data-theme='light'] .calligraphy-watermark {
+  display: none;
 }
 
 .star--big {
