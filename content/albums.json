@@ -1,28 +1,49 @@
 {
   "_说明": "相册数据：photos 里的 src 指向 public/albums/<相册id>/ 下的图片文件，把照片丢进去再编辑本文件即可。",
-  "_示例封面": "封面可以先用 /albums/<id>/cover.jpg，或直接用下方示例渐变图",
   "albums": [
     {
-      "id": "campus",
-      "name": "校园日常",
-      "cover": "/albums/sample-1.svg",
-      "date": "2026-09-01",
-      "description": "随手记录的校园光影（示例相册，把照片放进 public/albums/campus/ 后编辑 content/albums.json 替换）。",
+      "id": "xingyouji",
+      "name": "星游记",
+      "cover": "/albums/xingyouji/02.jpg",
+      "date": "2011-10-01",
+      "description": "「相信奇迹的人，本身就和奇迹一样了不起。」——向着彩虹海出发的童年热血宇宙。",
       "photos": [
-        { "src": "/albums/sample-1.svg", "caption": "示例照片 1：替换成你自己的照片" },
-        { "src": "/albums/sample-2.svg", "caption": "示例照片 2：替换成你自己的照片" },
-        { "src": "/albums/sample-3.svg", "caption": "示例照片 3：替换成你自己的照片" }
+        { "src": "/albums/xingyouji/01.jpg", "caption": "出发！向着彩虹海" },
+        { "src": "/albums/xingyouji/02.jpg", "caption": "主视觉 · 麦当" },
+        { "src": "/albums/xingyouji/03.jpg", "caption": "咕噜" },
+        { "src": "/albums/xingyouji/04.jpg", "caption": "笛亚" },
+        { "src": "/albums/xingyouji/05.jpg", "caption": "燃起来的时刻" },
+        { "src": "/albums/xingyouji/06.jpg", "caption": "星之海" }
       ]
     },
     {
-      "id": "screenshots",
-      "name": "桌面与截图",
-      "cover": "/albums/sample-4.svg",
-      "date": "2026-09-10",
-      "description": "代码、壁纸和有趣的截图（示例相册）。",
+      "id": "chaoshou",
+      "name": "超兽武装",
+      "cover": "/albums/chaoshou/01.jpg",
+      "date": "2010-01-01",
+      "description": "「我们是超兽战士！」——国产 CG 机甲的巅峰记忆，寒影冲击波与超兽神。",
       "photos": [
-        { "src": "/albums/sample-4.svg", "caption": "示例照片 4：替换成你自己的照片" },
-        { "src": "/albums/sample-5.svg", "caption": "示例照片 5：替换成你自己的照片" }
+        { "src": "/albums/chaoshou/01.jpg", "caption": "官方主视觉海报" },
+        { "src": "/albums/chaoshou/02.jpg", "caption": "剧场版海报" },
+        { "src": "/albums/chaoshou/03.jpg", "caption": "超兽战士集结" },
+        { "src": "/albums/chaoshou/04.jpg", "caption": "烈焰中的英雄" },
+        { "src": "/albums/chaoshou/05.jpg", "caption": "机甲特写 · 绿" },
+        { "src": "/albums/chaoshou/06.jpg", "caption": "机甲特写 · 粉" }
+      ]
+    },
+    {
+      "id": "wuzhandao",
+      "name": "武战道",
+      "cover": "/albums/wuzhandao/04.jpg",
+      "date": "2013-07-01",
+      "description": "蓝弧机甲经典，「汽车人，变形出发！」的国产少年机甲传奇。",
+      "photos": [
+        { "src": "/albums/wuzhandao/01.jpg", "caption": "角色特写" },
+        { "src": "/albums/wuzhandao/02.jpg", "caption": "火红色机车机甲" },
+        { "src": "/albums/wuzhandao/03.jpg", "caption": "机甲特写 · 蓝白" },
+        { "src": "/albums/wuzhandao/04.jpg", "caption": "主视觉 · 武战道" },
+        { "src": "/albums/wuzhandao/05.jpg", "caption": "机甲群像" },
+        { "src": "/albums/wuzhandao/06.jpg", "caption": "能量护盾" }
       ]
     }
   ]

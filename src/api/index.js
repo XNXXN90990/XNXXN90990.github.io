@@ -153,14 +153,19 @@ export async function fetchAlbums() {
   if (HYBRID_ENABLED) {
     try {
       const list = await tryRemote('/album/list');
-      const albums = (list || []).map((a) => ({
-        id: String(a.id),
-        name: a.title,
-        cover: (a.coverImages && a.coverImages[0]) || '',
-        date: '',
-        description: a.description || '',
-        photos: null
-      }));
+      // 后端相册表不存展示元数据（date/指定封面），按名字用静态 albums.json 补齐
+      const meta = new Map((albumsData.albums || []).map((m) => [m.name, m]));
+      const albums = (list || []).map((a) => {
+        const m = meta.get(a.title) || {};
+        return {
+          id: String(a.id),
+          name: a.title,
+          cover: m.cover || (a.coverImages && a.coverImages[0]) || '',
+          date: m.date || '',
+          description: a.description || m.description || '',
+          photos: null
+        };
+      });
       if (albums.length) return { code: 200, data: albums };
     } catch (e) {
       /* 回退静态 */
@@ -175,14 +180,15 @@ export async function fetchAlbumById(id) {
     try {
       const a = await tryRemote(`/album/get?id=${encodeURIComponent(id)}`);
       if (a) {
+        const m = (albumsData.albums || []).find((x) => x.name === a.title) || {};
         return {
           code: 200,
           data: {
             id: String(a.id),
             name: a.title,
-            cover: (a.coverImages && a.coverImages[0]) || '',
-            date: '',
-            description: a.description || '',
+            cover: m.cover || (a.coverImages && a.coverImages[0]) || '',
+            date: m.date || '',
+            description: a.description || m.description || '',
             photos: (a.photos || []).map((p) => ({ src: p.imageUrl, caption: p.caption || '' }))
           }
         };
