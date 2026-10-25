@@ -32,6 +32,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # 纯静态部署：后端未上线前关闭混合探测，全部走静态数据（后端上线后改为其完整地址，如 https://api.xxx.dpdns.org）
+          VITE_API_BASE: off
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
