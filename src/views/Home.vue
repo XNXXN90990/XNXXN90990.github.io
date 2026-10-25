@@ -981,7 +981,7 @@ export default {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1150px;
+  max-width: var(--content-w);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -1136,8 +1136,8 @@ export default {
 
 .avatar-scene {
   position: relative;
-  width: 290px;
-  height: 290px;
+  width: clamp(260px, 20vw, 320px);
+  height: clamp(260px, 20vw, 320px);
   perspective: 1100px; /* 3D 透视：翻转更有立体感 */
 }
 
@@ -1293,7 +1293,7 @@ export default {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1150px;
+  max-width: var(--content-w);
   margin: 10px auto 18px;
   padding: 12px 18px;
   border-radius: 12px;
@@ -1317,7 +1317,7 @@ export default {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1150px;
+  max-width: var(--content-w);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1326,7 +1326,8 @@ export default {
 
 .posts-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 自适应列数：容器越宽列越多（1080→3列，1520→4列），768 以下由媒体查询改单列 */
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 20px;
   padding: 20px 0;
   width: 100%;

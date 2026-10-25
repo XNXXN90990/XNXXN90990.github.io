@@ -71,7 +71,7 @@ export default {
 
 .albums-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--content-w);
 }
 
 .page-header {
@@ -101,7 +101,8 @@ export default {
 
 .albums-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 自适应列数：容器越宽列越多 */
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
 }
 

@@ -21,6 +21,10 @@
   --bg-size: cover, cover, cover, cover, cover;
   --bg-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
 
+  /* ---------- 布局（全窗口自适应：内容容器流式宽度，全站统一引用） ---------- */
+  /* 1366→1093 / 1440→1152 / 1600→1280 / 1920 以上封顶 1520 */
+  --content-w: clamp(1080px, 80vw, 1520px);
+
   /* ---------- 文字 ---------- */
   --text-primary: #f2f7f2;
   --text-secondary: #b9c4ba;

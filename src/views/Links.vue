@@ -212,7 +212,7 @@ export default {
 
 .links-inner {
   width: 100%;
-  max-width: 1300px;
+  max-width: var(--content-w);
 }
 
 .links-header {

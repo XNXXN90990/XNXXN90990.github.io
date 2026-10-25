@@ -349,7 +349,7 @@ export default {
 
 .archive-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--content-w);
 }
 
 .archive-header {

@@ -109,7 +109,7 @@ export default {
 
 .album-detail-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--content-w);
 }
 
 .back-btn {
@@ -156,7 +156,8 @@ export default {
 
 .photos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* 照片自适应列数 */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 16px;
 }
 

@@ -70,7 +70,7 @@ export default {
 
 .thoughts-inner {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--content-w);
 }
 
 .page-header {
@@ -100,7 +100,8 @@ export default {
 
 .thoughts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* 杂想卡片自适应：宽屏 3 列、笔记本 2 列 */
+  grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
   gap: 18px;
 }
 

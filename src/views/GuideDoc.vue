@@ -190,7 +190,7 @@ export default {
   padding: 12px 16px 10px;
   color: var(--text-primary);
   min-height: calc(100vh - 68px);
-  max-width: 1400px;
+  max-width: var(--content-w);
   margin: 0 auto;
 }
 

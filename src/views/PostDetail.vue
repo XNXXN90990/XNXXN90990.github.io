@@ -872,7 +872,7 @@ export default {
 .post-container {
   display: flex;
   gap: 20px;
-  max-width: 1200px;
+  max-width: var(--content-w);
   margin: 40px auto;
   padding: 20px;
   justify-content: center;
@@ -1032,10 +1032,11 @@ export default {
   box-shadow: var(--card-shadow);
 }
 
-/* 正文基础样式 */
+/* 正文基础样式（容器加宽后保住阅读行长的上限） */
 .post-content {
   line-height: 1.6;
   font-size: 16px;
+  max-width: 880px;
 }
 
 /* KaTeX 块级公式过长时允许横向滚动 */
