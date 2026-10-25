@@ -324,7 +324,6 @@ export default {
   width: 100%;
   box-sizing: border-box;
   color: var(--text-primary);
-  background: var(--surface);
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 68px);
