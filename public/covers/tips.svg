@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b1e26"/>
+      <stop offset="1" stop-color="#30353f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#ffd08a" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#ffd08a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect width="800" height="450" fill="url(#glow)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.09">
+    <circle cx="648" cy="322" r="148"/>
+    <circle cx="648" cy="322" r="98"/>
+    <circle cx="648" cy="322" r="52"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.14">
+    <circle cx="120" cy="372" r="3"/><circle cx="152" cy="372" r="3"/><circle cx="184" cy="372" r="3"/>
+  </g>
+  <text x="64" y="218" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="62" font-weight="700" fill="#f2f3f7">技巧</text>
+  <text x="66" y="262" font-family="'Bebas Neue', 'Segoe UI', sans-serif" font-size="21" letter-spacing="6" fill="#ffffff" fill-opacity="0.42">TIPS & TRICKS</text>
+  <rect x="66" y="288" width="56" height="4" rx="2" fill="#ffd08a" fill-opacity="0.9"/>
+</svg>

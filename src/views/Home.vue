@@ -262,7 +262,7 @@ export default {
       avatarUrl,
       avatarBackUrl,
       avatarBack2Url,
-      defaultCover: '/covers/git.svg',
+      defaultCover: '/covers/post.svg',
 
       // 文章数据
       posts: [],
