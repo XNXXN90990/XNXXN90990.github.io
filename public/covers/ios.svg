@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.65" y2="1">
+      <stop offset="0" stop-color="#0e1118"/>
+      <stop offset="1" stop-color="#181d29"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.22" r="0.72">
+      <stop offset="0" stop-color="#4fd6c8" stop-opacity="0.26"/>
+      <stop offset="0.55" stop-color="#4fd6c8" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#4fd6c8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect width="800" height="450" fill="url(#glow)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.07">
+    <circle cx="540" cy="118" r="132"/>
+    <circle cx="540" cy="118" r="86"/>
+    <circle cx="540" cy="118" r="44"/>
+  </g>
+  <path d="M -120.0 328.0 C 140.0 275.9, 320.0 406.8, 500.0 328.0 S 760.0 272.0, 820.0 308.0" fill="none" stroke="#4fd6c8" stroke-opacity="0.5" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M -120.0 368.0 C 170.0 330.8, 350.0 427.8, 540.0 362.0 S 780.0 312.0, 820.0 344.0" fill="none" stroke="#4fd6c8" stroke-opacity="0.3" stroke-width="1.7" stroke-dasharray="7 9" stroke-linecap="round"/>
+  <path d="M -120.0 404.0 C 150.0 376.7, 370.0 448.9, 560.0 398.0 S 790.0 362.0, 820.0 382.0" fill="none" stroke="#4fd6c8" stroke-opacity="0.16" stroke-width="1.1" stroke-linecap="round"/>
+  <circle cx="72" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="94" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="116" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="138" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="160" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="182" cy="366" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="72" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="94" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="116" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="138" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="160" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="182" cy="386" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="72" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="94" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="116" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <circle cx="138" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="160" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.095"/>
+  <circle cx="182" cy="406" r="2.2" fill="#ffffff" fill-opacity="0.14"/>
+  <rect width="800" height="450" filter="url(#grain)" fill="transparent"/>
+</svg>

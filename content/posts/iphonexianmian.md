@@ -1,10 +1,10 @@
 ---
 title: 苹果iPhone/iOS 限免网站合集
-date: 2026-09-06
+date: 2026-02-14
 category: 教程
 tags: [iPhone, 教程]
-cover: /covers/tutorial.svg
-description: 网址：<https://mergeek.com/free/apps>
+cover: /covers/ios.svg
+description: 一个专注于安卓和苹果 App 推介的网站，iOS 限免与优惠更新比较及时，还支持微信服务号订阅，是目前最推荐的限免信…
 ---
 # 苹果iPhone/iOS 限免网站合集
 

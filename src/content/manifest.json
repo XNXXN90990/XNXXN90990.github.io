@@ -1,63 +1,43 @@
 [
   {
-    "id": "13js",
-    "title": "第十三届全国大学生数学竞赛(非数学类)决赛详细解答",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "id": "win",
+    "title": "Win11镜像下载/KMS激活",
+    "date": "2026-06-15",
+    "updateTime": "2026-06-15",
     "tags": [
-      "学术",
-      "笔记",
-      "Mathematic"
-    ],
-    "category": [
-      "学术"
-    ],
-    "cover": "/covers/academic.svg",
-    "description": "放一篇Grisha Perelman大佬的文章： Ricci flow with surgery on three-…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "14",
-    "title": "第十四届全国大学生数学竞赛(非数学类)初赛补赛详细解答",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "学术",
-      "笔记",
-      "Mathematic"
-    ],
-    "category": [
-      "学术"
-    ],
-    "cover": "/covers/academic.svg",
-    "description": "",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "360",
-    "title": "彻底卸载360安全卫士的方法",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Windows",
-      "教程",
+      "技巧",
+      "技术分享",
       "win"
     ],
     "category": [
-      "教程"
+      "技巧"
     ],
-    "cover": "/covers/tutorial.svg",
-    "description": "按下Windows+R键，并输入msconfig, 在“引导”选项卡中选择“安全引导”，并重新启动进入安全模式。此时…",
+    "cover": "/covers/tips.svg",
+    "description": "镜像下载、壁纸、KMS激活",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "jisuanjibiannianshi",
+    "title": "计算机编年史",
+    "date": "2026-06-01",
+    "updateTime": "2026-06-01",
+    "tags": [
+      "技巧"
+    ],
+    "category": [
+      "技巧"
+    ],
+    "cover": "/covers/tips.svg",
+    "description": "1623年|\t威廉·契克卡德（Wilhelm Schickard）制作了一个通过转动齿轮来进行操作，能进行六位以内数…",
     "pinned": false,
     "featured": false
   },
   {
     "id": "aixin",
     "title": "爱心代码",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "date": "2026-05-20",
+    "updateTime": "2026-05-20",
     "tags": [
       "技巧",
       "技术分享"
@@ -66,67 +46,15 @@
       "技巧"
     ],
     "cover": "/covers/tips.svg",
-    "description": "我用夸克网盘分享了「love.html」，点击链接即可保存。链接：<https://pan.quark.cn/s/4…",
+    "description": "我用夸克网盘分享了「love.html」，点击链接即可保存。链接：",
     "pinned": false,
     "featured": false
   },
   {
-    "id": "Asymmetriccryptography",
-    "title": "非对称密码",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "非对称密码学（Asymmetric Cryptography），也称为公钥密码学（Public Key Crypto…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "ddiancichang",
-    "title": "电磁场与电磁波常用符号公式整理（手写）",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "学术",
-      "笔记"
-    ],
-    "category": [
-      "学术"
-    ],
-    "cover": "/covers/academic.svg",
-    "description": "",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "edgexz",
-    "title": "三步卸载 Microsoft Edge",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Windows",
-      "教程",
-      "win"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": "第一步：管理员模式打开 powershell",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "googletranslate",
-    "title": "解决谷歌翻译用不了的问题",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "id": "ttq",
+    "title": "甜甜圈代码🍩",
+    "date": "2026-04-22",
+    "updateTime": "2026-04-22",
     "tags": [
       "技巧",
       "技术分享"
@@ -135,134 +63,15 @@
       "技巧"
     ],
     "cover": "/covers/tips.svg",
-    "description": "关于Google翻译和FCM到底是怎么回事",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Groupcipher",
-    "title": "分组密码",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "分组密码 (Block Cipher) 是对称密码体制中的一个重要类别。与流密码逐比特或逐字节处理明文不同，分组密码…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "HashAndMAC",
-    "title": "消息认证与哈希函数",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "消息认证与哈希函数是现代密码学中的重要组成部分，它们解决了数据完整性验证和身份认证的问题。与加密技术主要关注数据的机…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "homebrew",
-    "title": "Homebrew国内如何自动安装(国内地址)(Mac & Linux)",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "自动脚本(全部国内地址)（复制下面一句脚本到终端中粘贴回车)",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Introduction",
-    "title": "密码学引言",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "密码学（Cryptography）是研究信息加密与解密、保障信息安全的一门科学。它在现代通信、数据存储、网络安全等领…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "iphoneduozhanghao",
-    "title": "iphone多账号如何不频繁登录，双重认证",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "iPhone",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": "如果你的iPhone每次切换App store需要双重验证或者想不切换ID就更新不同地区App而不需要再次密码验证，…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "iphonequchukaiping",
-    "title": "苹果手机去除开屏广告",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "iPhone",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": "2.找到「屏幕使用时间」并打开",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "iphonexianmian",
-    "title": "苹果iPhone/iOS 限免网站合集",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "iPhone",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": "网址：<https://mergeek.com/free/apps>",
+    "description": "甜甜圈会动的！！！",
     "pinned": false,
     "featured": false
   },
   {
     "id": "jiaoben",
     "title": "实用脚本分享",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "date": "2026-04-08",
+    "updateTime": "2026-04-08",
     "tags": [
       "技巧",
       "技术分享"
@@ -276,384 +85,10 @@
     "featured": false
   },
   {
-    "id": "jiasugithub",
-    "title": "mac 无法访问 github 的解决办法",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "第一步：打开 folder文件夹",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "jietu",
-    "title": "Mac小技巧：去除系统截图名的日期后缀",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "默认情况下，在 OS X 中用 Command-Shift-3 等快捷键来截图时，你会发现生成的图片名称分为两个部分…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "jisuanjibiannianshi",
-    "title": "计算机编年史",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "技巧"
-    ],
-    "category": [
-      "技巧"
-    ],
-    "cover": "/covers/timeline.svg",
-    "description": "1623年|\t威廉·契克卡德（Wilhelm Schickard）制作了一个通过转动齿轮来进行操作，能进行六位以内数…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "kjj",
-    "title": "Mac 键盘快捷键",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "一键展示Mac快捷键，超强的Mac快捷键大全",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "LaTeX",
-    "title": "LaTeX常用符号整理",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "学术",
-      "笔记",
-      "Math"
-    ],
-    "category": [
-      "学术"
-    ],
-    "cover": "/covers/academic.svg",
-    "description": "有代码的大写希腊字母，直接敲获得正体，使用\\var前缀转化为斜体",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Launchpad",
-    "title": "启动台图标顺序错乱怎么办",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "<h1>重置 Launchpad 设置 </h1>",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "maccd",
-    "title": "Mac隐藏彩蛋，居然自带十几款小游戏",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "相信很多用过 Windows 系统的伙伴们对于它自带的小游戏应该，不陌生吧在无聊的时候，还总是抱怨 macOS 为啥…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Macesc",
-    "title": "Mac的esc键失效的解决方法",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "解决办法:(键盘没坏)",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "macsoft",
-    "title": "Mac/windows软件网站汇总",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "<div class=\"grid cards\" markdown>",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "math",
-    "title": "Math",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "学术",
-      "笔记"
-    ],
-    "category": [
-      "学术"
-    ],
-    "cover": "/covers/academic.svg",
-    "description": "<center> <font face=\"宋体\" color= #4b78d8 size=6 >",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "matlabrose",
-    "title": "用Matlab画玫瑰百合花",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "技巧",
-      "技术分享"
-    ],
-    "category": [
-      "技巧"
-    ],
-    "cover": "/covers/tips.svg",
-    "description": "function roseBouquet",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "ModernCryptography",
-    "title": "现代密码学发展",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "现代密码学在经典对称/非对称密码与消息认证的基础上，正经历后量子安全、隐私计算与新型应用三大方向的深刻变化。本文基于…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Numbertheory",
-    "title": "数论基础",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "数论是密码学的基础学科之一，许多现代加密算法（如RSA、AES、ECC等）都依赖于数论中的基本概念和算法。作者总结了…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "ohmuzsh",
-    "title": "oh-my-zsh 更新",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "技巧",
-      "技术分享"
-    ],
-    "category": [
-      "技巧"
-    ],
-    "cover": "/covers/tips.svg",
-    "description": "upgradeohmyzsh",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Pd",
-    "title": "PD虚拟机",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "先去下载Pd runner:<https://macapp.org.cn/app/pd-runner.html>",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "pip",
-    "title": "PIP",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Python",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": ":simple-python:",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "ProtocolAndApplication",
-    "title": "密码协议与应用",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "密码协议（Cryptographic Protocol）是在多方之间、按照预定步骤使用密码学原语完成某一安全目标的交…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "python",
-    "title": "将Python文件.py打包成.exe可执行程序",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Python",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/tutorial.svg",
-    "description": "<div class=\"grid cards\" markdown>",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "shanchu",
-    "title": "Macbook启动台顽固应用图标删除方法",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "类似上图这种情况的……",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "sunhuai",
-    "title": "提示 「“XXX”已损坏，无法打开。 您应该将它移到废纸篓。」「打不开 xxx，因为它来自身份不明的开发者」解决方法",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "Mac",
-      "教程"
-    ],
-    "category": [
-      "教程"
-    ],
-    "cover": "/covers/mac.svg",
-    "description": "- xxx已损坏，无法打开，你应该将它移到废纸篓解决办法",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "Symmetriccryptography",
-    "title": "流密码",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "密码学",
-      "学习笔记"
-    ],
-    "category": [
-      "密码学"
-    ],
-    "cover": "/covers/crypto.svg",
-    "description": "流密码 (Stream Cipher) 是一类重要的对称加密算法。与分组密码 (Block Cipher) 将明文分…",
-    "pinned": false,
-    "featured": false
-  },
-  {
-    "id": "ttq",
-    "title": "甜甜圈代码🍩",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
-    "tags": [
-      "技巧",
-      "技术分享"
-    ],
-    "category": [
-      "技巧"
-    ],
-    "cover": "/covers/tips.svg",
-    "description": "<img src=\"https://s1.imagehub.cc/images/2025/01/11/0e3e8f0…",
-    "pinned": false,
-    "featured": false
-  },
-  {
     "id": "tuchuang",
     "title": "搭建个人图床",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "date": "2026-03-28",
+    "updateTime": "2026-03-28",
     "tags": [
       "技巧",
       "技术分享"
@@ -669,8 +104,8 @@
   {
     "id": "uv",
     "title": "uv：新一代 Python 包管理工具入门",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "date": "2026-03-22",
+    "updateTime": "2026-03-22",
     "tags": [
       "Python",
       "教程",
@@ -679,34 +114,272 @@
     "category": [
       "教程"
     ],
-    "cover": "/covers/tutorial.svg",
+    "cover": "/covers/python.svg",
     "description": "uv 是一个用 Rust 写的、速度极快的 Python 包管理和项目管理工具，由开发 Ruff 的 Astral …",
     "pinned": false,
     "featured": false
   },
   {
-    "id": "win",
-    "title": "Win11镜像下载/KMS激活",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "id": "python",
+    "title": "将Python文件.py打包成.exe可执行程序",
+    "date": "2026-03-10",
+    "updateTime": "2026-03-10",
+    "tags": [
+      "Python",
+      "教程"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/python.svg",
+    "description": "-   { .lg .middle } 推荐的文章",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "ohmuzsh",
+    "title": "oh-my-zsh 更新",
+    "date": "2026-03-05",
+    "updateTime": "2026-03-05",
     "tags": [
       "技巧",
-      "技术分享",
-      "win"
+      "技术分享"
     ],
     "category": [
       "技巧"
     ],
     "cover": "/covers/tips.svg",
-    "description": "镜像下载、壁纸、KMS激活",
+    "description": "upgradeohmyzsh",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "pip",
+    "title": "PIP",
+    "date": "2026-02-25",
+    "updateTime": "2026-02-25",
+    "tags": [
+      "Python",
+      "教程"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/python.svg",
+    "description": ":simple-python:",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "iphonexianmian",
+    "title": "苹果iPhone/iOS 限免网站合集",
+    "date": "2026-02-14",
+    "updateTime": "2026-02-14",
+    "tags": [
+      "iPhone",
+      "教程"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/ios.svg",
+    "description": "一个专注于安卓和苹果 App 推介的网站，iOS 限免与优惠更新比较及时，还支持微信服务号订阅，是目前最推荐的限免信…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "iphonequchukaiping",
+    "title": "苹果手机去除开屏广告",
+    "date": "2026-02-03",
+    "updateTime": "2026-02-03",
+    "tags": [
+      "iPhone",
+      "教程"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/ios.svg",
+    "description": "2.找到「屏幕使用时间」并打开",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "matlabrose",
+    "title": "用Matlab画玫瑰百合花",
+    "date": "2026-01-28",
+    "updateTime": "2026-01-28",
+    "tags": [
+      "技巧",
+      "技术分享"
+    ],
+    "category": [
+      "技巧"
+    ],
+    "cover": "/covers/tips.svg",
+    "description": "function roseBouquet",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "iphoneduozhanghao",
+    "title": "iphone多账号如何不频繁登录，双重认证",
+    "date": "2026-01-20",
+    "updateTime": "2026-01-20",
+    "tags": [
+      "iPhone",
+      "教程"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/ios.svg",
+    "description": "如果你的iPhone每次切换App store需要双重验证或者想不切换ID就更新不同地区App而不需要再次密码验证，…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "LaTeX",
+    "title": "LaTeX常用符号整理",
+    "date": "2026-01-12",
+    "updateTime": "2026-01-12",
+    "tags": [
+      "学术",
+      "笔记",
+      "Math"
+    ],
+    "category": [
+      "学术"
+    ],
+    "cover": "/covers/academic.svg",
+    "description": "有代码的大写希腊字母，直接敲获得正体，使用\\var前缀转化为斜体",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "ddiancichang",
+    "title": "电磁场与电磁波常用符号公式整理（手写）",
+    "date": "2026-01-05",
+    "updateTime": "2026-01-05",
+    "tags": [
+      "学术",
+      "笔记"
+    ],
+    "category": [
+      "学术"
+    ],
+    "cover": "/covers/academic.svg",
+    "description": "",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "ModernCryptography",
+    "title": "密码学 09 · 现代密码学发展",
+    "date": "2025-12-27",
+    "updateTime": "2025-12-27",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "现代密码学在经典对称/非对称密码与消息认证的基础上，正经历后量子安全、隐私计算与新型应用三大方向的深刻变化。本文基于…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "Bitcoin",
+    "title": "密码学 08 · 比特币体系：从零开始理解加密货币",
+    "date": "2025-12-15",
+    "updateTime": "2025-12-15",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "通俗易懂讲解比特币的基本原理、运作机制和核心创新",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "googletranslate",
+    "title": "解决谷歌翻译用不了的问题",
+    "date": "2025-12-10",
+    "updateTime": "2025-12-10",
+    "tags": [
+      "技巧",
+      "技术分享"
+    ],
+    "category": [
+      "技巧"
+    ],
+    "cover": "/covers/tips.svg",
+    "description": "关于Google翻译和FCM到底是怎么回事",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "ProtocolAndApplication",
+    "title": "密码学 07 · 密码协议与应用",
+    "date": "2025-12-03",
+    "updateTime": "2025-12-03",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "密码协议（Cryptographic Protocol）是在多方之间、按照预定步骤使用密码学原语完成某一安全目标的交…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "HashAndMAC",
+    "title": "密码学 06 · 消息认证与哈希函数",
+    "date": "2025-11-20",
+    "updateTime": "2025-11-20",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "消息认证与哈希函数是现代密码学中的重要组成部分，它们解决了数据完整性验证和身份认证的问题。与加密技术主要关注数据的机…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "Asymmetriccryptography",
+    "title": "密码学 05 · 非对称密码",
+    "date": "2025-11-08",
+    "updateTime": "2025-11-08",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "非对称密码学（Asymmetric Cryptography），也称为公钥密码学（Public Key Crypto…",
     "pinned": false,
     "featured": false
   },
   {
     "id": "winkjj",
     "title": "Windows基础操作（快捷键）",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "date": "2025-11-05",
+    "updateTime": "2025-11-05",
     "tags": [
       "Windows",
       "教程",
@@ -715,42 +388,112 @@
     "category": [
       "教程"
     ],
-    "cover": "/covers/tutorial.svg",
+    "cover": "/covers/windows.svg",
     "description": "1、Win+A：打开快速设置面板",
     "pinned": false,
     "featured": false
   },
   {
-    "id": "xjiq",
-    "title": "小小Mac技巧",
-    "date": "2026-09-06",
-    "updateTime": "2026-09-06",
+    "id": "Groupcipher",
+    "title": "密码学 04 · 分组密码",
+    "date": "2025-10-26",
+    "updateTime": "2025-10-26",
     "tags": [
-      "Mac",
-      "教程"
+      "密码学",
+      "系列"
     ],
     "category": [
-      "教程"
+      "网络安全"
     ],
-    "cover": "/covers/mac.svg",
-    "description": "只显示当前运行的应用",
+    "cover": "/covers/crypto.svg",
+    "description": "分组密码 (Block Cipher) 是对称密码体制中的一个重要类别。与流密码逐比特或逐字节处理明文不同，分组密码…",
     "pinned": false,
     "featured": false
   },
   {
-    "id": "Bitcoin",
-    "title": "比特币体系：从零开始理解加密货币",
-    "date": "2026-02-08",
-    "updateTime": "2026-02-08",
+    "id": "edgexz",
+    "title": "三步卸载 Microsoft Edge",
+    "date": "2025-10-22",
+    "updateTime": "2025-10-22",
     "tags": [
-      "密码学",
-      "学习笔记"
+      "Windows",
+      "教程",
+      "win"
     ],
     "category": [
-      "密码学"
+      "教程"
+    ],
+    "cover": "/covers/windows.svg",
+    "description": "第一步：管理员模式打开 powershell",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "Symmetriccryptography",
+    "title": "密码学 03 · 流密码",
+    "date": "2025-10-14",
+    "updateTime": "2025-10-14",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
     ],
     "cover": "/covers/crypto.svg",
-    "description": "通俗易懂讲解比特币的基本原理、运作机制和核心创新",
+    "description": "流密码 (Stream Cipher) 是一类重要的对称加密算法。与分组密码 (Block Cipher) 将明文分…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "360",
+    "title": "彻底卸载360安全卫士的方法",
+    "date": "2025-10-08",
+    "updateTime": "2025-10-08",
+    "tags": [
+      "Windows",
+      "教程",
+      "win"
+    ],
+    "category": [
+      "教程"
+    ],
+    "cover": "/covers/windows.svg",
+    "description": "按下Windows+R键，并输入msconfig, 在“引导”选项卡中选择“安全引导”，并重新启动进入安全模式。此时…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "Introduction",
+    "title": "密码学 02 · 密码学引言",
+    "date": "2025-09-30",
+    "updateTime": "2025-09-30",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "密码学（Cryptography）是研究信息加密与解密、保障信息安全的一门科学。它在现代通信、数据存储、网络安全等领…",
+    "pinned": false,
+    "featured": false
+  },
+  {
+    "id": "Numbertheory",
+    "title": "密码学 01 · 数论基础",
+    "date": "2025-09-18",
+    "updateTime": "2025-09-18",
+    "tags": [
+      "密码学",
+      "系列"
+    ],
+    "category": [
+      "网络安全"
+    ],
+    "cover": "/covers/crypto.svg",
+    "description": "数论是密码学的基础学科之一，许多现代加密算法（如RSA、AES、ECC等）都依赖于数论中的基本概念和算法。作者总结了…",
     "pinned": false,
     "featured": false
   }

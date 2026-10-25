@@ -1,9 +1,9 @@
 ---
 title: uv：新一代 Python 包管理工具入门
-date: 2026-09-06
+date: 2026-03-22
 category: 教程
 tags: [Python, 教程, 工具]
-cover: /covers/tutorial.svg
+cover: /covers/python.svg
 description: uv 是一个用 Rust 写的、速度极快的 Python 包管理和项目管理工具，由开发 Ruff 的 Astral …
 ---
 # uv：新一代 Python 包管理工具入门

@@ -1,6 +1,6 @@
 ---
 title: 电磁场与电磁波常用符号公式整理（手写）
-date: 2026-09-06
+date: 2026-01-05
 category: 学术
 tags: [学术, 笔记]
 cover: /covers/academic.svg

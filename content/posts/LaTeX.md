@@ -1,6 +1,6 @@
 ---
 title: LaTeX常用符号整理
-date: 2026-09-06
+date: 2026-01-12
 category: 学术
 tags: [学术, 笔记, Math]
 cover: /covers/academic.svg

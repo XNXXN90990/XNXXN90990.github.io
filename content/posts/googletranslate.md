@@ -1,6 +1,6 @@
 ---
 title: 解决谷歌翻译用不了的问题
-date: 2026-09-06
+date: 2025-12-10
 category: 技巧
 tags: [技巧, 技术分享]
 cover: /covers/tips.svg

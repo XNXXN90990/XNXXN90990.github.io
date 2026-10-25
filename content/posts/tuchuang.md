@@ -1,6 +1,6 @@
 ---
 title: 搭建个人图床
-date: 2026-09-06
+date: 2026-03-28
 category: 技巧
 tags: [技巧, 技术分享]
 cover: /covers/tips.svg

@@ -1,9 +1,9 @@
 ---
 title: iphone多账号如何不频繁登录，双重认证
-date: 2026-09-06
+date: 2026-01-20
 category: 教程
 tags: [iPhone, 教程]
-cover: /covers/tutorial.svg
+cover: /covers/ios.svg
 description: 如果你的iPhone每次切换App store需要双重验证或者想不切换ID就更新不同地区App而不需要再次密码验证，…
 ---
 # iphone多账号如何不频繁登录,双重认证

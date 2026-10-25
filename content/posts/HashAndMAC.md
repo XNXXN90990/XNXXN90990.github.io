@@ -1,8 +1,8 @@
 ---
-title: 消息认证与哈希函数
-date: 2026-09-06
-category: 密码学
-tags: [密码学, 学习笔记]
+title: 密码学 06 · 消息认证与哈希函数
+date: 2025-11-20
+category: 网络安全
+tags: [密码学, 系列]
 cover: /covers/crypto.svg
 description: 消息认证与哈希函数是现代密码学中的重要组成部分，它们解决了数据完整性验证和身份认证的问题。与加密技术主要关注数据的机…
 ---

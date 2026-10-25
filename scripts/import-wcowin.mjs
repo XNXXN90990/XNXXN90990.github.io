@@ -21,19 +21,16 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const SRC = resolve(HERE, '../../Wcowin的博客/docs/blog');
 const DEST = resolve(HERE, '../content/posts');
 
-/** 白名单：要迁移的文件（相对 docs/blog/），skip 的带注释说明 */
+/** 白名单：要迁移的文件（相对 docs/blog/）。
+ *  已按要求排除：Mac 全部与 macsoft（软件类）、数学竞赛（Math/13js、Math/14、math.md）、
+ *  旧站系统文（websitebeauty/Mkdocs/Zensical）、kexue、update 系列/HelloWorld/sim-card。 */
 const WHITE_LIST = [
-  // 密码学（系列学习笔记，9 篇；index.md 是目录页不迁）
-  ...['Introduction', 'ModernCryptography', 'Symmetriccryptography', 'Asymmetriccryptography',
-    'HashAndMAC', 'Groupcipher', 'Numbertheory', 'ProtocolAndApplication', 'Bitcoin']
+  // 网络安全/密码学 系列（9 篇，顺序 = 学习路径，标题会加「密码学 NN ·」前缀）
+  ...['Numbertheory', 'Introduction', 'Symmetriccryptography', 'Groupcipher', 'Asymmetriccryptography',
+    'HashAndMAC', 'ProtocolAndApplication', 'Bitcoin', 'ModernCryptography']
     .map((f) => `Cryptography/${f}.md`),
-  // 学术（5 篇）
-  ...['Academic/LaTeX.md', 'Academic/math.md', 'Academic/Math/13js.md', 'Academic/Math/14.md',
-    'Academic/ddiancichang.md'],
-  // Mac 教程（11 篇）+ 软件清单
-  ...['homebrew', 'jiasugithub', 'jietu', 'kjj', 'Launchpad', 'maccd', 'Macesc', 'Pd',
-    'shanchu', 'sunhuai', 'xjiq'].map((f) => `Mac/${f}.md`),
-  'macsoft.md',
+  // 学术（2 篇）
+  ...['Academic/LaTeX.md', 'Academic/ddiancichang.md'],
   // iPhone / Windows / Python
   ...['iphone/iphoneduozhanghao.md', 'iphone/iphonequchukaiping.md', 'iphone/iphonexianmian.md'],
   ...['Win/360.md', 'Win/edgexz.md', 'Win/winkjj.md'],
@@ -45,20 +42,42 @@ const WHITE_LIST = [
     'technique sharing/win.md'],
 ];
 
+/** 密码学系列编号（按 wcowin.work 的学习路径顺序） */
+const SERIES_CRYPTO_ORDER = [
+  'Numbertheory', 'Introduction', 'Symmetriccryptography', 'Groupcipher', 'Asymmetriccryptography',
+  'HashAndMAC', 'ProtocolAndApplication', 'Bitcoin', 'ModernCryptography',
+];
+
+/** 日期指定：旧站多数文章无日期，这里按系列学习路径/季节自然铺开（可随时手改） */
+const DATE_OVERRIDES = {
+  // 密码学系列：2025 秋季学期逐章推进
+  Numbertheory: '2025-09-18', Introduction: '2025-09-30', Symmetriccryptography: '2025-10-14',
+  Groupcipher: '2025-10-26', Asymmetriccryptography: '2025-11-08', HashAndMAC: '2025-11-20',
+  ProtocolAndApplication: '2025-12-03', Bitcoin: '2025-12-15', ModernCryptography: '2025-12-27',
+  // 学术
+  ddiancichang: '2026-01-05', LaTeX: '2026-01-12',
+  // iPhone
+  iphoneduozhanghao: '2026-01-20', iphonequchukaiping: '2026-02-03', iphonexianmian: '2026-02-14',
+  // Windows（2025 秋）
+  '360': '2025-10-08', edgexz: '2025-10-22', winkjj: '2025-11-05',
+  // Python（2026 春）
+  pip: '2026-02-25', python: '2026-03-10', uv: '2026-03-22',
+  // 技巧分享
+  googletranslate: '2025-12-10', matlabrose: '2026-01-28', ohmuzsh: '2026-03-05',
+  jiaoben: '2026-04-08', ttq: '2026-04-22', tuchuang: '2026-03-28',
+  aixin: '2026-05-20', jisuanjibiannianshi: '2026-06-01', win: '2026-06-15',
+};
+
 /** 分类 / 标签 / 封面映射 */
 const CATEGORY_RULES = [
-  { test: (p) => p.startsWith('Cryptography/'), category: '密码学', tags: ['密码学', '学习笔记'], cover: '/covers/crypto.svg' },
+  { test: (p) => p.startsWith('Cryptography/'), category: '网络安全', tags: ['密码学', '系列'], cover: '/covers/crypto.svg' },
   { test: (p) => p.startsWith('Academic/'), category: '学术', tags: ['学术', '笔记'], cover: '/covers/academic.svg' },
-  { test: (p) => p.startsWith('Mac/') || p === 'macsoft.md', category: '教程', tags: ['Mac', '教程'], cover: '/covers/mac.svg' },
-  { test: (p) => p.startsWith('iphone/') || p.startsWith('Win/') || p.startsWith('py/'), category: '教程', tags: [], cover: '/covers/tutorial.svg' },
+  { test: (p) => p.startsWith('iphone/'), category: '教程', tags: ['iPhone', '教程'], cover: '/covers/ios.svg' },
+  { test: (p) => p.startsWith('Win/'), category: '教程', tags: ['Windows', '教程'], cover: '/covers/windows.svg' },
+  { test: (p) => p.startsWith('py/'), category: '教程', tags: ['Python', '教程'], cover: '/covers/python.svg' },
   { test: (p) => p.startsWith('technique sharing/'), category: '技巧', tags: ['技巧'], cover: '/covers/tips.svg' },
 ];
-const SPECIAL_TAGS = {
-  'iphone/': ['iPhone', '教程'],
-  'Win/': ['Windows', '教程'],
-  'py/': ['Python', '教程'],
-};
-const SPECIAL_COVER = { 'technique sharing/jisuanjibiannianshi.md': '/covers/timeline.svg' };
+const SPECIAL_COVER = {};
 
 /** !!! 类型 → 中文标题 */
 const ADMONITION_CN = {
@@ -166,8 +185,12 @@ function stripIconTokens(text) {
 function genDescription(body) {
   for (const line of body.split(/\r?\n/)) {
     const t = line.trim();
-    if (!t || /^(#|!\[|>|\||```|---|===)/.test(t)) continue;
-    const plain = t.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_`~]/g, '').trim();
+    if (!t || /^(#|!\[|>|\||```|---|===|<)/.test(t)) continue;
+    const plain = t
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/<[^>]+>/g, '')
+      .replace(/[*_`~]/g, '')
+      .trim();
     if (plain.length < 8) continue;
     return plain.length > 60 ? `${plain.slice(0, 58)}…` : plain;
   }
@@ -188,17 +211,14 @@ for (const rel of WHITE_LIST) {
     const rule = CATEGORY_RULES.find((r) => r.test(rel));
     const stat = statSync(srcPath);
 
-    let date = String(fm.date || '').trim();
+    let date = DATE_OVERRIDES[slug] || String(fm.date || '').trim();
     if (!/^\d{4}-\d{2}-\d{2}/.test(date)) {
       date = new Date(stat.mtime).toISOString().slice(0, 10);
     }
-    const oldCats = Array.isArray(fm.categories) ? fm.categories : fm.categories ? [fm.categories] : [];
-    const category = oldCats[0] && rel.startsWith('posts/') ? oldCats[0] : rule.category;
+    const category = rule.category;
     const oldTags = Array.isArray(fm.tags) ? fm.tags : fm.tags ? [fm.tags] : [];
-    const special = Object.entries(SPECIAL_TAGS).find(([k]) => rel.startsWith(k));
-    const ruleTags = special ? special[1] : (rule?.tags || []);
     const tags = [];
-    for (const t of [...ruleTags, ...oldTags]) {
+    for (const t of [...(rule?.tags || []), ...oldTags]) {
       const v = String(t || '').trim();
       if (v && !tags.some((x) => x.toLowerCase() === v.toLowerCase())) tags.push(v);
     }
@@ -208,9 +228,11 @@ for (const rel of WHITE_LIST) {
     content = stripIconTokens(content);
     content = rewriteLinks(content, migratedSlugs).trim();
 
-    // 标题：front-matter 缺失时回退到正文首个 H1
+    // 标题：front-matter 缺失时回退到正文首个 H1；密码学系列加「密码学 NN ·」编号
     const h1 = /^#\s+(.+?)\s*$/m.exec(body);
-    const title = String(fm.title || (h1 ? h1[1] : '') || slug).trim();
+    let title = String(fm.title || (h1 ? h1[1] : '') || slug).trim();
+    const cryptoIdx = SERIES_CRYPTO_ORDER.indexOf(slug);
+    if (cryptoIdx >= 0) title = `密码学 ${String(cryptoIdx + 1).padStart(2, '0')} · ${title}`;
 
     const description = String(fm.description || '').trim() || genDescription(content);
     const cover = SPECIAL_COVER[rel] || rule?.cover || '';

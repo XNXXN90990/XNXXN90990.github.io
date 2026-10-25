@@ -1,9 +1,9 @@
 ---
 title: PIP
-date: 2026-09-06
+date: 2026-02-25
 category: 教程
 tags: [Python, 教程]
-cover: /covers/tutorial.svg
+cover: /covers/python.svg
 description: :simple-python:
 ---
 # PIP

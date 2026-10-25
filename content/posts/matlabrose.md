@@ -1,6 +1,6 @@
 ---
 title: 用Matlab画玫瑰百合花
-date: 2026-09-06
+date: 2026-01-28
 category: 技巧
 tags: [技巧, 技术分享]
 cover: /covers/tips.svg

@@ -1,8 +1,8 @@
 ---
-title: 密码学引言
-date: 2026-09-06
-category: 密码学
-tags: [密码学, 学习笔记]
+title: 密码学 02 · 密码学引言
+date: 2025-09-30
+category: 网络安全
+tags: [密码学, 系列]
 cover: /covers/crypto.svg
 description: 密码学（Cryptography）是研究信息加密与解密、保障信息安全的一门科学。它在现代通信、数据存储、网络安全等领…
 ---

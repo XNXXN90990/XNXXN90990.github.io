@@ -1,8 +1,8 @@
 ---
-title: 比特币体系：从零开始理解加密货币
-date: 2026-02-08
-category: 密码学
-tags: [密码学, 学习笔记]
+title: 密码学 08 · 比特币体系：从零开始理解加密货币
+date: 2025-12-15
+category: 网络安全
+tags: [密码学, 系列]
 cover: /covers/crypto.svg
 description: 通俗易懂讲解比特币的基本原理、运作机制和核心创新
 ---

@@ -1,10 +1,10 @@
 ---
 title: 将Python文件.py打包成.exe可执行程序
-date: 2026-09-06
+date: 2026-03-10
 category: 教程
 tags: [Python, 教程]
-cover: /covers/tutorial.svg
-description: <div class="grid cards" markdown>
+cover: /covers/python.svg
+description: -   { .lg .middle } 推荐的文章
 ---
 # 将Python文件.py打包成.exe可执行程序
 
