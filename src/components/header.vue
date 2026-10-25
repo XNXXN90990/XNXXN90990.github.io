@@ -155,6 +155,7 @@
 
 <script>
 import { toggleTheme, ACCENTS, getAccent, setAccent } from '@/utils/theme';
+import { moduleEnabled } from '@/utils/siteStore';
 
 const GITHUB_URL =
     (import.meta.env.VITE_GITHUB_URL && String(import.meta.env.VITE_GITHUB_URL).trim()) ||
@@ -172,18 +173,20 @@ export default {
     },
     computed: {
         navEntries() {
-            return [
-                { name: '首页', section: '' },
-                { name: '归档', section: 'archive' },
-                { name: '指南', section: 'guide' },
-                { name: '杂想', section: 'thoughts' },
-                { name: '说说', section: 'talks' },
-                { name: '相册', section: 'albums' },
-                { name: '朋友', section: 'links' },
-                { name: '关于', section: 'about' },
-                { name: '私人空间', section: 'private', icon: 'fa-solid fa-lock' },
-                { name: 'GitHub', href: GITHUB_URL, external: true }
+            // 栏目模块显隐：后台「站点设置」可关闭说说/杂想/相册/指南
+            const all = [
+                { name: '首页', section: '', module: null },
+                { name: '归档', section: 'archive', module: null },
+                { name: '指南', section: 'guide', module: 'module_guides_enabled' },
+                { name: '杂想', section: 'thoughts', module: 'module_thoughts_enabled' },
+                { name: '说说', section: 'talks', module: 'module_talks_enabled' },
+                { name: '相册', section: 'albums', module: 'module_albums_enabled' },
+                { name: '朋友', section: 'links', module: null },
+                { name: '关于', section: 'about', module: null },
+                { name: '私人空间', section: 'private', icon: 'fa-solid fa-lock', module: null },
+                { name: 'GitHub', href: GITHUB_URL, external: true, module: null }
             ];
+            return all.filter((item) => !item.module || moduleEnabled(item.module));
         }
     },
     mounted() {

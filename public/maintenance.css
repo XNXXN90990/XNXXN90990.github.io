@@ -1,0 +1,102 @@
+/* ===== 主题变量（摘自 src/assets/css/theme-vars.css） ===== */
+:root {
+  color-scheme: dark;
+  --bg-base: #0d1120;
+  --bg-image:
+    radial-gradient(1100px 700px at 85% -10%, rgba(124, 92, 214, 0.18), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(64, 90, 200, 0.14), transparent 55%),
+    linear-gradient(180deg, rgba(27, 33, 64, 0.62) 0%, rgba(15, 20, 44, 0.68) 55%, rgba(11, 15, 34, 0.74) 100%),
+    url('/bg-milkyway.jpg'),
+    linear-gradient(180deg, #1b2140 0%, #121735 45%, #0b0f22 100%);
+  --bg-size: cover, cover, cover, cover, cover;
+  --bg-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  --text-primary: #f2f7f2;
+  --text-secondary: #b9c4ba;
+  --text-muted: #8b988d;
+  --card-border: rgba(255, 255, 255, 0.32);
+  --watermark-stroke: #ffffff;
+  --watermark-opacity: 0.12;
+}
+
+:root[data-accent='green'] { --accent: #00b828; --accent-bright: #6bff7a; --accent-strong: #39ff7e; --accent-soft: rgba(0, 184, 40, 0.22); --accent-border: rgba(0, 184, 40, 0.9); --glow-shadow: 0 0 12px rgba(6, 204, 26, 0.55), 0 0 28px rgba(37, 252, 145, 0.35); --title-gradient: linear-gradient(to right, #abe6a8, #00b828); }
+:root[data-accent='green'][data-theme='light'] { --accent: #0f8a38; --accent-bright: #0b6e2c; --accent-strong: #0f8a38; --accent-soft: rgba(15, 138, 56, 0.14); --accent-border: rgba(15, 138, 56, 0.75); --glow-shadow: 0 0 10px rgba(15, 138, 56, 0.28); --title-gradient: linear-gradient(to right, #0d8a3a, #12b34c); }
+:root[data-accent='blue'] { --accent: #00a8cc; --accent-bright: #7ae4ff; --accent-strong: #39d0ff; --accent-soft: rgba(0, 168, 204, 0.2); --accent-border: rgba(0, 168, 204, 0.9); --glow-shadow: 0 0 12px rgba(0, 168, 204, 0.55), 0 0 28px rgba(57, 208, 255, 0.35); --title-gradient: linear-gradient(to right, #a8dce6, #00b8cc); }
+:root[data-accent='blue'][data-theme='light'] { --accent: #0b7fa0; --accent-bright: #08607c; --accent-strong: #0b7fa0; --accent-soft: rgba(11, 127, 160, 0.14); --accent-border: rgba(11, 127, 160, 0.75); --glow-shadow: 0 0 10px rgba(11, 127, 160, 0.28); --title-gradient: linear-gradient(to right, #0b7fa0, #0ea5c4); }
+:root[data-accent='purple'] { --accent: #8b5cf6; --accent-bright: #c4b5fd; --accent-strong: #a78bfa; --accent-soft: rgba(139, 92, 246, 0.2); --accent-border: rgba(139, 92, 246, 0.9); --glow-shadow: 0 0 12px rgba(139, 92, 246, 0.55), 0 0 28px rgba(167, 139, 250, 0.35); --title-gradient: linear-gradient(to right, #cabdf0, #8b5cf6); }
+:root[data-accent='purple'][data-theme='light'] { --accent: #7c3aed; --accent-bright: #5b21b6; --accent-strong: #7c3aed; --accent-soft: rgba(124, 58, 237, 0.14); --accent-border: rgba(124, 58, 237, 0.75); --glow-shadow: 0 0 10px rgba(124, 58, 237, 0.28); --title-gradient: linear-gradient(to right, #6d28d9, #8b5cf6); }
+:root[data-accent='orange'] { --accent: #f59e0b; --accent-bright: #fde68a; --accent-strong: #fbbf24; --accent-soft: rgba(245, 158, 11, 0.2); --accent-border: rgba(245, 158, 11, 0.9); --glow-shadow: 0 0 12px rgba(245, 158, 11, 0.55), 0 0 28px rgba(251, 191, 36, 0.35); --title-gradient: linear-gradient(to right, #f0e0b0, #f59e0b); }
+:root[data-accent='orange'][data-theme='light'] { --accent: #d97706; --accent-bright: #92400e; --accent-strong: #d97706; --accent-soft: rgba(217, 119, 6, 0.14); --accent-border: rgba(217, 119, 6, 0.75); --glow-shadow: 0 0 10px rgba(217, 119, 6, 0.28); --title-gradient: linear-gradient(to right, #b45309, #f59e0b); }
+:root[data-accent='pink'] { --accent: #ec4899; --accent-bright: #f9a8d4; --accent-strong: #f472b6; --accent-soft: rgba(236, 72, 153, 0.2); --accent-border: rgba(236, 72, 153, 0.9); --glow-shadow: 0 0 12px rgba(236, 72, 153, 0.55), 0 0 28px rgba(244, 114, 182, 0.35); --title-gradient: linear-gradient(to right, #f0c2d8, #ec4899); }
+:root[data-accent='pink'][data-theme='light'] { --accent: #db2777; --accent-bright: #9d174d; --accent-strong: #db2777; --accent-soft: rgba(219, 39, 119, 0.14); --accent-border: rgba(219, 39, 119, 0.75); --glow-shadow: 0 0 10px rgba(219, 39, 119, 0.28); --title-gradient: linear-gradient(to right, #be185d, #ec4899); }
+:root[data-accent='red'] { --accent: #ef4444; --accent-bright: #fca5a5; --accent-strong: #f87171; --accent-soft: rgba(239, 68, 68, 0.2); --accent-border: rgba(239, 68, 68, 0.9); --glow-shadow: 0 0 12px rgba(239, 68, 68, 0.55), 0 0 28px rgba(248, 113, 113, 0.35); --title-gradient: linear-gradient(to right, #f0c2c2, #ef4444); }
+:root[data-accent='red'][data-theme='light'] { --accent: #dc2626; --accent-bright: #991b1b; --accent-strong: #dc2626; --accent-soft: rgba(220, 38, 38, 0.14); --accent-border: rgba(220, 38, 38, 0.75); --glow-shadow: 0 0 10px rgba(220, 38, 38, 0.28); --title-gradient: linear-gradient(to right, #b91c1c, #ef4444); }
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-base: #fbfbf6;
+  --bg-image:
+    linear-gradient(rgba(60, 60, 70, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 60, 70, 0.018) 1px, transparent 1px),
+    radial-gradient(1100px 700px at 85% -10%, rgba(214, 186, 110, 0.12), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(124, 92, 214, 0.07), transparent 55%),
+    linear-gradient(180deg, #fdfdfb 0%, #f8f7ee 55%, #f3f2e6 100%);
+  --bg-size: 48px 48px, 48px 48px, cover, cover, cover;
+  --bg-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
+  --text-primary: #23252b;
+  --text-secondary: #565962;
+  --text-muted: #8b8e96;
+  --card-border: rgba(40, 40, 50, 0.13);
+  --watermark-stroke: var(--text-primary);
+  --watermark-opacity: 0.09;
+}
+
+/* ===== 页面 ===== */
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  background-image: var(--bg-image);
+  background-size: var(--bg-size);
+  background-repeat: var(--bg-repeat);
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* 书法水印「寜」，参数照搬 Home.vue */
+.wm {
+  position: fixed; right: -6%; top: 49.5%; bottom: auto; transform: translateY(-50%);
+  font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'BiauKai', serif;
+  font-size: min(96vh, 54vw); line-height: 1; color: transparent;
+  -webkit-text-stroke: 2.5px var(--watermark-stroke);
+  opacity: var(--watermark-opacity);
+  pointer-events: none; user-select: none; z-index: 0; white-space: nowrap;
+}
+
+.wrap {
+  position: relative; z-index: 1; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.card {
+  max-width: 520px; text-align: center; padding: 40px 36px; border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-base) 62%, transparent);
+  border: 1px solid var(--accent-border);
+  box-shadow: var(--glow-shadow);
+  backdrop-filter: blur(10px);
+}
+.emoji { font-size: 42px; line-height: 1; }
+h1 {
+  margin: 16px 0 10px; font-size: 26px; font-weight: 600; letter-spacing: .5px;
+  background-image: var(--title-gradient);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+p { margin: 0; line-height: 1.9; color: var(--text-secondary); font-size: 15px; }
+.sub { margin-top: 18px; font-size: 12.5px; color: var(--text-muted); }
+.dots i {
+  display: inline-block; width: 5px; height: 5px; margin: 0 2px; border-radius: 50%;
+  background: var(--accent-strong); animation: blink 1.4s infinite both;
+}
+.dots i:nth-child(2) { animation-delay: .2s; }
+.dots i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25 } 40% { opacity: 1 } }

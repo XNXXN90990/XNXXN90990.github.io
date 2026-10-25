@@ -53,7 +53,7 @@
       </svg>
 
       <!-- 书法水印 -->
-      <div class="calligraphy-watermark" aria-hidden="true">寜</div>
+      <div v-if="watermarkEnabled" class="calligraphy-watermark" aria-hidden="true">{{ watermarkText }}</div>
 
       <div class="hero-inner">
         <!-- 左侧文字区 -->
@@ -131,7 +131,7 @@
     <!-- 公告条 -->
     <div class="notice-strip">
       <i class="fas fa-bullhorn notice-icon"></i>
-      <span>欢迎来到寜的小站！博客刚刚开张，文章持续更新中，也欢迎去「关于」页找我玩~</span>
+      <span>{{ noticeText }}</span>
     </div>
 
     <!-- 文章卡片展示区域 -->
@@ -199,8 +199,10 @@ import avatarUrl from '@/assets/imgs/avatar.jpg';
 import avatarBackUrl from '@/assets/imgs/avatar-back.jpg';
 import avatarBack2Url from '@/assets/imgs/avatar-back2.png';
 import constellationData from '@/content/constellations.json';
+import { siteConfig } from '@/utils/siteStore';
 
-const TYPE_PHRASES = [
+// 打字机默认语句（后台「站点设置」可覆盖）
+const DEFAULT_TYPE_PHRASES = [
   '寜的小站·Ning\'s Blog',
   '宁静致远 | 记录学习、生活与思考',
   '教程/学习路线/随笔/杂谈说说'
@@ -303,6 +305,25 @@ export default {
   computed: {
     totalPages() {
       return Math.max(1, Math.ceil(this.total / this.pageSize));
+    },
+    /** 站点配置（后端「站点设置」可覆盖，未配置时用内置默认） */
+    watermarkText() {
+      return siteConfig('watermark_text');
+    },
+    watermarkEnabled() {
+      return siteConfig('watermark_enabled') === '1';
+    },
+    noticeText() {
+      return siteConfig('notice_text');
+    },
+    typePhrases() {
+      try {
+        const phrases = JSON.parse(String(siteConfig('typewriter_phrases') || '[]'));
+        if (Array.isArray(phrases) && phrases.length) return phrases;
+      } catch (e) {
+        /* 配置不是合法 JSON 时用默认 */
+      }
+      return DEFAULT_TYPE_PHRASES;
     },
     /** 当前背面图：第 1、3、5…次翻面显示头像背面，第 2、4…次显示头像背面2 */
     avatarBackCurrent() {
@@ -551,7 +572,7 @@ export default {
       if (this.typewriterTimer) clearTimeout(this.typewriterTimer);
       this.isTypewriterDeleting = false;
       const type = () => {
-        const current = TYPE_PHRASES[this.typewriterPhraseIndex] || '';
+        const current = this.typePhrases[this.typewriterPhraseIndex] || '';
         if (!this.isTypewriterDeleting) {
           this.typewriterText = current.slice(0, this.typewriterText.length + 1);
           if (this.typewriterText === current) {
@@ -568,7 +589,7 @@ export default {
           if (this.typewriterText === '') {
             // 删完切下一句
             this.isTypewriterDeleting = false;
-            this.typewriterPhraseIndex = (this.typewriterPhraseIndex + 1) % TYPE_PHRASES.length;
+            this.typewriterPhraseIndex = (this.typewriterPhraseIndex + 1) % this.typePhrases.length;
             this.typewriterTimer = setTimeout(type, 450);
             return;
           }
@@ -582,8 +603,8 @@ export default {
     animateText() {
       if (!this.$refs.line1 || !this.$refs.line2) return;
 
-      const line1Text = '你好，';
-      const line2Text = "Welcome To Ning's Blog！";
+      const line1Text = siteConfig('hero_line1') || '你好，';
+      const line2Text = siteConfig('hero_line2') || "Welcome To Ning's Blog！";
 
       // 第一行：中文，逐字浮现
       this.$refs.line1.innerHTML = line1Text

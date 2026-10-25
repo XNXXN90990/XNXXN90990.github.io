@@ -1,11 +1,12 @@
 /**
- * api/index.js —— 静态内容数据源
+ * api/index.js —— 混合数据源（后端优先，静态兜底）
  *
- * 本站已静态化：文章/杂想来自 content/ 下的 markdown（构建时由 scripts/gen-content.mjs 生成清单），
- * 说说/相册/友链来自 content/ 下的 JSON，指南来自 content/guide/（scripts/import-guides.mjs 导入）。
+ * 数据优先级：
+ *   1. AyeezBlog 后端（VITE_API_BASE 指定地址，dev 默认走 /api 代理；超时 2.5s 视为不可用）
+ *   2. 静态内容（content/ 下的 markdown 与 JSON，构建时由 scripts/gen-content.mjs 生成清单）
+ * 后端挂掉/未启动时自动回退静态，网站照常可看，只是后台改动不生效。
  *
- * 函数签名与原后端 API 版保持一致，未来若接回 Spring Boot 后端，
- * 只需恢复这里的 HTTP 实现即可，视图层无需改动。
+ * 函数签名与原 AyeezBlog 后端保持一致，视图层无感知。
  */
 import manifest from '@/content/manifest.json';
 import thoughtsManifest from '@/content/thoughts-manifest.json';
@@ -29,6 +30,31 @@ const guideDocLoaders = import.meta.glob('/content/guide/**/*.md', {
   import: 'default'
 });
 
+// ============ 后端访问（混合模式核心） ============
+// dev：'' 走 vite 代理 /api → localhost:8081；生产：VITE_API_BASE 设为后端完整地址；
+// 设为 'off' 可强制纯静态。
+const API_BASE = String(import.meta.env.VITE_API_BASE ?? '/api').replace(/\/$/, '');
+const HYBRID_ENABLED = API_BASE !== 'off';
+
+/** 请求后端，2.5s 超时或非 200 都视为不可用，抛错由调用方回退静态 */
+async function tryRemote(path, timeout = 2500) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+  try {
+    const resp = await fetch(API_BASE + path, { signal: controller.signal });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const body = await resp.json();
+    if (body && body.code === 200) return body.data;
+    throw new Error((body && body.message) || '接口异常');
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+const day = (s) => (s ? String(s).slice(0, 10) : '');
+const minute = (s) => (s ? String(s).replace('T', ' ').slice(0, 16) : '');
+
+/** 静态清单排序（回退路径用） */
 function sortList(list, orderBy = 'date', orderType = 'desc') {
   const arr = list.slice();
   arr.sort((a, b) => {
@@ -41,26 +67,52 @@ function sortList(list, orderBy = 'date', orderType = 'desc') {
   return arr;
 }
 
+/** 静态清单分页包装（回退路径用，返回结构与后端一致） */
 function paged(list, page, pageSize) {
   const total = list.length;
   const start = (page - 1) * pageSize;
   return { code: 200, data: { rows: list.slice(start, start + pageSize), total, page, pageSize } };
 }
 
-/** 文章列表（分页），与原后端 /api/post/list 返回结构一致 */
+/** 文章列表（分页）：后端优先，回退静态清单 */
 export async function fetchPosts(page = 1, pageSize = 10, orderBy = 'update_time', orderType = 'desc') {
+  if (HYBRID_ENABLED) {
+    try {
+      const data = await tryRemote(`/post/list?page=${page}&pageSize=${pageSize}`);
+      const rows = (data.rows || []).map((r) => ({
+        ...r,
+        pinned: !!r.pinned,
+        featured: !!r.featured,
+        editing: !!r.editing,
+        water: !!r.water,
+        date: day(r.createTime),
+        updateTime: day(r.updateTime)
+      }));
+      return { code: 200, data: { rows, total: data.total, page, pageSize } };
+    } catch (e) {
+      /* 后端不可用，回退静态 */
+    }
+  }
   return paged(sortList(manifest, orderBy, orderType), page, pageSize);
 }
 
-/** 单篇文章正文（含 front-matter 的原始 markdown），与 /api/post/get 结构一致 */
+/** 单篇文章正文（含 front-matter 的原始 markdown）：后端与静态存储格式一致 */
 export async function fetchPostById(id) {
+  if (HYBRID_ENABLED) {
+    try {
+      const data = await tryRemote(`/post/get?id=${encodeURIComponent(id)}`);
+      if (data && data.content) return { code: 200, data: { id: data.id || id, content: data.content } };
+    } catch (e) {
+      /* 回退静态 */
+    }
+  }
   const loader = postLoaders[`/content/posts/${id}.md`];
   if (!loader) throw new Error(`文章不存在：${id}`);
   const content = await loader();
   return { code: 200, data: { id, content } };
 }
 
-/** 杂想列表 / 详情 */
+/** 杂想（暂无独立后端表，始终走静态） */
 export async function fetchThoughts(page = 1, pageSize = 10) {
   return paged(sortList(thoughtsManifest), page, pageSize);
 }
@@ -74,25 +126,107 @@ export async function fetchThoughtById(id) {
 
 /** 说说（按时间倒序返回全部，前端可再分页） */
 export async function fetchTalks() {
+  if (HYBRID_ENABLED) {
+    try {
+      const data = await tryRemote('/talk/list?page=1&pageSize=500');
+      const list = (data.rows || [])
+        .map((r) => ({
+          id: String(r.id),
+          content: r.content,
+          images: r.images || null,
+          date: minute(r.createdAt),
+          mood: '',
+          tags: []
+        }))
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+      if (list.length) return { code: 200, data: list };
+    } catch (e) {
+      /* 回退静态 */
+    }
+  }
   const list = talksData.slice().sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   return { code: 200, data: list };
 }
 
 /** 相册列表 / 详情 */
 export async function fetchAlbums() {
+  if (HYBRID_ENABLED) {
+    try {
+      const list = await tryRemote('/album/list');
+      const albums = (list || []).map((a) => ({
+        id: String(a.id),
+        name: a.title,
+        cover: (a.coverImages && a.coverImages[0]) || '',
+        date: '',
+        description: a.description || '',
+        photos: null
+      }));
+      if (albums.length) return { code: 200, data: albums };
+    } catch (e) {
+      /* 回退静态 */
+    }
+  }
   const albums = albumsData.albums || [];
   return { code: 200, data: albums };
 }
 
 export async function fetchAlbumById(id) {
+  if (HYBRID_ENABLED) {
+    try {
+      const a = await tryRemote(`/album/get?id=${encodeURIComponent(id)}`);
+      if (a) {
+        return {
+          code: 200,
+          data: {
+            id: String(a.id),
+            name: a.title,
+            cover: (a.coverImages && a.coverImages[0]) || '',
+            date: '',
+            description: a.description || '',
+            photos: (a.photos || []).map((p) => ({ src: p.imageUrl, caption: p.caption || '' }))
+          }
+        };
+      }
+    } catch (e) {
+      /* 回退静态 */
+    }
+  }
   const album = (albumsData.albums || []).find((a) => a.id === id);
   if (!album) throw new Error(`相册不存在：${id}`);
   return { code: 200, data: album };
 }
 
-/** 友链分组，结构对齐原 /api/links/list：[{class_name, class_desc, link_list:[{name,avatar,link,descr}]}] */
+/** 友链分组，结构对齐静态 links.json：[{class_name, class_desc, link_list:[{name,avatar,link,descr}]}] */
 export async function fetchLinks() {
+  if (HYBRID_ENABLED) {
+    try {
+      const groups = await tryRemote('/links/list');
+      const mapped = (groups || []).map((g) => ({
+        class_name: g.className,
+        class_desc: g.classDesc,
+        link_list: (g.linkList || []).map((l) => ({
+          name: l.name,
+          avatar: l.avatar || '',
+          link: l.link,
+          descr: l.descr || ''
+        }))
+      }));
+      if (mapped.length) return { code: 200, data: mapped };
+    } catch (e) {
+      /* 回退静态 */
+    }
+  }
   return { code: 200, data: linksData };
+}
+
+/** 站点配置（水印/公告/模块开关/维护状态），后端不可用返回 null（前端用内置默认值） */
+export async function fetchSiteConfig() {
+  if (!HYBRID_ENABLED) return null;
+  try {
+    return await tryRemote('/site/config', 3000);
+  } catch (e) {
+    return null;
+  }
 }
 
 /** 指南（三本开源手册，含章节树与出处） */

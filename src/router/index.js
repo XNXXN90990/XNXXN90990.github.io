@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { resolveScrollBehaviorWithLenis } from '@/plugins/smoothScroll';
+import { siteStore, SITE_STATUS } from '@/utils/siteStore';
 
 import Home from '@/views/Home.vue';
 // 非首页页面拆包（首页加载完后再预取，见 Home.vue）
@@ -15,6 +16,7 @@ const AlbumDetail = () => import('@/views/AlbumDetail.vue');
 const GuideHome = () => import('@/views/GuideHome.vue');
 const GuideDetail = () => import('@/views/GuideDetail.vue');
 const GuideDoc = () => import('@/views/GuideDoc.vue');
+const Maintenance = () => import('@/views/Maintenance.vue');
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -42,6 +44,7 @@ const routes = [
     component: PostDetail,
     props: (route) => ({ id: route.params.id, source: 'thoughts' })
   },
+  { path: '/maintenance', name: 'Maintenance', component: Maintenance },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ];
 
@@ -51,6 +54,14 @@ const router = createRouter({
   scrollBehavior(_to, _from, savedPosition) {
     return resolveScrollBehaviorWithLenis(savedPosition);
   }
+});
+
+// 维护模式守卫：后台切到 maintenance/ghost 后，全站只留维护页；恢复 normal 自动放行
+router.beforeEach((to) => {
+  if (!siteStore.loaded) return true; // 配置未到前先放行，App 初始化完成后会补跳转
+  if (siteStore.status !== SITE_STATUS.NORMAL && to.path !== '/maintenance') return '/maintenance';
+  if (siteStore.status === SITE_STATUS.NORMAL && to.path === '/maintenance') return '/';
+  return true;
 });
 
 export default router;
